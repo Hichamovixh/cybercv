@@ -194,7 +194,7 @@
 </div>
 
 <div class="core" id="core">
-  <div class="tag">// développeur · réseaux · systèmes</div>
+  <div class="tag">// développeur · réseaux · systèmes · paris</div>
   <h1 data-t="HICHAM DJAMA">HICHAM DJAMA</h1>
   <p>Je conçois du code <span>&amp;</span> les réseaux qui le font vivre.</p>
 </div>
@@ -218,11 +218,12 @@
 
 <script>
 /* ================== CONTENU — modifie ici ================== */
-const NAME='Hicham DJAMA', EMAIL='hicham.djama@email.com';
+const NAME='Hicham DJAMA', EMAIL='hicham.djama95@gmail.com', PHONE='07 67 95 76 31', PHONE_INTL='+33767957631', CITY='Paris', AGE=(()=>{const n=new Date(),b=new Date(1998,9,6);let a=n.getFullYear()-b.getFullYear();if(n<new Date(n.getFullYear(),9,6))a--;return a})();
 const SECTIONS = {
   apropos:{label:'À propos', ip:'10.0.0.2', port:'80', html:`
     <img src="assets/moi.jpg" class="portrait" alt="Portrait de Hicham en samouraï, style manga">
     <h2>Bonjour, moi c'est Hicham.</h2>
+    <p class="sub">// ${AGE} ans · ${CITY}, France</p>
     <p>Je suis <strong>développeur et passionné de réseaux</strong>. J'aime autant écrire du code propre que comprendre ce qui se passe entre deux machines, de la couche physique jusqu'à l'application.</p>
     <p>Remplace ce texte par ton histoire : ce qui t'a amené à l'informatique, ce que tu aimes construire, et ce que tu cherches en ce moment (stage, alternance, CDI, missions freelance…).</p>
     <div class="facts">
@@ -265,8 +266,10 @@ const SECTIONS = {
     <p>SYN envoyé. Il ne manque que ton ACK. Je réponds en général sous 24 h.</p>
     <div class="contact">
       <div class="row"><div><small>email</small>${EMAIL}</div><button class="btn" onclick="copyMail(this)">copier</button></div>
-      <a href="https://github.com/" target="_blank" rel="noopener"><div><small>github</small>github.com/pseudo</div><span>↗</span></a>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener"><div><small>linkedin</small>linkedin.com/in/pseudo</div><span>↗</span></a>
+      <a href="tel:${PHONE_INTL}"><div><small>téléphone</small>${PHONE}</div><span>☎</span></a>
+      <div class="row"><div><small>localisation</small>${CITY}, France · mobile en Île-de-France</div><span>⌖</span></div>
+      <a href="https://github.com/Hichamovixh" target="_blank" rel="noopener"><div><small>github</small>github.com/Hichamovixh</div><span>↗</span></a>
+      <a href="https://www.linkedin.com/in/hicham-djama-5186291b6/" target="_blank" rel="noopener"><div><small>linkedin</small>linkedin.com/in/hicham-djama</div><span>↗</span></a>
       <a href="#" onclick="return false"><div><small>cv</small>cv-hicham-djama.pdf</div><span>↓</span></a>
     </div>`}
 };
