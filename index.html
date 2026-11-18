@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hicham DJAMA — Développeur & Réseaux</title>
+<meta name="description" content="Hicham DJAMA — profil hybride réseaux, cybersécurité, systèmes et développement, basé à Paris. Ouvert aux opportunités CDI / CDD.">
+<meta name="theme-color" content="#04050a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hicham DJAMA — Réseaux · Cybersécurité · Systèmes · Dev">
+<meta property="og:description" content="Portfolio interactif : entre dans mon monde. Version CV imprimable incluse.">
+<meta property="og:url" content="https://hichamovixh.github.io/cybercv/">
+<meta property="og:image" content="https://hichamovixh.github.io/cybercv/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 3l25 14.5v29L32 61 7 46.5v-29z' fill='%2304050a' stroke='%235ef2ff' stroke-width='4'/%3E%3Ctext x='32' y='41' font-family='monospace' font-weight='700' font-size='22' fill='%235ef2ff' text-anchor='middle'%3EHD%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@400;600;800&family=Bangers&family=Dela+Gothic+One&display=swap" rel="stylesheet">
@@ -37,6 +46,7 @@
   #bubble span::after{content:"_";font-weight:400;color:var(--cyan);-webkit-text-fill-color:var(--cyan);animation:blink 1s steps(1) infinite;margin-left:2px}
   .replay{position:fixed;left:40px;bottom:30px;z-index:8;font-family:var(--mono);font-size:11px;color:var(--muted);background:rgba(8,11,22,.6);border:1px solid var(--line);padding:6px 10px;border-radius:6px;cursor:pointer}
   .replay:hover{color:var(--cyan);border-color:var(--cyan)}
+  @media (max-width:700px){.replay{left:auto;right:26px;top:22px;bottom:auto}}
   .skip{position:fixed;right:22px;bottom:20px;z-index:106;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.55);background:none;border:1px solid rgba(255,255,255,.2);padding:7px 12px;border-radius:6px;cursor:pointer}
   .skip:hover{color:#fff;border-color:#fff}
 
@@ -83,6 +93,7 @@
   .node:hover .lbl,.node:focus-visible .lbl,.node.active .lbl{border-color:var(--pink);color:#fff}
   .node:focus{outline:none}
   .node.left .lbl{left:auto;right:22px;text-align:right}
+  .node.mob .lbl{left:50%;right:auto;top:16px;transform:translateX(-50%);text-align:center;padding:4px 8px}
 
   /* ============ PANEL ============ */
   .panel{position:fixed;top:0;right:0;height:100%;width:min(580px,100%);z-index:20;transform:translateX(104%);transition:transform .5s cubic-bezier(.2,.8,.2,1);
@@ -105,6 +116,16 @@
   .pb p{line-height:1.7;color:#b4c0e0;margin-bottom:12px}
   .pb strong{color:#fff}
   .sub{font-family:var(--mono);font-size:12px;color:var(--muted)!important}
+  .idcard{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:end;margin-bottom:24px;border-bottom:1px solid rgba(94,242,255,.2);position:relative}
+  .idcard::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,var(--cyan),var(--violet),transparent)}
+  .idph{position:relative;height:188px;display:flex;align-items:flex-end}
+  .idph img{width:150px;display:block;filter:drop-shadow(0 0 18px rgba(94,242,255,.35));animation:holo 4s infinite steps(1)}
+  .idph::before{content:"";position:absolute;inset:auto 10px 0;height:30px;background:radial-gradient(ellipse at center bottom,rgba(94,242,255,.45),transparent 70%)}
+  @keyframes holo{0%,90%,100%{opacity:1;transform:none}91%{opacity:.6;transform:translateX(3px)}93%{opacity:1;transform:translateX(-2px)}95%{opacity:.8;transform:none}}
+  .idcard > div:last-child{padding-bottom:18px}
+  .idcard h2{font-size:26px!important;margin:6px 0 12px!important}
+  .idcard .status{margin-bottom:0}
+  @media (max-width:460px){.idcard{grid-template-columns:110px 1fr;gap:12px}.idph{height:138px}.idph img{width:110px}.idcard h2{font-size:20px!important}}
   .status{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:#c9d4f0;border:1px solid rgba(94,242,255,.3);background:rgba(94,242,255,.06);padding:7px 12px;border-radius:20px;margin-bottom:18px}
   .status i{width:8px;height:8px;border-radius:50%;background:#3dff9a;box-shadow:0 0 10px #3dff9a;animation:blink 1.6s infinite}
   .mods{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -114,6 +135,15 @@
   .mods span{font-family:var(--disp);font-weight:600;font-size:14px;display:block;margin:4px 0;color:#fff}
   .mods small{font-size:12px;color:var(--muted);line-height:1.4;display:block}
   @media (max-width:420px){.mods{grid-template-columns:1fr}}
+  .pnav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .pnav button{background:none;border:1px solid var(--line);color:var(--text);font:inherit;padding:8px 12px;border-radius:8px;cursor:pointer;transition:.2s}
+  .pnav button:hover{border-color:var(--cyan);color:var(--cyan)}
+  #ring{position:fixed;left:0;top:0;will-change:transform;width:34px;height:34px;margin:-17px 0 0 -17px;border:1px solid rgba(94,242,255,.55);border-radius:50%;pointer-events:none;z-index:200;transition:width .2s,height .2s,margin .2s,border-color .2s,background .2s;display:none;mix-blend-mode:screen}
+  #ring.on{display:block}
+  #ring.hot{width:54px;height:54px;margin:-27px 0 0 -27px;border-color:var(--pink);background:rgba(255,61,187,.06)}
+  #ring::after{content:"";position:absolute;inset:-6px;border:1px dashed rgba(139,92,255,.35);border-radius:50%;animation:spin 6s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .exbadge{font-family:var(--mono);font-size:11px;color:#ffb547;border:1px dashed rgba(255,181,71,.5);background:rgba(255,181,71,.06);padding:7px 10px;border-radius:8px;margin:0 0 16px}
   .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
   .facts div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--bg2)}
   .facts b{display:block;font-size:26px;font-family:var(--disp);background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -162,6 +192,62 @@
   .tin label{color:var(--cyan);white-space:nowrap}
   .tin input{flex:1;background:none;border:0;outline:0;color:var(--text);font:inherit;caret-color:var(--cyan)}
 
+  /* ============ MODE RECRUTEUR / CV ============ */
+  .cvbtn{position:fixed;right:40px;bottom:30px;z-index:8;font-family:var(--mono);font-size:11px;color:#04050a;background:linear-gradient(90deg,var(--cyan),var(--violet));border:0;padding:7px 12px;border-radius:6px;cursor:pointer;font-weight:700;box-shadow:0 0 24px rgba(94,242,255,.25)}
+  .cvbtn:hover{filter:brightness(1.15)}
+  @media (max-width:700px){.cvbtn{right:auto;left:26px;top:22px;bottom:auto}.hud .info{display:none}}
+  #cvmode{position:fixed;inset:0;z-index:60;background:rgba(3,4,10,.86);backdrop-filter:blur(10px);overflow:auto;display:none;padding:70px 16px 40px}
+  #cvmode.open{display:block;animation:cvin .4s ease}
+  @keyframes cvin{from{opacity:0}}
+  .cvbar{position:fixed;top:0;left:0;right:0;display:flex;justify-content:center;gap:10px;padding:14px;z-index:61;background:linear-gradient(180deg,rgba(3,4,10,.95),transparent)}
+  .cvbar button{font-family:var(--mono);font-size:12px;border-radius:8px;padding:9px 14px;cursor:pointer;border:1px solid var(--line);background:rgba(14,18,32,.9);color:var(--text)}
+  .cvbar button.pri{background:linear-gradient(90deg,var(--cyan),var(--violet));color:#04050a;border:0;font-weight:700}
+  .sheet{max-width:820px;margin:0 auto;background:#fbfcfe;color:#141a26;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(94,242,255,.25);font-family:var(--sans);overflow:hidden}
+  .sheet .hd{display:grid;grid-template-columns:96px 1fr;gap:22px;align-items:center;padding:34px 40px 26px;background:#0b0e1a;color:#e9efff;position:relative}
+  .sheet .hd::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#5ef2ff,#8b5cff)}
+  .sheet .hd img{width:96px;height:120px;object-fit:cover;object-position:top}
+  .sheet h1{font-family:var(--disp);font-size:30px;font-weight:800;letter-spacing:-.01em;line-height:1}
+  .sheet .hl{font-family:var(--mono);font-size:12px;color:#5ef2ff;margin-top:8px;letter-spacing:.04em}
+  .sheet .ct{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:14px;font-size:12.5px;color:#b8c3e0}
+  .sheet .ct a{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(184,195,224,.5)}
+  .sheet .bd{display:grid;grid-template-columns:1.55fr 1fr;gap:0}
+  .sheet .col{padding:26px 40px 34px}
+  .sheet .col+.col{background:#f1f4fa;padding-left:28px;padding-right:32px}
+  .sheet h3{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6b46e5;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
+  .sheet h3:first-child{margin-top:0}
+  .sheet h3::after{content:"";flex:1;height:1px;background:#d8deeb}
+  .sheet p{font-size:13.5px;line-height:1.6;color:#2b3446;margin-bottom:8px}
+  .sheet strong{color:#0b0e1a}
+  .sheet .it{margin-bottom:12px;padding-left:14px;border-left:2px solid #5ef2ff}
+  .sheet .it b{display:block;font-size:14px;color:#0b0e1a}
+  .sheet .it span{font-family:var(--mono);font-size:11px;color:#6a7488}
+  .sheet .it p{margin:4px 0 0;font-size:12.5px}
+  .sheet .tg{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+  .sheet .tg i{font-style:normal;font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:10px;background:#e8ecf6;color:#3a4560}
+  .sheet .sk{margin-bottom:12px}
+  .sheet .sk b{font-family:var(--mono);font-size:11px;color:#0b0e1a;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px}
+  .sheet .sk div{display:grid;grid-template-columns:1fr 58px;gap:8px;align-items:center;font-size:12px;color:#2b3446;margin-bottom:4px}
+  .sheet .sk em{height:4px;border-radius:4px;background:#dfe4f0;position:relative;overflow:hidden;display:block}
+  .sheet .sk em::after{content:"";position:absolute;inset:0;width:var(--w);background:linear-gradient(90deg,#14b8c8,#6b46e5)}
+  .sheet .ex{font-family:var(--mono);font-size:9.5px;color:#b06b00;background:#fff4e0;border:1px dashed #f0b45a;border-radius:6px;padding:4px 7px;margin:-2px 0 10px;display:inline-block}
+  .sheet .ft{padding:12px 40px;font-family:var(--mono);font-size:10px;color:#8a93a6;border-top:1px solid #e3e7f0;display:flex;justify-content:space-between}
+  @media (max-width:700px){.sheet .bd{grid-template-columns:1fr}.sheet .hd{grid-template-columns:70px 1fr;padding:24px 22px}.sheet .hd img{width:70px;height:88px}.sheet h1{font-size:24px}.sheet .col,.sheet .col+.col{padding:22px}.sheet .ft{padding:12px 22px}}
+  @media print{
+    @page{size:A4;margin:0}
+    html,body{overflow:visible!important;background:#fff!important;height:auto!important}
+    body > *:not(#cvmode){display:none!important}
+    #cvmode{display:block!important;position:static;background:none;backdrop-filter:none;padding:0;overflow:visible}
+    .cvbar{display:none!important}
+    .sheet{box-shadow:none;border-radius:0;max-width:none;zoom:.95;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .sheet .ex,.sheet .noprint{display:none}
+    .sheet .hd{padding:22px 30px 18px}
+    .sheet .col{padding:16px 28px 18px}.sheet .col+.col{padding-left:20px;padding-right:22px}
+    .sheet h3{margin:12px 0 6px}
+    .sheet p{font-size:11.5px;line-height:1.48;margin-bottom:5px}
+    .sheet .it{margin-bottom:7px}.sheet .it b{font-size:12.5px}.sheet .it p{font-size:11px;margin-top:2px}
+    .sheet .sk{margin-bottom:8px}.sheet .sk div{font-size:11px;margin-bottom:2px}
+    .sheet .ft{padding:8px 30px}
+  }
   @media (max-width:700px){
     .hud .meta{display:none}
     .hint{font-size:11px;bottom:22px}
@@ -180,10 +266,13 @@
 <canvas id="sam" aria-hidden="true"></canvas>
 <div id="bubble" aria-hidden="true"><small>// connexion établie</small><span></span></div>
 <div class="flash" id="flash"></div>
+<button class="cvbtn" id="cvopen" title="Version CV lisible et imprimable">▤ version CV</button>
+<div id="cvmode" aria-hidden="true"><div class="cvbar"><button id="cvclose">← retour au site</button><button class="pri" id="cvprint">imprimer / enregistrer en PDF</button></div><div class="cvwrap"></div></div>
 <button class="replay" id="replay" title="Rejouer l'intro">↻ rejouer l'intro</button>
 <button class="skip" id="skip">passer l'intro ›</button>
 
 <canvas id="net" aria-hidden="true"></canvas>
+<div id="ring" aria-hidden="true"></div>
 <div class="scan"></div><div class="vign"></div>
 
 <div class="hud">
@@ -206,7 +295,7 @@
   <p>Réseaux <span>·</span> cybersécurité <span>·</span> systèmes <span>·</span> code</p>
 </div>
 
-<div class="hint" id="hint">Sélectionne un nœud, ou parle à mon <button id="openTerm">IA</button> (<kbd>²</kbd>)</div>
+<div class="hint" id="hint">Sélectionne un nœud (<kbd>1</kbd>–<kbd>5</kbd>), ou parle à mon <button id="openTerm">IA</button> (<kbd>²</kbd>)</div>
 
 <aside class="panel" id="panel" aria-hidden="true">
   <div class="ph">
@@ -225,64 +314,91 @@
 
 <script>
 /* ================== CONTENU — modifie ici ================== */
-const NAME='Hicham DJAMA', EMAIL='hicham.djama95@gmail.com', PHONE='07 67 95 76 31', PHONE_INTL='+33767957631', CITY='Paris', AGE=(()=>{const n=new Date(),b=new Date(1998,9,6);let a=n.getFullYear()-b.getFullYear();if(n<new Date(n.getFullYear(),9,6))a--;return a})();
+/* Tout le texte du site ET de la version CV vient de ces données.
+   EXEMPLE : mets à false une section dès que tu l'as remplie avec tes vraies infos
+   (le badge « contenu d'exemple » disparaît alors). */
+const PROFILE={
+  name:'Hicham DJAMA', first:'Hicham', city:'Paris',
+  email:'hicham.djama95@gmail.com', phone:'07 67 95 76 31', phoneIntl:'+33767957631',
+  birth:[1998,9,6],                       // année, mois (0 = janvier), jour → l'âge se calcule tout seul
+  headline:'Réseaux · Cybersécurité · Systèmes · Développement',
+  status:'En poste', seeking:'CDI / CDD',
+  github:'https://github.com/Hichamovixh', linkedin:'https://www.linkedin.com/in/hicham-djama-5186291b6/',
+  summary:[
+    `Je suis un profil <strong>hybride</strong> : réseaux, systèmes, cybersécurité et développement. Ce qui me plaît, c'est de comprendre une infrastructure de bout en bout, du câble jusqu'au cloud, du paquet réseau jusqu'à l'application qui tourne dessus, puis de la rendre <strong>plus fiable, plus sûre et plus automatisée</strong>.`,
+    `Au quotidien, j'aime autant configurer un switch que durcir un serveur Linux ou écrire le script qui évitera de refaire la même tâche cent fois. Je suis curieux, rigoureux, et j'apprends en permanence : chaque nouvelle techno passe d'abord par mon lab.`],
+  seekingText:`Un poste en <strong>CDI ou CDD</strong> à <strong>Paris / Île-de-France</strong>, dans une équipe où je peux faire le lien entre l'infrastructure, la sécurité et le code, et continuer à monter en compétences sur des projets concrets.`
+};
+const MODULES=[
+  ['Réseaux','architecture, routage, switching, supervision'],
+  ['Cybersécurité','sécurisation, analyse, bonnes pratiques'],
+  ['Systèmes & Cloud','Linux, Windows Server, virtualisation, cloud'],
+  ['Développement','scripts, automatisation, applications web']];
+// [port, compétence, niveau sur 100]  — port purement décoratif (thème « scan réseau »)
+const SKILLS=[
+  {group:'réseaux', items:[['179','Routage (OSPF, BGP)',70],['161','Switching & VLAN (Cisco)',80],['53','DNS / DHCP / TCP-IP',85],['1194','VPN (IPsec, OpenVPN)',65],['10050','Supervision (Zabbix, Grafana)',60]]},
+  {group:'cybersécurité', items:[['443','Pare-feu (pfSense, FortiGate)',70],['22','Durcissement des systèmes',70],['8834','Audit & scan (Nmap, Nessus)',70],['5601','Analyse de trafic (Wireshark)',80]]},
+  {group:'systèmes & cloud', items:[['2049','Linux (Debian, Ubuntu)',85],['389','Windows Server / Active Directory',75],['8006','Virtualisation (Proxmox, VMware)',70],['2375','Docker',70],['6443','Cloud (Azure, AWS)',50]]},
+  {group:'développement', items:[['8000','Python',75],['3000','JavaScript / HTML / CSS',70],['5432','SQL',60],['9418','Git',75],['5985','Bash / PowerShell',75]]}];
+const PROJECTS=[
+  {t:'Homelab automatisé',y:'2026',d:'Infra complète sous Proxmox : VLANs, pare-feu pfSense, supervision Grafana et déploiement par Ansible.',tags:['Proxmox','Ansible','pfSense','Grafana']},
+  {t:'NetWatch',y:'2025',d:'Tableau de bord web qui scanne un réseau local et alerte quand un nouvel appareil apparaît.',tags:['Python','FastAPI','Scapy']},
+  {t:'Durcissement d\'un parc Linux',y:'2025',d:'Scripts d\'audit et de mise en conformité (SSH, pare-feu, mises à jour, journaux) déployés sur plusieurs serveurs.',tags:['Bash','Linux','CIS']},
+  {t:'Ce portfolio',y:'2026',d:'Intro animée en cyber-samouraï, noyau neuronal 3D, assistant IA et version CV imprimable, sans aucune librairie.',tags:['HTML','Canvas','JavaScript'],real:true}];
+// type : 'xp' (expérience) ou 'edu' (formation)
+const PARCOURS=[
+  {type:'edu',t:'Bac / premières lignes de code',w:'Lycée · Ville',d:'2016'},
+  {type:'edu',t:'BTS SIO — option SISR',w:'École · Ville',d:'2018'},
+  {type:'xp', t:'Stage administrateur réseau',w:'Entreprise · Ville',d:'2019'},
+  {type:'edu',t:'Licence / Bachelor réseaux & sécurité',w:'École · Ville',d:'2021'},
+  {type:'xp', t:'Poste actuel',w:'Entreprise · Paris',d:'2022 → auj.'}];
+const EXEMPLE={competences:true, projets:true, parcours:true};
+/* =========================================================== */
+
+const NAME=PROFILE.name, EMAIL=PROFILE.email, PHONE=PROFILE.phone, PHONE_INTL=PROFILE.phoneIntl, CITY=PROFILE.city;
+const AGE=(()=>{const n=new Date(),[y,m,d]=PROFILE.birth;let a=n.getFullYear()-y;if(n<new Date(n.getFullYear(),m,d))a--;return a})();
+const exBadge=k=>EXEMPLE[k]?`<div class="exbadge">⚠ contenu d'exemple — à remplacer par tes vraies infos</div>`:'';
 const SECTIONS = {
   apropos:{label:'À propos', ip:'10.0.0.2', port:'80', html:`
-    <p class="sub">// ${AGE} ans · ${CITY}, France</p>
-    <h2>Bonjour, moi c'est Hicham.</h2>
-    <div class="status"><i></i>En poste · ouvert aux opportunités <strong>CDI / CDD</strong></div>
-    <p>Je suis un profil <strong>hybride</strong> : réseaux, systèmes, cybersécurité et développement. Ce qui me plaît, c'est de comprendre une infrastructure de bout en bout, du câble jusqu'au cloud, du paquet réseau jusqu'à l'application qui tourne dessus, puis de la rendre <strong>plus fiable, plus sûre et plus automatisée</strong>.</p>
-    <p>Au quotidien, j'aime autant configurer un switch que durcir un serveur Linux ou écrire le script qui évitera de refaire la même tâche cent fois. Je suis curieux, rigoureux, et j'apprends en permanence : chaque nouvelle techno passe d'abord par mon lab.</p>
-    <h3>// modules chargés</h3>
-    <div class="mods">
-      <div><b>01</b><span>Réseaux</span><small>architecture, routage, switching, supervision</small></div>
-      <div><b>02</b><span>Cybersécurité</span><small>sécurisation, analyse, bonnes pratiques</small></div>
-      <div><b>03</b><span>Systèmes &amp; Cloud</span><small>Linux, Windows Server, virtualisation, cloud</small></div>
-      <div><b>04</b><span>Développement</span><small>scripts, automatisation, applications web</small></div>
+    <div class="idcard">
+      <div class="idph"><img src="assets/holo.webp" alt="Hicham DJAMA"></div>
+      <div>
+        <p class="sub">// ID · ${AGE} ans · ${CITY}, France</p>
+        <h2 class="dec">Bonjour, moi c'est ${PROFILE.first}.</h2>
+        <div class="status"><i></i>${PROFILE.status} · ouvert aux <strong>${PROFILE.seeking}</strong></div>
+      </div>
     </div>
+    ${PROFILE.summary.map(p=>`<p>${p}</p>`).join('')}
+    <h3>// modules chargés</h3>
+    <div class="mods">${MODULES.map((m,i)=>`<div><b>0${i+1}</b><span>${m[0].replace('&','&amp;')}</span><small>${m[1]}</small></div>`).join('')}</div>
     <h3>// ce que je recherche</h3>
-    <p>Un poste en <strong>CDI ou CDD</strong> à <strong>Paris / Île-de-France</strong>, dans une équipe où je peux faire le lien entre l'infrastructure, la sécurité et le code, et continuer à monter en compétences sur des projets concrets.</p>`},
+    <p>${PROFILE.seekingText}</p>`},
   competences:{label:'Compétences', ip:'10.0.0.3', port:'22', html:`
-    <h2>Analyse des compétences</h2>
-    <p class="sub">$ nmap -sV hicham.local — 12 services détectés</p>
-    <h3>// développement</h3>
-    <table class="scan-t"><tr><th>PORT</th><th>ÉTAT</th><th>SERVICE</th><th>NIVEAU</th></tr>
-      ${row('3000','open','JavaScript / TS',90)}${row('8000','open','Python',80)}${row('5432','open','SQL / PostgreSQL',75)}
-      ${row('8080','open','Java',60)}${row('3001','open','React / Node.js',80)}${row('2375','open','Docker',75)}</table>
-    <h3>// réseaux &amp; systèmes</h3>
-    <table class="scan-t"><tr><th>PORT</th><th>ÉTAT</th><th>SERVICE</th><th>NIVEAU</th></tr>
-      ${row('179','open','Routage OSPF / BGP',75)}${row('161','open','Cisco IOS / VLAN',80)}${row('53','open','DNS / DHCP',90)}
-      ${row('22','open','Linux / Bash',90)}${row('51820','open','VPN / WireGuard',60)}${row('6443','filt','Kubernetes',35)}</table>`},
+    <h2 class="dec">Analyse des compétences</h2>
+    <p class="sub">$ nmap -sV ${PROFILE.first.toLowerCase()}.local — ${SKILLS.reduce((a,g)=>a+g.items.length,0)} services détectés</p>
+    ${exBadge('competences')}
+    ${SKILLS.map(g=>`<h3>// ${g.group}</h3><table class="scan-t"><tr><th>PORT</th><th>ÉTAT</th><th>SERVICE</th><th>NIVEAU</th></tr>${g.items.map(i=>row(i[0],i[2]>=45?'open':'filt',i[1],i[2])).join('')}</table>`).join('')}`},
   projets:{label:'Projets', ip:'10.0.0.4', port:'443', html:`
-    <h2>Projets</h2>
-    ${proj('Homelab automatisé','2026','Infra complète sous Proxmox : VLANs, pare-feu pfSense, supervision Grafana et déploiement par Ansible.',['Proxmox','Ansible','pfSense','Grafana'])}
-    ${proj('NetWatch','2025','Tableau de bord web qui scanne un réseau local et alerte quand un nouvel appareil apparaît.',['Python','FastAPI','React','Scapy'])}
-    ${proj('API de réservation','2025','API REST pour une association : authentification, réservations, notifications par mail.',['Node.js','PostgreSQL','Docker'])}
-    ${proj('Ce portfolio','2026','Intro manga où j\'apparais en samouraï, noyau neuronal en 3D et assistant IA intégré, sans aucune librairie.',['HTML','Canvas','JS'])}`},
+    <h2 class="dec">Projets</h2>
+    ${exBadge('projets')}
+    ${PROJECTS.map(p=>proj(p.t,p.y,p.d,p.tags)).join('')}`},
   parcours:{label:'Parcours', ip:'10.0.0.5', port:'8080', html:`
-    <h2>Trajectoire</h2>
+    <h2 class="dec">Trajectoire</h2>
     <p class="sub">traceroute avenir — 30 sauts max</p>
-    <ol class="trace">
-      ${hop(1,'Bac / premières lignes de code','Lycée · Ville','2019')}
-      ${hop(2,'BTS SIO — option SISR','École · Ville','2021')}
-      ${hop(3,'Stage administrateur réseau','Entreprise · Ville','2022')}
-      ${hop(4,'Licence / Bachelor développement','École · Ville','2023')}
-      ${hop(5,'Développeur en alternance','Entreprise · Ville','2024 → auj.')}
-      ${hop(6,'Prochaine destination ?','Peut-être chez vous','* * *')}
-    </ol>`},
+    ${exBadge('parcours')}
+    <ol class="trace">${PARCOURS.map((h,i)=>hop(i+1,h.t,h.w,h.d)).join('')}${hop(PARCOURS.length+1,'Prochaine destination ?','Peut-être chez vous','* * *')}</ol>`},
   contact:{label:'Contact', ip:'10.0.0.6', port:'25', html:`
-    <h2>Établir une connexion</h2>
+    <h2 class="dec">Établir une connexion</h2>
     <p>SYN envoyé. Il ne manque que ton ACK. Je réponds en général sous 24 h.</p>
     <div class="contact">
       <div class="row"><div><small>email</small>${EMAIL}</div><button class="btn" onclick="copyMail(this)">copier</button></div>
       <a href="tel:${PHONE_INTL}"><div><small>téléphone</small>${PHONE}</div><span>☎</span></a>
       <div class="row"><div><small>localisation</small>${CITY}, France · mobile en Île-de-France</div><span>⌖</span></div>
-      <a href="https://github.com/Hichamovixh" target="_blank" rel="noopener"><div><small>github</small>github.com/Hichamovixh</div><span>↗</span></a>
-      <a href="https://www.linkedin.com/in/hicham-djama-5186291b6/" target="_blank" rel="noopener"><div><small>linkedin</small>linkedin.com/in/hicham-djama</div><span>↗</span></a>
-      <a href="#" onclick="return false"><div><small>cv</small>cv-hicham-djama.pdf</div><span>↓</span></a>
+      <a href="${PROFILE.github}" target="_blank" rel="noopener"><div><small>github</small>${PROFILE.github.replace('https://','')}</div><span>↗</span></a>
+      <a href="${PROFILE.linkedin}" target="_blank" rel="noopener"><div><small>linkedin</small>linkedin.com/in/hicham-djama</div><span>↗</span></a>
+      <a href="#cv" onclick="openCV();return false"><div><small>cv</small>version CV imprimable / PDF</div><span>▤</span></a>
     </div>`}
 };
-/* =========================================================== */
 
 function row(p,s,n,l){return `<tr><td>${p}/tcp</td><td class="${s}">${s==='open'?'open':'filtered'}</td><td>${n}</td><td><span class="bar"><i style="width:${l}%"></i></span></td></tr>`}
 function proj(t,y,d,tags){return `<div class="proj"><div class="top"><h4>${t}</h4><span class="yr">${y}</span></div><p>${d}</p><div class="tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div></div>`}
@@ -370,7 +486,7 @@ function frame(now){
     const sc=.82+.18*(depth+1)/2;
     n.el.style.transform=`translate(${n.x}px,${n.y}px) scale(${sc})`;
     n.el.style.opacity=.6+.4*(depth+1)/2;n.el.style.zIndex=depth>0?6:4;
-    n.el.classList.toggle('left',n.x<cx-10);
+    const mob=W<700;n.el.classList.toggle('mob',mob);n.el.classList.toggle('left',!mob&&n.x<cx-10);
     const act=n.el.classList.contains('active')||n.el.matches(':hover');
     const g=ctx.createLinearGradient(cx,cy,n.x,n.y);g.addColorStop(0,'rgba(94,242,255,0)');g.addColorStop(1,act?'rgba(255,61,187,.9)':'rgba(94,242,255,.28)');
     ctx.strokeStyle=g;ctx.lineWidth=act?1.8:1;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(n.x,n.y);ctx.stroke();ctx.lineWidth=1;
@@ -393,12 +509,16 @@ function openSection(k){
   const show=()=>{
     $('pcmd').innerHTML=`› requête <b>/${k}</b> → ${s.ip}:${s.port}`;
     $('pres').textContent=`200 OK · réponse générée en 0.0${(10+Math.random()*80|0)} s · confiance 99.${Math.random()*9|0} %`;
-    pbody.innerHTML=s.html;pbody.scrollTop=0;
+    const i=keys.indexOf(k),pv=keys[(i+keys.length-1)%keys.length],nx=keys[(i+1)%keys.length];
+    pbody.innerHTML=s.html+`<nav class="pnav"><button onclick="openSection('${pv}')">← ${SECTIONS[pv].label}</button><span>${i+1} / ${keys.length}</span><button onclick="openSection('${nx}')">${SECTIONS[nx].label} →</button></nav>`;pbody.scrollTop=0;
+    pbody.querySelectorAll('.dec').forEach(decrypt);
     panel.classList.add('open');panel.setAttribute('aria-hidden','false');
     current=k;if(location.hash!=='#'+k)history.replaceState(null,'','#'+k);
   };
   if(reduce||panel.classList.contains('open'))show();else spawn(C,n,'#ff3dbb',.06,show);
 }
+function decrypt(el){if(reduce)return;const txt=el.textContent,G='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&@<>/';let f=0;const tot=18;
+  const it=setInterval(()=>{f++;el.textContent=[...txt].map((c,i)=>c===' '||i<txt.length*f/tot?c:G[Math.random()*G.length|0]).join('');if(f>=tot){clearInterval(it);el.textContent=txt}},28)}
 function closePanel(){panel.classList.remove('open');panel.setAttribute('aria-hidden','true');nodes.forEach(x=>x.el.classList.remove('active'));current=null;history.replaceState(null,'',location.pathname+location.search)}
 $('pclose').onclick=closePanel;
 addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(SECTIONS[k]&&k!==current)openSection(k)});
@@ -418,13 +538,14 @@ function closeTerm(){term.classList.remove('open');term.setAttribute('aria-hidde
 $('openTerm').onclick=openTerm;$('tclose').onclick=closeTerm;
 
 const INTENTS=[
-  {k:'projets',re:/proj|réalis|realis|portfolio|construit|github|code/,a:`Voici une sélection de projets. Il mélange développement web et infrastructure réseau, c'est ce qui le rend intéressant.`},
-  {k:'competences',re:/comp[ée]t|skill|langage|techno|stack|sait faire|outil|niveau/,a:`Analyse terminée. Points forts : JavaScript, Python, Linux et DNS/DHCP. Kubernetes est en cours d'apprentissage.`},
-  {k:'parcours',re:/parcours|[ée]tud|dipl[oô]m|formation|exp[ée]rien|cv|école|ecole/,a:`Je retrace son parcours, saut par saut.`},
+  {k:'projets',re:/proj|réalis|realis|portfolio|construit|github|code/,a:`Voici une sélection de projets, entre infrastructure, sécurité et code.`},
+  {k:'competences',re:/comp[ée]t|skill|langage|techno|stack|sait faire|outil|niveau/,a:`Analyse terminée. Quatre domaines couverts : réseaux, cybersécurité, systèmes & cloud, développement.`},
+  {k:'#cv',re:/\bcv\b|pdf|imprim|r[ée]sum[ée]/,a:`Je génère sa version CV, lisible et imprimable.`},
+  {k:'parcours',re:/parcours|[ée]tud|dipl[oô]m|formation|exp[ée]rien|école|ecole/,a:`Je retrace son parcours, saut par saut.`},
   {k:'contact',re:/contact|mail|joindre|recrut|embauch|stage|alternance|dispo|linkedin/,a:`Excellente idée. Voici comment ouvrir une connexion avec lui.`},
   {k:'apropos',re:/qui|pr[ée]sent|toi|lui|about|propos|bonjour|salut|hello/,a:`${NAME}, ${AGE} ans, basé à ${CITY} : un profil hybride réseaux, cybersécurité, systèmes et développement, ouvert aux opportunités en CDI ou CDD. Voici sa présentation.`}
 ];
-const alias={about:'apropos',skills:'competences',projects:'projets',cv:'parcours'};
+const alias={about:'apropos',skills:'competences',projects:'projets'};
 const resolve=a=>{a=(a||'').toLowerCase();return SECTIONS[a]?a:alias[a]};
 const CMDS={
   help:()=>out(`<span class="m">Tu peux m'écrire en langage naturel, ou utiliser :</span>
@@ -432,17 +553,28 @@ const CMDS={
 <span class="c">open</span> &lt;nœud&gt;      ouvre une section
 <span class="c">ping</span> &lt;nœud&gt;      teste un nœud
 <span class="c">whoami</span>           identité
+<span class="c">cv</span>               version CV imprimable
+<span class="c">neofetch</span>         fiche système
 <span class="c">intro</span>            rejoue l'intro
 <span class="c">clear</span> · <span class="c">exit</span>     nettoyer · fermer`),
   ls:()=>out(keys.map(k=>`<span class="p">${SECTIONS[k].ip.padEnd(10)}</span> ${k.padEnd(12)} <span class="m">:${SECTIONS[k].port}</span>`).join('\n')),
-  whoami:()=>say(`${NAME} — développeur & ingénieur réseaux.`),
+  whoami:()=>say(`${NAME} — ${PROFILE.headline}.`),
+  cv:()=>{say('Génération de la version CV…',()=>setTimeout(openCV,250))},
+  neofetch:()=>out(`<span class="c">     __      </span>  <span class="p">hicham</span>@<span class="p">portfolio</span>
+<span class="c">  __/  \\__   </span>  ------------------
+<span class="c"> /  \\__/  \\  </span>  <span class="c">OS</span>       : Humain v${AGE}.0 (${CITY})
+<span class="c"> \\__/  \\__/  </span>  <span class="c">Kernel</span>   : réseaux + cyber + systèmes + dev
+<span class="c"> /  \\__/  \\  </span>  <span class="c">Uptime</span>   : ${AGE} ans
+<span class="c"> \\__/  \\__/  </span>  <span class="c">Statut</span>   : ${PROFILE.status}, ouvert aux ${PROFILE.seeking}
+<span class="c">    \\__/     </span>  <span class="c">Contact</span>  : ${EMAIL}
+               <span class="c">Shell</span>    : curiosité 100 %`),
   open:a=>{const k=resolve(a);if(!k)return out(`<span class="e">nœud introuvable « ${esc(a||'')} »</span>`);openSection(k)},
   cd:a=>CMDS.open(a),
   ping:a=>{const k=resolve(a);if(!k)return out(`<span class="e">ping: ${esc(a||'?')}: hôte inconnu</span>`);const s=SECTIONS[k],n=nodes.find(n=>n.k===k);
     out(`PING ${k} (${s.ip}) 56 octets.`);let i=0;const iv=setInterval(()=>{spawn(C,n,'#ff3dbb',.04);out(`64 octets de ${s.ip}: seq=${i+1} ttl=64 temps=${(4+Math.random()*18).toFixed(1)} ms`);if(++i>=4){clearInterval(iv);out('<span class="p">--- 0 % de perte ---</span>')}},420)},
   intro:()=>{closeTerm();closePanel();playIntro(true)},
   clear:()=>{tout.innerHTML=''},exit:()=>closeTerm(),
-  sudo:()=>say(`Accès refusé. Même une IA a ses limites… et celle-ci est protégée.`),
+  sudo:(...a)=>{const t=a.join(' ').toLowerCase();if(/hire|recrut|embauch/.test(t)){say(`[sudo] Accès accordé. Excellente décision. Ouverture du canal de contact…`,()=>{for(let i=0;i<24;i++)setTimeout(()=>{const n=nodes[i%nodes.length];spawn(C,n,i%2?'#ff3dbb':'#5ef2ff',.03)},i*40);setTimeout(()=>openSection('contact'),700)})}else say(`Accès refusé. Essaie plutôt : sudo hire hicham`)},
   history:()=>out(hist.map((h,i)=>`  ${i+1}  ${esc(h)}`).join('\n'))
 };
 tin.addEventListener('keydown',e=>{
@@ -451,7 +583,7 @@ tin.addEventListener('keydown',e=>{
     const [c,...a]=v.split(/\s+/);const f=CMDS[c.toLowerCase()];
     if(f)return f(...a);
     const low=v.toLowerCase();const it=INTENTS.find(x=>x.re.test(low));
-    if(it)say(it.a,()=>openSection(it.k));
+    if(it)say(it.a,()=>it.k==='#cv'?openCV():openSection(it.k));
     else say(`Je n'ai pas cette information dans ma mémoire. Essaie « projets », « compétences », « parcours » ou « contact ».`);
   }
   else if(e.key==='ArrowUp'){if(hi>0){hi--;tin.value=hist[hi]}e.preventDefault()}
@@ -459,9 +591,54 @@ tin.addEventListener('keydown',e=>{
 });
 addEventListener('keydown',e=>{
   if(introOn)return;
-  if(e.key==='Escape'){term.classList.contains('open')?closeTerm():closePanel();return}
+  if(e.key==='Escape'){if(cvm.classList.contains('open'))return closeCV();term.classList.contains('open')?closeTerm():closePanel();return}
+  if(document.activeElement===tin||cvm.classList.contains('open'))return;
+  if(/^[1-9]$/.test(e.key)&&keys[+e.key-1]){openSection(keys[+e.key-1]);return}
+  if(current&&(e.key==='ArrowRight'||e.key==='ArrowLeft')){const i=keys.indexOf(current);openSection(keys[(i+(e.key==='ArrowRight'?1:keys.length-1))%keys.length]);return}
+  if(e.key==='c'||e.key==='C'){openCV();return}
   if((e.key==='`'||e.key==='²')&&document.activeElement!==tin){e.preventDefault();term.classList.contains('open')?closeTerm():openTerm()}
 });
+
+/* ================== RÉTICULE ================== */
+(()=>{if(reduce||!matchMedia('(pointer:fine)').matches)return;const r=$('ring');let mx=-99,my=-99,x=-99,y=-99;
+  addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;r.classList.add('on');r.classList.toggle('hot',!!e.target.closest('button,a,.node,input'))});
+  addEventListener('mouseleave',()=>r.classList.remove('on'));
+  (function lp(){x+=(mx-x)*.22;y+=(my-y)*.22;r.style.transform=`translate(${x}px,${y}px)`;requestAnimationFrame(lp)})()})();
+
+/* ================== MODE RECRUTEUR (CV) ================== */
+const cvm=$('cvmode');
+function buildCV(){
+  const P=PROFILE,xp=PARCOURS.filter(h=>h.type==='xp').slice().reverse(),edu=PARCOURS.filter(h=>h.type==='edu').slice().reverse();
+  const ex=k=>EXEMPLE[k]?`<span class="ex">exemple — à remplacer</span>`:'';
+  const it=h=>`<div class="it"><b>${h.t}</b><span>${h.w} · ${h.d}</span></div>`;
+  return `<div class="sheet">
+    <div class="hd"><img src="assets/holo.webp" alt="">
+      <div><h1>${P.name}</h1><div class="hl">${P.headline}</div>
+      <div class="ct"><span>${P.city}, France · ${AGE} ans</span><a href="mailto:${P.email}">${P.email}</a><a href="tel:${P.phoneIntl}">${P.phone}</a>
+      <a href="${P.linkedin}" target="_blank" rel="noopener">LinkedIn</a><a href="${P.github}" target="_blank" rel="noopener">GitHub</a></div></div></div>
+    <div class="bd">
+      <div class="col">
+        <h3>Profil</h3>${P.summary.map(p=>`<p>${p}</p>`).join('')}
+        <p><strong>Recherche :</strong> ${P.seekingText.replace(/^Un poste/,'un poste')}</p>
+        <h3>Expérience</h3>${ex('parcours')}${xp.map(it).join('')}
+        <h3>Formation</h3>${edu.map(it).join('')}
+        <h3>Projets</h3>${ex('projets')}${PROJECTS.map(p=>`<div class="it"><b>${p.t}</b><span>${p.y}</span><p>${p.d}</p><div class="tg">${p.tags.map(t=>`<i>${t}</i>`).join('')}</div></div>`).join('')}
+      </div>
+      <div class="col">
+        <h3>Compétences</h3>${ex('competences')}
+        ${SKILLS.map(g=>`<div class="sk"><b>${g.group}</b>${g.items.map(i=>`<div>${i[1]}<em style="--w:${i[2]}%"></em></div>`).join('')}</div>`).join('')}
+        <div class="noprint"><h3>Domaines</h3>${MODULES.map(m=>`<p><strong>${m[0].replace('&','&amp;')}</strong><br><span style="font-size:12px;color:#5b6478">${m[1]}</span></p>`).join('')}</div>
+        <h3>Statut</h3><p>${P.status} · ouvert aux <strong>${P.seeking}</strong><br>${P.city} / Île-de-France</p>
+      </div>
+    </div>
+    <div class="ft"><span>${P.name} — CV</span><span>version interactive : hichamovixh.github.io/cybercv</span></div>
+  </div>`;
+}
+function openCV(){closeTerm();closePanel();cvm.querySelector('.cvwrap').innerHTML=buildCV();cvm.classList.add('open');cvm.setAttribute('aria-hidden','false');cvm.scrollTop=0;if(location.hash!=='#cv')history.replaceState(null,'','#cv')}
+function closeCV(){cvm.classList.remove('open');cvm.setAttribute('aria-hidden','true');if(location.hash==='#cv')history.replaceState(null,'',location.pathname+location.search)}
+$('cvopen').onclick=openCV;$('cvclose').onclick=closeCV;
+$('cvprint').onclick=()=>{try{window.print()}catch(e){}};
+addEventListener('hashchange',()=>{if(location.hash==='#cv')openCV()});
 
 /* ================== INTRO MANGA ================== */
 /* Toi en cyber-samouraï : silhouette néon qui entre en marchant, gros plan, coup de sabre, la page se coupe, révélation et salut. */
@@ -640,8 +817,8 @@ function doSplit(){
 }
 function showBubble(){
   typed=true;const el=bub.querySelector('span'),{fw,fh,top}=geo();let L=IW/2+fw*.22,Tp=top+fh*.3;
-  if(IW-L<190){L=Math.max(10,IW-230)}
-  bub.style.left=L+'px';bub.style.maxWidth=Math.max(170,Math.min(460,IW-L-16))+'px';
+  if(IW<700){L=22;Tp=top-4}else if(IW-L<190){L=Math.max(10,IW-230)}
+  bub.style.left=L+'px';bub.style.maxWidth=(IW<700?IW-44:Math.max(170,Math.min(460,IW-L-16)))+'px';
   el.textContent=WELCOME;const bh=bub.offsetHeight;if(Tp-bh<12)Tp=bh+12;bub.style.top=Tp+'px';
   bub.classList.add('on');el.textContent='';let i=0;
   el.textContent='';const iv=setInterval(()=>{el.textContent=WELCOME.slice(0,++i);if(i>=WELCOME.length)clearInterval(iv)},50);
@@ -658,7 +835,7 @@ function introLoop(now){
 function endIntro(){
   cancelAnimationFrame(iraf);introOn=false;intro.style.display='none';sam.style.display='none';skipBtn.style.display='none';bub.classList.remove('on');
   document.querySelectorAll('.half').forEach(e=>e.remove());
-  const k=location.hash.slice(1);if(SECTIONS[k]&&!current)setTimeout(()=>openSection(k),200);
+  const k=location.hash.slice(1);if(k==='cv')openCV();else if(SECTIONS[k]&&!current)setTimeout(()=>openSection(k),200);
 }
 function playIntro(){
   if(reduce)return endIntro();
