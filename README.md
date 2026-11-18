@@ -16,7 +16,7 @@ Aucune librairie ni build : HTML, CSS et JavaScript (Canvas) dans un seul fichie
 portfolio-hicham-djama/
 ├── index.html            # tout le site (styles + scripts inclus)
 └── assets/
-    ├── walk-anim.webp    # animation de l'intro (16 images détourées)
+    └── walk-anim.webp    # animation de l'intro (16 images détourées)
 ```
 
 ## Lancer en local
