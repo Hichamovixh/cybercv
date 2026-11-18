@@ -17,7 +17,6 @@ portfolio-hicham-djama/
 ├── index.html            # tout le site (styles + scripts inclus)
 └── assets/
     ├── walk-anim.webp    # animation de l'intro (16 images détourées)
-    └── moi.jpg           # portrait utilisé dans « À propos »
 ```
 
 ## Lancer en local
