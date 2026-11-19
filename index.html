@@ -160,6 +160,8 @@
   .proj:hover{border-color:rgba(94,242,255,.5);transform:translateX(-4px)}
   .proj:hover::after{transform:translateX(100%)}
   .proj .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .proj .yr a{color:var(--cyan);text-decoration:none;position:relative;z-index:1}
+  .proj .yr a:hover{text-decoration:underline}
   .proj h4{font-size:18px;font-weight:500}
   .proj .yr{font-family:var(--mono);font-size:11px;color:var(--muted)}
   .proj p{font-size:14px;margin:8px 0 12px}
@@ -343,10 +345,22 @@ const SKILLS=[
   {group:'systèmes & cloud', items:[['2049','Linux (Debian, Ubuntu)',85],['389','Windows Server / Active Directory',75],['8006','Virtualisation (Proxmox, VMware)',70],['2375','Docker',70],['6443','Cloud (Azure, AWS)',50]]},
   {group:'développement', items:[['8000','Python',75],['3000','JavaScript / HTML / CSS',70],['5432','SQL',60],['9418','Git',75],['5985','Bash / PowerShell',75]]}];
 const PROJECTS=[
-  {t:'Homelab automatisé',y:'2026',d:'Infra complète sous Proxmox : VLANs, pare-feu pfSense, supervision Grafana et déploiement par Ansible.',tags:['Proxmox','Ansible','pfSense','Grafana']},
-  {t:'NetWatch',y:'2025',d:'Tableau de bord web qui scanne un réseau local et alerte quand un nouvel appareil apparaît.',tags:['Python','FastAPI','Scapy']},
-  {t:'Durcissement d\'un parc Linux',y:'2025',d:'Scripts d\'audit et de mise en conformité (SSH, pare-feu, mises à jour, journaux) déployés sur plusieurs serveurs.',tags:['Bash','Linux','CIS']},
-  {t:'Ce portfolio',y:'2026',d:'Intro animée en cyber-samouraï, noyau neuronal 3D, assistant IA et version CV imprimable, sans aucune librairie.',tags:['HTML','Canvas','JavaScript'],real:true}];
+  {t:'Atelier Factures',y:'2026',url:'https://github.com/Hichamovixh/atelier-factures',
+   s:`Générateur de devis et factures : TVA par ligne, acompte, signature, export PDF ; données gardées en local.`,
+   d:`Générateur de <strong>devis et factures</strong> personnalisés, en une seule page web : transformation d'un devis en facture, TVA réglable par ligne (et exonération art. 293 B du CGI), remise, acompte, mentions légales, logo et couleurs, <strong>signature dessinée</strong> et <strong>export PDF</strong>. Aucune installation, et aucune donnée envoyée à un serveur : tout reste dans le navigateur.`,
+   tags:['JavaScript','HTML / CSS','localStorage','Export PDF']},
+  {t:'Ronde de marché',y:'2026',url:'https://github.com/Hichamovixh/ronde-marche',
+   s:`Dashboard des marchés mis à jour 4×/jour par GitHub Actions (collecteur Python, sources de secours, tests) ; alertes via n8n.`,
+   d:`Tableau de bord des marchés (indices, taux, matières premières…) <strong>mis à jour automatiquement 4 fois par jour</strong> : un pipeline GitHub Actions lance les tests, exécute un collecteur Python sans dépendance avec <strong>sources de secours</strong> (si une source tombe, la dernière valeur est conservée et signalée), versionne les données et publie le site. Analyse hebdomadaire du lundi et <strong>alertes automatisées via n8n</strong>.`,
+   tags:['Python','GitHub Actions','CI/CD','n8n','Tests unitaires']},
+  {t:'Veille d\'offres de missions',y:'2026',
+   s:`Veille quotidienne par IA qui trie et résume les offres correspondant à un profil ; suivi des pistes et candidatures.`,
+   d:`Plateforme de recherche d'opportunités pour une professionnelle freelance à Paris : chaque matin, une <strong>veille automatisée par IA</strong> parcourt les sites d'annonces, ne garde que les offres qui correspondent au profil recherché, les résume et les classe par urgence. S'y ajoutent le suivi des pistes, du réseau et de l'agenda, et des modèles de candidature, le tout <strong>stocké en local</strong> sur l'appareil.`,
+   tags:['JavaScript','JSON','Automatisation IA','Veille']},
+  {t:'Ce portfolio',y:'2026',url:'https://github.com/Hichamovixh/cybercv',
+   s:`Site interactif (Canvas, animation, assistant en console) + CV imprimable générés depuis les mêmes données.`,
+   d:`Intro animée en cyber-samouraï, noyau neuronal 3D, assistant IA en console et <strong>version CV imprimable</strong> générée à partir des mêmes données, sans aucune librairie.`,
+   tags:['JavaScript','Canvas','HTML / CSS']}];
 // type : 'xp' (expérience) ou 'edu' (formation)
 // ex:true = ligne d'exemple, à remplacer (un petit badge l'indique)
 const PARCOURS=[
@@ -355,7 +369,7 @@ const PARCOURS=[
   {type:'xp', t:'Stage administrateur réseau',w:'Entreprise · Ville',d:'2019',ex:true},
   {type:'edu',t:'Licence / Bachelor réseaux & sécurité',w:'École · Ville',d:'2021',ex:true},
   {type:'xp', t:'Administrateur réseaux & systèmes',w:'INSEI',d:'sept. 2024 → aujourd\'hui',dur:true}];
-const EXEMPLE={competences:true, projets:true, parcours:false};
+const EXEMPLE={competences:true, projets:false, parcours:false};
 /* =========================================================== */
 
 const NAME=PROFILE.name, EMAIL=PROFILE.email, PHONE=PROFILE.phone, PHONE_INTL=PROFILE.phoneIntl, CITY=PROFILE.city;
@@ -388,7 +402,7 @@ const SECTIONS = {
   projets:{label:'Projets', ip:'10.0.0.4', port:'443', html:`
     <h2 class="dec">Projets</h2>
     ${exBadge('projets')}
-    ${PROJECTS.map(p=>proj(p.t,p.y,p.d,p.tags)).join('')}`},
+    ${PROJECTS.map(p=>proj(p.t,p.y,p.d,p.tags,p.url)).join('')}`},
   parcours:{label:'Parcours', ip:'10.0.0.5', port:'8080', html:`
     <h2 class="dec">Trajectoire</h2>
     <p class="sub">traceroute avenir — 30 sauts max</p>
@@ -408,7 +422,7 @@ const SECTIONS = {
 };
 
 function row(p,s,n,l){return `<tr><td>${p}/tcp</td><td class="${s}">${s==='open'?'open':'filtered'}</td><td>${n}</td><td><span class="bar"><i style="width:${l}%"></i></span></td></tr>`}
-function proj(t,y,d,tags){return `<div class="proj"><div class="top"><h4>${t}</h4><span class="yr">${y}</span></div><p>${d}</p><div class="tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div></div>`}
+function proj(t,y,d,tags,url){return `<div class="proj"><div class="top"><h4>${t}</h4><span class="yr">${y}${url?` · <a href="${url}" target="_blank" rel="noopener">code ↗</a>`:''}</span></div><p>${d}</p><div class="tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div></div>`}
 function hop(n,t,w,d){const ms=(n*3.2+Math.random()*4).toFixed(1);return `<li><span class="hop">${String(n).padStart(2,'0')}</span><div><div class="t">${t}</div><div class="w">${w} · <span class="ms">${d}</span> · ${ms} ms</div></div></li>`}
 function copyMail(b){try{navigator.clipboard.writeText(EMAIL).then(()=>{b.textContent='copié ✓'},()=>{b.textContent='sélectionne le texte'})}catch(e){b.textContent='sélectionne le texte'}}
 
@@ -545,7 +559,7 @@ function closeTerm(){term.classList.remove('open');term.setAttribute('aria-hidde
 $('openTerm').onclick=openTerm;$('tclose').onclick=closeTerm;
 
 const INTENTS=[
-  {k:'projets',re:/proj|réalis|realis|portfolio|construit|github|code/,a:`Voici une sélection de projets, entre infrastructure, sécurité et code.`},
+  {k:'projets',re:/proj|réalis|realis|portfolio|construit|github|code/,a:`Voici ses projets : un générateur de devis et factures, un tableau de bord des marchés automatisé (GitHub Actions + n8n), une veille d'offres pilotée par IA, et ce portfolio.`},
   {k:'competences',re:/comp[ée]t|skill|langage|techno|stack|sait faire|outil|niveau/,a:`Analyse terminée. Quatre domaines couverts : réseaux, cybersécurité, systèmes & cloud, développement.`},
   {k:'#cv',re:/\bcv\b|pdf|imprim|r[ée]sum[ée]/,a:`Je génère sa version CV, lisible et imprimable.`},
   {k:'parcours',re:/parcours|[ée]tud|dipl[oô]m|formation|exp[ée]rien|école|ecole/,a:`Je retrace son parcours, saut par saut.`},
@@ -629,7 +643,7 @@ function buildCV(){
         <p><strong>Recherche :</strong> ${P.seekingText.replace(/^Un poste/,'un poste')}</p>
         <h3>Expérience</h3>${ex('parcours')}${xp.map(it).join('')}
         <h3>Formation</h3>${edu.map(it).join('')}
-        <h3>Projets</h3>${ex('projets')}${PROJECTS.map(p=>`<div class="it"><b>${p.t}</b><span>${p.y}</span><p>${p.d}</p><div class="tg">${p.tags.map(t=>`<i>${t}</i>`).join('')}</div></div>`).join('')}
+        <h3>Projets</h3>${ex('projets')}${PROJECTS.map(p=>`<div class="it"><b>${p.t}</b><span>${p.y}${p.url?' · '+p.url.replace('https://',''):''}</span><p>${p.s||p.d}</p><div class="tg">${p.tags.map(t=>`<i>${t}</i>`).join('')}</div></div>`).join('')}
       </div>
       <div class="col">
         <h3>Compétences</h3>${ex('competences')}
