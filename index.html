@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hicham DJAMA — Développeur & Réseaux</title>
-<meta name="description" content="Hicham DJAMA — profil hybride réseaux, cybersécurité, systèmes et développement, basé à Paris. Ouvert aux opportunités CDI / CDD.">
+<meta name="description" content="Hicham DJAMA — administrateur réseaux & systèmes (INSEI), profil hybride réseaux, cybersécurité, systèmes et développement, basé à Paris. Ouvert aux opportunités CDI / CDD.">
 <meta name="theme-color" content="#04050a">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hicham DJAMA — Réseaux · Cybersécurité · Systèmes · Dev">
@@ -143,6 +143,7 @@
   #ring.hot{width:54px;height:54px;margin:-27px 0 0 -27px;border-color:var(--pink);background:rgba(255,61,187,.06)}
   #ring::after{content:"";position:absolute;inset:-6px;border:1px dashed rgba(139,92,255,.35);border-radius:50%;animation:spin 6s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
+  .extag{font-style:normal;font-family:var(--mono);font-size:9px;color:#ffb547;border:1px dashed rgba(255,181,71,.6);padding:1px 6px;border-radius:6px;margin-left:6px;vertical-align:middle;letter-spacing:.05em}
   .exbadge{font-family:var(--mono);font-size:11px;color:#ffb547;border:1px dashed rgba(255,181,71,.5);background:rgba(255,181,71,.06);padding:7px 10px;border-radius:8px;margin:0 0 16px}
   .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
   .facts div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--bg2)}
@@ -322,11 +323,12 @@ const PROFILE={
   email:'hicham.djama95@gmail.com', phone:'07 67 95 76 31', phoneIntl:'+33767957631',
   birth:[1998,9,6],                       // année, mois (0 = janvier), jour → l'âge se calcule tout seul
   headline:'Réseaux · Cybersécurité · Systèmes · Développement',
-  status:'En poste', seeking:'CDI / CDD',
+  status:'Administrateur réseaux & systèmes · INSEI', seeking:'CDI / CDD',
+  job:{title:'Administrateur réseaux & systèmes', org:'INSEI', since:[2024,8,2]},   // poste actuel (mois : 0 = janvier)
   github:'https://github.com/Hichamovixh', linkedin:'https://www.linkedin.com/in/hicham-djama-5186291b6/',
   summary:[
     `Je suis un profil <strong>hybride</strong> : réseaux, systèmes, cybersécurité et développement. Ce qui me plaît, c'est de comprendre une infrastructure de bout en bout, du câble jusqu'au cloud, du paquet réseau jusqu'à l'application qui tourne dessus, puis de la rendre <strong>plus fiable, plus sûre et plus automatisée</strong>.`,
-    `Au quotidien, j'aime autant configurer un switch que durcir un serveur Linux ou écrire le script qui évitera de refaire la même tâche cent fois. Je suis curieux, rigoureux, et j'apprends en permanence : chaque nouvelle techno passe d'abord par mon lab.`],
+    `Depuis septembre 2024, je suis <strong>administrateur réseaux et systèmes à l'INSEI</strong>. Au quotidien, j'aime autant configurer un switch que durcir un serveur Linux ou écrire le script qui évitera de refaire la même tâche cent fois. Je suis curieux, rigoureux, et j'apprends en permanence : chaque nouvelle techno passe d'abord par mon lab.`],
   seekingText:`Un poste en <strong>CDI ou CDD</strong> à <strong>Paris / Île-de-France</strong>, dans une équipe où je peux faire le lien entre l'infrastructure, la sécurité et le code, et continuer à monter en compétences sur des projets concrets.`
 };
 const MODULES=[
@@ -346,17 +348,21 @@ const PROJECTS=[
   {t:'Durcissement d\'un parc Linux',y:'2025',d:'Scripts d\'audit et de mise en conformité (SSH, pare-feu, mises à jour, journaux) déployés sur plusieurs serveurs.',tags:['Bash','Linux','CIS']},
   {t:'Ce portfolio',y:'2026',d:'Intro animée en cyber-samouraï, noyau neuronal 3D, assistant IA et version CV imprimable, sans aucune librairie.',tags:['HTML','Canvas','JavaScript'],real:true}];
 // type : 'xp' (expérience) ou 'edu' (formation)
+// ex:true = ligne d'exemple, à remplacer (un petit badge l'indique)
 const PARCOURS=[
-  {type:'edu',t:'Bac / premières lignes de code',w:'Lycée · Ville',d:'2016'},
-  {type:'edu',t:'BTS SIO — option SISR',w:'École · Ville',d:'2018'},
-  {type:'xp', t:'Stage administrateur réseau',w:'Entreprise · Ville',d:'2019'},
-  {type:'edu',t:'Licence / Bachelor réseaux & sécurité',w:'École · Ville',d:'2021'},
-  {type:'xp', t:'Poste actuel',w:'Entreprise · Paris',d:'2022 → auj.'}];
-const EXEMPLE={competences:true, projets:true, parcours:true};
+  {type:'edu',t:'Bac / premières lignes de code',w:'Lycée · Ville',d:'2016',ex:true},
+  {type:'edu',t:'BTS SIO — option SISR',w:'École · Ville',d:'2018',ex:true},
+  {type:'xp', t:'Stage administrateur réseau',w:'Entreprise · Ville',d:'2019',ex:true},
+  {type:'edu',t:'Licence / Bachelor réseaux & sécurité',w:'École · Ville',d:'2021',ex:true},
+  {type:'xp', t:'Administrateur réseaux & systèmes',w:'INSEI',d:'sept. 2024 → aujourd\'hui',dur:true}];
+const EXEMPLE={competences:true, projets:true, parcours:false};
 /* =========================================================== */
 
 const NAME=PROFILE.name, EMAIL=PROFILE.email, PHONE=PROFILE.phone, PHONE_INTL=PROFILE.phoneIntl, CITY=PROFILE.city;
 const AGE=(()=>{const n=new Date(),[y,m,d]=PROFILE.birth;let a=n.getFullYear()-y;if(n<new Date(n.getFullYear(),m,d))a--;return a})();
+const since=(()=>{const [y,m,d]=PROFILE.job.since,n=new Date();let mo=(n.getFullYear()-y)*12+(n.getMonth()-m)-(n.getDate()<d?1:0);const a=Math.floor(mo/12),r=mo%12;return (a?a+' an'+(a>1?'s':''):'')+(a&&r?' ':'')+(r?r+' mois':'')||'1 mois'})();
+const pd=h=>h.d+(h.dur?' · '+since:'');
+const exTag='<em class="extag">exemple</em>';
 const exBadge=k=>EXEMPLE[k]?`<div class="exbadge">⚠ contenu d'exemple — à remplacer par tes vraies infos</div>`:'';
 const SECTIONS = {
   apropos:{label:'À propos', ip:'10.0.0.2', port:'80', html:`
@@ -365,7 +371,8 @@ const SECTIONS = {
       <div>
         <p class="sub">// ID · ${AGE} ans · ${CITY}, France</p>
         <h2 class="dec">Bonjour, moi c'est ${PROFILE.first}.</h2>
-        <div class="status"><i></i>${PROFILE.status} · ouvert aux <strong>${PROFILE.seeking}</strong></div>
+        <div class="status"><i></i>${PROFILE.job.title} · <strong>${PROFILE.job.org}</strong></div>
+        <div class="status" style="margin-top:8px"><i style="background:var(--cyan);box-shadow:0 0 10px var(--cyan)"></i>ouvert aux <strong>${PROFILE.seeking}</strong></div>
       </div>
     </div>
     ${PROFILE.summary.map(p=>`<p>${p}</p>`).join('')}
@@ -386,7 +393,7 @@ const SECTIONS = {
     <h2 class="dec">Trajectoire</h2>
     <p class="sub">traceroute avenir — 30 sauts max</p>
     ${exBadge('parcours')}
-    <ol class="trace">${PARCOURS.map((h,i)=>hop(i+1,h.t,h.w,h.d)).join('')}${hop(PARCOURS.length+1,'Prochaine destination ?','Peut-être chez vous','* * *')}</ol>`},
+    <ol class="trace">${PARCOURS.map((h,i)=>hop(i+1,h.t+(h.ex?' '+exTag:''),h.w,pd(h))).join('')}${hop(PARCOURS.length+1,'Prochaine destination ?','Peut-être chez vous','* * *')}</ol>`},
   contact:{label:'Contact', ip:'10.0.0.6', port:'25', html:`
     <h2 class="dec">Établir une connexion</h2>
     <p>SYN envoyé. Il ne manque que ton ACK. Je réponds en général sous 24 h.</p>
@@ -543,7 +550,7 @@ const INTENTS=[
   {k:'#cv',re:/\bcv\b|pdf|imprim|r[ée]sum[ée]/,a:`Je génère sa version CV, lisible et imprimable.`},
   {k:'parcours',re:/parcours|[ée]tud|dipl[oô]m|formation|exp[ée]rien|école|ecole/,a:`Je retrace son parcours, saut par saut.`},
   {k:'contact',re:/contact|mail|joindre|recrut|embauch|stage|alternance|dispo|linkedin/,a:`Excellente idée. Voici comment ouvrir une connexion avec lui.`},
-  {k:'apropos',re:/qui|pr[ée]sent|toi|lui|about|propos|bonjour|salut|hello/,a:`${NAME}, ${AGE} ans, basé à ${CITY} : un profil hybride réseaux, cybersécurité, systèmes et développement, ouvert aux opportunités en CDI ou CDD. Voici sa présentation.`}
+  {k:'apropos',re:/qui|pr[ée]sent|toi|lui|about|propos|bonjour|salut|hello/,a:`${NAME}, ${AGE} ans, basé à ${CITY} : administrateur réseaux et systèmes à l'INSEI depuis septembre 2024, profil hybride réseaux, cybersécurité, systèmes et développement, ouvert aux opportunités en CDI ou CDD. Voici sa présentation.`}
 ];
 const alias={about:'apropos',skills:'competences',projects:'projets'};
 const resolve=a=>{a=(a||'').toLowerCase();return SECTIONS[a]?a:alias[a]};
@@ -565,7 +572,7 @@ const CMDS={
 <span class="c"> /  \\__/  \\  </span>  <span class="c">OS</span>       : Humain v${AGE}.0 (${CITY})
 <span class="c"> \\__/  \\__/  </span>  <span class="c">Kernel</span>   : réseaux + cyber + systèmes + dev
 <span class="c"> /  \\__/  \\  </span>  <span class="c">Uptime</span>   : ${AGE} ans
-<span class="c"> \\__/  \\__/  </span>  <span class="c">Statut</span>   : ${PROFILE.status}, ouvert aux ${PROFILE.seeking}
+<span class="c"> \\__/  \\__/  </span>  <span class="c">Poste</span>    : ${PROFILE.job.title} @ ${PROFILE.job.org}
 <span class="c">    \\__/     </span>  <span class="c">Contact</span>  : ${EMAIL}
                <span class="c">Shell</span>    : curiosité 100 %`),
   open:a=>{const k=resolve(a);if(!k)return out(`<span class="e">nœud introuvable « ${esc(a||'')} »</span>`);openSection(k)},
@@ -610,7 +617,7 @@ const cvm=$('cvmode');
 function buildCV(){
   const P=PROFILE,xp=PARCOURS.filter(h=>h.type==='xp').slice().reverse(),edu=PARCOURS.filter(h=>h.type==='edu').slice().reverse();
   const ex=k=>EXEMPLE[k]?`<span class="ex">exemple — à remplacer</span>`:'';
-  const it=h=>`<div class="it"><b>${h.t}</b><span>${h.w} · ${h.d}</span></div>`;
+  const it=h=>`<div class="it"><b>${h.t}${h.ex?' <span class="ex">exemple</span>':''}</b><span>${h.w} · ${pd(h)}</span></div>`;
   return `<div class="sheet">
     <div class="hd"><img src="assets/holo.webp" alt="">
       <div><h1>${P.name}</h1><div class="hl">${P.headline}</div>
@@ -628,7 +635,7 @@ function buildCV(){
         <h3>Compétences</h3>${ex('competences')}
         ${SKILLS.map(g=>`<div class="sk"><b>${g.group}</b>${g.items.map(i=>`<div>${i[1]}<em style="--w:${i[2]}%"></em></div>`).join('')}</div>`).join('')}
         <div class="noprint"><h3>Domaines</h3>${MODULES.map(m=>`<p><strong>${m[0].replace('&','&amp;')}</strong><br><span style="font-size:12px;color:#5b6478">${m[1]}</span></p>`).join('')}</div>
-        <h3>Statut</h3><p>${P.status} · ouvert aux <strong>${P.seeking}</strong><br>${P.city} / Île-de-France</p>
+        <h3>Statut</h3><p>${P.job.title} à l'<strong>${P.job.org}</strong> depuis ${since}<br>Ouvert aux <strong>${P.seeking}</strong> · ${P.city} / Île-de-France</p>
       </div>
     </div>
     <div class="ft"><span>${P.name} — CV</span><span>version interactive : hichamovixh.github.io/cybercv</span></div>
