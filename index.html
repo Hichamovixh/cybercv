@@ -144,13 +144,21 @@
   #ring::after{content:"";position:absolute;inset:-6px;border:1px dashed rgba(139,92,255,.35);border-radius:50%;animation:spin 6s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
   .extag{font-style:normal;font-family:var(--mono);font-size:9px;color:#ffb547;border:1px dashed rgba(255,181,71,.6);padding:1px 6px;border-radius:6px;margin-left:6px;vertical-align:middle;letter-spacing:.05em}
+  .certs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .certs div{border:1px solid rgba(61,255,154,.35);background:rgba(61,255,154,.05);border-radius:10px;padding:13px}
+  .certs b{display:block;font-family:var(--disp);font-weight:600;font-size:14px;color:#fff}
+  .certs b::first-letter{color:#3dff9a}
+  .certs small{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+  @media (max-width:420px){.certs{grid-template-columns:1fr}}
   .exbadge{font-family:var(--mono);font-size:11px;color:#ffb547;border:1px dashed rgba(255,181,71,.5);background:rgba(255,181,71,.06);padding:7px 10px;border-radius:8px;margin:0 0 16px}
   .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
   .facts div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--bg2)}
   .facts b{display:block;font-size:26px;font-family:var(--disp);background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
   .facts span{font-size:12px;color:var(--muted)}
-  table.scan-t{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px}
+  table.scan-t{width:100%;border-collapse:collapse;table-layout:fixed;font-family:var(--mono);font-size:13px}
   .scan-t th{text-align:left;color:var(--muted);font-weight:400;padding:6px 0;border-bottom:1px solid var(--line);font-size:11px}
+  .scan-t th:nth-child(1),.scan-t td:nth-child(1){width:96px}
+  .scan-t th:nth-child(2),.scan-t td:nth-child(2){width:70px}
   .scan-t td{padding:9px 0;border-bottom:1px dashed var(--line)}
   .scan-t .open{color:var(--cyan)} .scan-t .filt{color:#ffb547}
   .bar{display:inline-block;width:90px;height:4px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden;vertical-align:middle}
@@ -228,6 +236,7 @@
   .sheet .it b{display:block;font-size:14px;color:#0b0e1a}
   .sheet .it span{font-family:var(--mono);font-size:11px;color:#6a7488}
   .sheet .it p{margin:4px 0 0;font-size:12.5px}
+  .sheet .skl{margin:0 0 0 14px;padding:0;font-size:12.5px;color:#2b3446;line-height:1.55}
   .sheet .cvm{margin:5px 0 0 14px;padding:0;font-size:12.5px;color:#2b3446;line-height:1.5}
   .sheet .cvm li{margin-bottom:1px}
   .sheet .tg{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
@@ -253,7 +262,7 @@
     .sheet h3{margin:12px 0 6px}
     .sheet p{font-size:11.5px;line-height:1.48;margin-bottom:5px}
     .sheet .it{margin-bottom:7px}.sheet .it b{font-size:12.5px}.sheet .it p{font-size:11px;margin-top:2px}
-    .sheet .cvm{font-size:11px;line-height:1.4}
+    .sheet .cvm,.sheet .skl{font-size:11px;line-height:1.4}
     .sheet .sk{margin-bottom:8px}.sheet .sk div{font-size:11px;margin-bottom:2px}
     .sheet .ft{padding:8px 30px}
   }
@@ -340,16 +349,19 @@ const PROFILE={
   seekingText:`Un poste en <strong>CDI ou CDD</strong> à <strong>Paris / Île-de-France</strong>, dans une équipe où je peux faire le lien entre l'infrastructure, la sécurité et le code, et continuer à monter en compétences sur des projets concrets.`
 };
 const MODULES=[
-  ['Réseaux','architecture, routage, switching, supervision'],
-  ['Cybersécurité','sécurisation, analyse, bonnes pratiques'],
-  ['Systèmes & Cloud','Microsoft 365, Windows Server, Active Directory, Linux'],
-  ['Développement','licence dev web, PowerShell, applications web']];
-// [port, compétence, niveau sur 100]  — port purement décoratif (thème « scan réseau »)
+  ['Réseaux','configuration de parc réseau, switchs, VLAN'],
+  ['Cybersécurité','protection des postes (Trend Micro Apex One), sécurisation'],
+  ['Systèmes & Cloud','Office 365 / Microsoft 365, Proxmox (virtualisation)'],
+  ['Développement','PowerShell, PHP, Python, SQL, applications web']];
+// [port, compétence] — port purement décoratif (thème « scan réseau »)
 const SKILLS=[
-  {group:'réseaux', items:[['161','Switching & VLAN',85],['53','Administration réseau (TCP/IP, DNS, DHCP)',80],['179','Routage',65],['1194','VPN',60]]},
-  {group:'systèmes & cloud', items:[['443','Microsoft 365 / Office 365 (déploiement, admin)',85],['389','Windows Server / Active Directory',70],['2049','Linux',60],['8006','Virtualisation',60]]},
-  {group:'automatisation & dev', items:[['5985','PowerShell (scripts planifiés)',85],['3000','HTML / CSS / JavaScript',80],['5432','SQL',65],['9418','Git',70]]},
-  {group:'cybersécurité', items:[['8443','Sécurisation des accès et des comptes',65],['5601','Analyse de trafic (Wireshark)',65],['8834','Audit & scan (Nmap)',60]]}];
+  {group:'réseaux', items:[['161','Configuration d\'un parc réseau'],['8021','Switchs (configuration, VLAN)']]},
+  {group:'systèmes & cloud', items:[['443','Office 365 / Microsoft 365 (déploiement, administration)'],['8006','Proxmox (virtualisation)']]},
+  {group:'cybersécurité', items:[['4343','Trend Micro Apex One (protection des postes)']]},
+  {group:'développement & automatisation', items:[['5985','PowerShell (scripts planifiés)'],['9000','PHP'],['8000','Python'],['5432','SQL']]}];
+const CERTS=[
+  {t:'Proxmox',d:'Virtualisation (Proxmox VE)'},
+  {t:'Trend Micro Apex One',d:'Protection et sécurité des postes'}];
 const PROJECTS=[
   {t:'Atelier Factures',y:'2026',url:'https://github.com/Hichamovixh/atelier-factures',
    s:`Générateur de devis et factures : TVA par ligne, acompte, signature, export PDF ; données gardées en local.`,
@@ -377,7 +389,7 @@ const PARCOURS=[
              'Déploiement complet de Microsoft 365 : planification, configuration, administration',
              'Automatisation du service et du traitement des demandes par scripts PowerShell planifiés',
              'Développement des outils internes (côté dev)']}];
-const EXEMPLE={competences:true, projets:false, parcours:false};
+const EXEMPLE={competences:false, projets:false, parcours:false};
 /* =========================================================== */
 
 const NAME=PROFILE.name, EMAIL=PROFILE.email, PHONE=PROFILE.phone, PHONE_INTL=PROFILE.phoneIntl, CITY=PROFILE.city;
@@ -406,7 +418,9 @@ const SECTIONS = {
     <h2 class="dec">Analyse des compétences</h2>
     <p class="sub">$ nmap -sV ${PROFILE.first.toLowerCase()}.local — ${SKILLS.reduce((a,g)=>a+g.items.length,0)} services détectés</p>
     ${exBadge('competences')}
-    ${SKILLS.map(g=>`<h3>// ${g.group}</h3><table class="scan-t"><tr><th>PORT</th><th>ÉTAT</th><th>SERVICE</th><th>NIVEAU</th></tr>${g.items.map(i=>row(i[0],i[2]>=45?'open':'filt',i[1],i[2])).join('')}</table>`).join('')}`},
+    ${SKILLS.map(g=>`<h3>// ${g.group}</h3><table class="scan-t"><tr><th>PORT</th><th>ÉTAT</th><th>SERVICE</th></tr>${g.items.map(i=>row(i[0],'open',i[1])).join('')}</table>`).join('')}
+    <h3>// certifications</h3>
+    <div class="certs">${CERTS.map(c=>`<div><b>✓ ${c.t}</b><small>${c.d}</small></div>`).join('')}</div>`},
   projets:{label:'Projets', ip:'10.0.0.4', port:'443', html:`
     <h2 class="dec">Projets</h2>
     ${exBadge('projets')}
@@ -429,7 +443,7 @@ const SECTIONS = {
     </div>`}
 };
 
-function row(p,s,n,l){return `<tr><td>${p}/tcp</td><td class="${s}">${s==='open'?'open':'filtered'}</td><td>${n}</td><td><span class="bar"><i style="width:${l}%"></i></span></td></tr>`}
+function row(p,s,n){return `<tr><td>${p}/tcp</td><td class="${s}">${s==='open'?'open':'filtered'}</td><td>${n}</td></tr>`}
 function proj(t,y,d,tags,url){return `<div class="proj"><div class="top"><h4>${t}</h4><span class="yr">${y}${url?` · <a href="${url}" target="_blank" rel="noopener">code ↗</a>`:''}</span></div><p>${d}</p><div class="tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div></div>`}
 function hop(n,t,w,d,mis){const ms=(n*3.2+Math.random()*4).toFixed(1);const meta=[w,d?`<span class="ms">${d}</span>`:''].filter(Boolean).join(' · ');return `<li><span class="hop">${String(n).padStart(2,'0')}</span><div><div class="t">${t}</div><div class="w">${meta?meta+' · ':''}${ms} ms</div>${mis?`<ul class="mis">${mis.map(m=>`<li>${m}</li>`).join('')}</ul>`:''}</div></li>`}
 function copyMail(b){try{navigator.clipboard.writeText(EMAIL).then(()=>{b.textContent='copié ✓'},()=>{b.textContent='sélectionne le texte'})}catch(e){b.textContent='sélectionne le texte'}}
@@ -568,7 +582,7 @@ $('openTerm').onclick=openTerm;$('tclose').onclick=closeTerm;
 
 const INTENTS=[
   {k:'projets',re:/proj|réalis|realis|portfolio|construit|github|code/,a:`Voici ses projets : un générateur de devis et factures, un tableau de bord des marchés automatisé (GitHub Actions + n8n), une veille d'offres pilotée par IA, et ce portfolio.`},
-  {k:'competences',re:/comp[ée]t|skill|langage|techno|stack|sait faire|outil|niveau/,a:`Analyse terminée. Quatre domaines couverts : réseaux, cybersécurité, systèmes & cloud, développement.`},
+  {k:'competences',re:/comp[ée]t|skill|langage|techno|stack|sait faire|outil|niveau/,a:`Analyse terminée : configuration de parc réseau et switchs, Office 365, Proxmox, PowerShell, PHP, Python, SQL. Certifié Proxmox et Trend Micro Apex One.`},
   {k:'#cv',re:/\bcv\b|pdf|imprim|r[ée]sum[ée]/,a:`Je génère sa version CV, lisible et imprimable.`},
   {k:'parcours',re:/parcours|[ée]tud|dipl[oô]m|formation|exp[ée]rien|école|ecole/,a:`Je retrace son parcours, saut par saut.`},
   {k:'contact',re:/contact|mail|joindre|recrut|embauch|stage|alternance|dispo|linkedin/,a:`Excellente idée. Voici comment ouvrir une connexion avec lui.`},
@@ -655,7 +669,8 @@ function buildCV(){
       </div>
       <div class="col">
         <h3>Compétences</h3>${ex('competences')}
-        ${SKILLS.map(g=>`<div class="sk"><b>${g.group}</b>${g.items.map(i=>`<div>${i[1]}<em style="--w:${i[2]}%"></em></div>`).join('')}</div>`).join('')}
+        ${SKILLS.map(g=>`<div class="sk"><b>${g.group}</b><ul class="skl">${g.items.map(i=>`<li>${i[1]}</li>`).join('')}</ul></div>`).join('')}
+        <h3>Certifications</h3>${CERTS.map(c=>`<p><strong>${c.t}</strong><br><span style="font-size:12px;color:#5b6478">${c.d}</span></p>`).join('')}
         <div class="noprint"><h3>Domaines</h3>${MODULES.map(m=>`<p><strong>${m[0].replace('&','&amp;')}</strong><br><span style="font-size:12px;color:#5b6478">${m[1]}</span></p>`).join('')}</div>
         <h3>Statut</h3><p>${P.job.title} à l'<strong>${P.job.org}</strong> depuis ${since}<br>Ouvert aux <strong>${P.seeking}</strong> · ${P.city} / Île-de-France</p>
       </div>
