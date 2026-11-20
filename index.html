@@ -375,6 +375,10 @@ const CERTS=[
   {t:'Proxmox',d:'Virtualisation (Proxmox VE)'},
   {t:'Trend Micro Apex One',d:'Protection et sécurité des postes'}];
 const PROJECTS=[
+  {t:'Appli d\'apprentissage de la LSF',y:'',
+   s:`Application façon Duolingo pour apprendre la Langue des Signes Française, par petites leçons ludiques.`,
+   d:`Une application d'apprentissage <strong>façon Duolingo</strong>, mais pour la <strong>Langue des Signes Française (LSF)</strong> : apprendre à signer par petites leçons ludiques, pour rendre la LSF accessible à tous.`,
+   tags:['LSF','Apprentissage','Accessibilité']},
   {t:'Atelier Factures',y:'2026',url:'https://github.com/Hichamovixh/atelier-factures',
    s:`Générateur de devis et factures : TVA par ligne, acompte, signature, export PDF ; données gardées en local.`,
    d:`Générateur de <strong>devis et factures</strong> personnalisés, en une seule page web : transformation d'un devis en facture, TVA réglable par ligne (et exonération art. 293 B du CGI), remise, acompte, mentions légales, logo et couleurs, <strong>signature dessinée</strong> et <strong>export PDF</strong>. Aucune installation, et aucune donnée envoyée à un serveur : tout reste dans le navigateur.`,
@@ -387,7 +391,7 @@ const PROJECTS=[
    s:`Veille quotidienne par IA qui trie et résume les offres correspondant à un profil ; suivi des pistes et candidatures.`,
    d:`Plateforme de recherche d'opportunités pour une professionnelle freelance à Paris : chaque matin, une <strong>veille automatisée par IA</strong> parcourt les sites d'annonces, ne garde que les offres qui correspondent au profil recherché, les résume et les classe par urgence. S'y ajoutent le suivi des pistes, du réseau et de l'agenda, et des modèles de candidature, le tout <strong>stocké en local</strong> sur l'appareil.`,
    tags:['JavaScript','JSON','Automatisation IA','Veille']},
-  {t:'Ce portfolio',y:'2026',url:'https://github.com/Hichamovixh/cybercv',
+  {t:'Ce portfolio',y:'2026',url:'https://github.com/Hichamovixh/cybercv',cv:false,
    s:`Site interactif (Canvas, animation, assistant en console) + CV imprimable générés depuis les mêmes données.`,
    d:`Intro animée en cyber-samouraï, noyau neuronal 3D, assistant IA en console et <strong>version CV imprimable</strong> générée à partir des mêmes données, sans aucune librairie.`,
    tags:['JavaScript','Canvas','HTML / CSS']}];
@@ -456,7 +460,7 @@ const SECTIONS = {
 };
 
 function row(p,s,n){return `<tr><td>${p}/tcp</td><td class="${s}">${s==='open'?'open':'filtered'}</td><td>${n}</td></tr>`}
-function proj(t,y,d,tags,url){return `<div class="proj"><div class="top"><h4>${t}</h4><span class="yr">${y}${url?` · <a href="${url}" target="_blank" rel="noopener">code ↗</a>`:''}</span></div><p>${d}</p><div class="tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div></div>`}
+function proj(t,y,d,tags,url){return `<div class="proj"><div class="top"><h4>${t}</h4><span class="yr">${y||''}${url?`${y?' · ':''}<a href="${url}" target="_blank" rel="noopener">code ↗</a>`:''}</span></div><p>${d}</p><div class="tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div></div>`}
 function hop(n,t,w,d,mis){const ms=(n*3.2+Math.random()*4).toFixed(1);const meta=[w,d?`<span class="ms">${d}</span>`:''].filter(Boolean).join(' · ');return `<li><span class="hop">${String(n).padStart(2,'0')}</span><div><div class="t">${t}</div><div class="w">${meta?meta+' · ':''}${ms} ms</div>${mis?`<ul class="mis">${mis.map(m=>`<li>${m}</li>`).join('')}</ul>`:''}</div></li>`}
 function copyMail(b){try{navigator.clipboard.writeText(EMAIL).then(()=>{b.textContent='copié ✓'},()=>{b.textContent='sélectionne le texte'})}catch(e){b.textContent='sélectionne le texte'}}
 
@@ -593,7 +597,7 @@ function closeTerm(){term.classList.remove('open');term.setAttribute('aria-hidde
 $('openTerm').onclick=openTerm;$('tclose').onclick=closeTerm;
 
 const INTENTS=[
-  {k:'projets',re:/proj|réalis|realis|portfolio|construit|github|code/,a:`Voici ses projets : un générateur de devis et factures, un tableau de bord des marchés automatisé (GitHub Actions + n8n), une veille d'offres pilotée par IA, et ce portfolio.`},
+  {k:'projets',re:/proj|réalis|realis|portfolio|construit|github|code/,a:`Voici ses projets : une appli façon Duolingo pour apprendre la LSF, un générateur de devis et factures, un tableau de bord des marchés automatisé (GitHub Actions + n8n), une veille d'offres pilotée par IA, et ce portfolio.`},
   {k:'competences',re:/comp[ée]t|skill|langage|techno|stack|sait faire|outil|niveau/,a:`Analyse terminée : configuration de parc réseau et switchs, Office 365, Proxmox, PowerShell, PHP, Python, SQL. Certifié Proxmox et Trend Micro Apex One.`},
   {k:'#cv',re:/\bcv\b|pdf|imprim|r[ée]sum[ée]/,a:`Je génère sa version CV, lisible et imprimable.`},
   {k:'parcours',re:/parcours|[ée]tud|dipl[oô]m|formation|exp[ée]rien|école|ecole/,a:`Je retrace son parcours, saut par saut.`},
@@ -675,7 +679,7 @@ function buildCV(){
         <p><strong>Recherche :</strong> ${P.seekingText.replace(/^Un poste/,'un poste')}</p>
         <h3>Expérience</h3>${ex('parcours')}${xp.map(it).join('')}
         <h3>Formation</h3>${edu.map(it).join('')}
-        <h3>Projets</h3>${ex('projets')}${PROJECTS.map(p=>`<div class="it"><b>${p.t}</b><span>${p.y}${p.url?' · '+p.url.replace('https://',''):''}</span><p>${p.s||p.d}</p><div class="tg">${p.tags.map(t=>`<i>${t}</i>`).join('')}</div></div>`).join('')}
+        <h3>Projets</h3>${ex('projets')}${PROJECTS.filter(p=>p.cv!==false).map(p=>`<div class="it"><b>${p.t}</b>${(p.y||p.url)?`<span>${[p.y,p.url?p.url.replace('https://',''):''].filter(Boolean).join(' · ')}</span>`:''}<p>${p.s||p.d}</p><div class="tg">${p.tags.map(t=>`<i>${t}</i>`).join('')}</div></div>`).join('')}
       </div>
       <div class="col">
         <h3>Compétences</h3>${ex('competences')}
