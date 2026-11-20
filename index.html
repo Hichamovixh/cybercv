@@ -173,6 +173,9 @@
   .trace .t{color:#fff;font-family:var(--sans);font-size:15px;font-weight:500}
   .trace .w{color:var(--muted);font-size:12px;margin-top:3px}
   .trace .ms{color:var(--cyan)}
+  .trace .mis{list-style:none;margin-top:10px;font-family:var(--sans);font-size:14px;color:#b4c0e0;line-height:1.5}
+  .trace .mis li{display:block;border:0;padding:3px 0 3px 16px;position:relative}
+  .trace .mis li::before{content:"›";position:absolute;left:0;color:var(--violet)}
   .contact a,.contact .row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;
              margin-bottom:10px;color:var(--text);text-decoration:none;font-family:var(--mono);font-size:14px;background:var(--bg2);transition:.2s}
   .contact a:hover,.contact .row:hover{border-color:var(--cyan)}
@@ -225,6 +228,8 @@
   .sheet .it b{display:block;font-size:14px;color:#0b0e1a}
   .sheet .it span{font-family:var(--mono);font-size:11px;color:#6a7488}
   .sheet .it p{margin:4px 0 0;font-size:12.5px}
+  .sheet .cvm{margin:5px 0 0 14px;padding:0;font-size:12.5px;color:#2b3446;line-height:1.5}
+  .sheet .cvm li{margin-bottom:1px}
   .sheet .tg{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
   .sheet .tg i{font-style:normal;font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:10px;background:#e8ecf6;color:#3a4560}
   .sheet .sk{margin-bottom:12px}
@@ -248,6 +253,7 @@
     .sheet h3{margin:12px 0 6px}
     .sheet p{font-size:11.5px;line-height:1.48;margin-bottom:5px}
     .sheet .it{margin-bottom:7px}.sheet .it b{font-size:12.5px}.sheet .it p{font-size:11px;margin-top:2px}
+    .sheet .cvm{font-size:11px;line-height:1.4}
     .sheet .sk{margin-bottom:8px}.sheet .sk div{font-size:11px;margin-bottom:2px}
     .sheet .ft{padding:8px 30px}
   }
@@ -330,20 +336,20 @@ const PROFILE={
   github:'https://github.com/Hichamovixh', linkedin:'https://www.linkedin.com/in/hicham-djama-5186291b6/',
   summary:[
     `Je suis un profil <strong>hybride</strong> : réseaux, systèmes, cybersécurité et développement. Ce qui me plaît, c'est de comprendre une infrastructure de bout en bout, du câble jusqu'au cloud, du paquet réseau jusqu'à l'application qui tourne dessus, puis de la rendre <strong>plus fiable, plus sûre et plus automatisée</strong>.`,
-    `Depuis septembre 2024, je suis <strong>administrateur réseaux et systèmes à l'INSEI</strong>. Au quotidien, j'aime autant configurer un switch que durcir un serveur Linux ou écrire le script qui évitera de refaire la même tâche cent fois. Je suis curieux, rigoureux, et j'apprends en permanence : chaque nouvelle techno passe d'abord par mon lab.`],
+    `Depuis septembre 2024, je suis <strong>administrateur réseaux et systèmes à l'INSEI</strong>. J'y gère une grande partie du <strong>réseau et des switchs</strong>, j'ai piloté de A à Z le <strong>déploiement de Microsoft 365</strong> (planification, configuration, administration), et j'automatise le service avec des <strong>scripts PowerShell planifiés</strong> qui traitent les demandes. Fort de ma licence de développeur web, je m'occupe aussi de tout le côté développement.`],
   seekingText:`Un poste en <strong>CDI ou CDD</strong> à <strong>Paris / Île-de-France</strong>, dans une équipe où je peux faire le lien entre l'infrastructure, la sécurité et le code, et continuer à monter en compétences sur des projets concrets.`
 };
 const MODULES=[
   ['Réseaux','architecture, routage, switching, supervision'],
   ['Cybersécurité','sécurisation, analyse, bonnes pratiques'],
-  ['Systèmes & Cloud','Linux, Windows Server, virtualisation, cloud'],
-  ['Développement','scripts, automatisation, applications web']];
+  ['Systèmes & Cloud','Microsoft 365, Windows Server, Active Directory, Linux'],
+  ['Développement','licence dev web, PowerShell, applications web']];
 // [port, compétence, niveau sur 100]  — port purement décoratif (thème « scan réseau »)
 const SKILLS=[
-  {group:'réseaux', items:[['179','Routage (OSPF, BGP)',70],['161','Switching & VLAN (Cisco)',80],['53','DNS / DHCP / TCP-IP',85],['1194','VPN (IPsec, OpenVPN)',65],['10050','Supervision (Zabbix, Grafana)',60]]},
-  {group:'cybersécurité', items:[['443','Pare-feu (pfSense, FortiGate)',70],['22','Durcissement des systèmes',70],['8834','Audit & scan (Nmap, Nessus)',70],['5601','Analyse de trafic (Wireshark)',80]]},
-  {group:'systèmes & cloud', items:[['2049','Linux (Debian, Ubuntu)',85],['389','Windows Server / Active Directory',75],['8006','Virtualisation (Proxmox, VMware)',70],['2375','Docker',70],['6443','Cloud (Azure, AWS)',50]]},
-  {group:'développement', items:[['8000','Python',75],['3000','JavaScript / HTML / CSS',70],['5432','SQL',60],['9418','Git',75],['5985','Bash / PowerShell',75]]}];
+  {group:'réseaux', items:[['161','Switching & VLAN',85],['53','Administration réseau (TCP/IP, DNS, DHCP)',80],['179','Routage',65],['1194','VPN',60]]},
+  {group:'systèmes & cloud', items:[['443','Microsoft 365 / Office 365 (déploiement, admin)',85],['389','Windows Server / Active Directory',70],['2049','Linux',60],['8006','Virtualisation',60]]},
+  {group:'automatisation & dev', items:[['5985','PowerShell (scripts planifiés)',85],['3000','HTML / CSS / JavaScript',80],['5432','SQL',65],['9418','Git',70]]},
+  {group:'cybersécurité', items:[['8443','Sécurisation des accès et des comptes',65],['5601','Analyse de trafic (Wireshark)',65],['8834','Audit & scan (Nmap)',60]]}];
 const PROJECTS=[
   {t:'Atelier Factures',y:'2026',url:'https://github.com/Hichamovixh/atelier-factures',
    s:`Générateur de devis et factures : TVA par ligne, acompte, signature, export PDF ; données gardées en local.`,
@@ -362,13 +368,14 @@ const PROJECTS=[
    d:`Intro animée en cyber-samouraï, noyau neuronal 3D, assistant IA en console et <strong>version CV imprimable</strong> générée à partir des mêmes données, sans aucune librairie.`,
    tags:['JavaScript','Canvas','HTML / CSS']}];
 // type : 'xp' (expérience) ou 'edu' (formation)
-// ex:true = ligne d'exemple, à remplacer (un petit badge l'indique)
+// ex:true = ligne d'exemple, à remplacer (un petit badge l'indique) ; missions : liste affichée sous l'étape
 const PARCOURS=[
-  {type:'edu',t:'Bac / premières lignes de code',w:'Lycée · Ville',d:'2016',ex:true},
-  {type:'edu',t:'BTS SIO — option SISR',w:'École · Ville',d:'2018',ex:true},
-  {type:'xp', t:'Stage administrateur réseau',w:'Entreprise · Ville',d:'2019',ex:true},
-  {type:'edu',t:'Licence / Bachelor réseaux & sécurité',w:'École · Ville',d:'2021',ex:true},
-  {type:'xp', t:'Administrateur réseaux & systèmes',w:'INSEI',d:'sept. 2024 → aujourd\'hui',dur:true}];
+  {type:'edu',t:'Licence — Développeur web',w:'',d:''},
+  {type:'xp', t:'Administrateur réseaux & systèmes',w:'INSEI',d:'sept. 2024 → aujourd\'hui',dur:true,
+   missions:['Administration du réseau : configuration et gestion des switchs',
+             'Déploiement complet de Microsoft 365 : planification, configuration, administration',
+             'Automatisation du service et du traitement des demandes par scripts PowerShell planifiés',
+             'Développement des outils internes (côté dev)']}];
 const EXEMPLE={competences:true, projets:false, parcours:false};
 /* =========================================================== */
 
@@ -377,7 +384,7 @@ const AGE=(()=>{const n=new Date(),[y,m,d]=PROFILE.birth;let a=n.getFullYear()-y
 const since=(()=>{const [y,m,d]=PROFILE.job.since,n=new Date();let mo=(n.getFullYear()-y)*12+(n.getMonth()-m)-(n.getDate()<d?1:0);const a=Math.floor(mo/12),r=mo%12;return (a?a+' an'+(a>1?'s':''):'')+(a&&r?' ':'')+(r?r+' mois':'')||'1 mois'})();
 const pd=h=>h.d+(h.dur?' · '+since:'');
 const exTag='<em class="extag">exemple</em>';
-const exBadge=k=>EXEMPLE[k]?`<div class="exbadge">⚠ contenu d'exemple — à remplacer par tes vraies infos</div>`:'';
+const exBadge=k=>EXEMPLE[k]?`<div class="exbadge">⚠ ${k==='competences'?'niveaux à confirmer':'contenu d\'exemple — à remplacer par tes vraies infos'}</div>`:'';
 const SECTIONS = {
   apropos:{label:'À propos', ip:'10.0.0.2', port:'80', html:`
     <div class="idcard">
@@ -407,7 +414,7 @@ const SECTIONS = {
     <h2 class="dec">Trajectoire</h2>
     <p class="sub">traceroute avenir — 30 sauts max</p>
     ${exBadge('parcours')}
-    <ol class="trace">${PARCOURS.map((h,i)=>hop(i+1,h.t+(h.ex?' '+exTag:''),h.w,pd(h))).join('')}${hop(PARCOURS.length+1,'Prochaine destination ?','Peut-être chez vous','* * *')}</ol>`},
+    <ol class="trace">${PARCOURS.map((h,i)=>hop(i+1,h.t+(h.ex?' '+exTag:''),h.w,h.d?pd(h):'',h.missions)).join('')}${hop(PARCOURS.length+1,'Prochaine destination ?','Peut-être chez vous','* * *')}</ol>`},
   contact:{label:'Contact', ip:'10.0.0.6', port:'25', html:`
     <h2 class="dec">Établir une connexion</h2>
     <p>SYN envoyé. Il ne manque que ton ACK. Je réponds en général sous 24 h.</p>
@@ -423,7 +430,7 @@ const SECTIONS = {
 
 function row(p,s,n,l){return `<tr><td>${p}/tcp</td><td class="${s}">${s==='open'?'open':'filtered'}</td><td>${n}</td><td><span class="bar"><i style="width:${l}%"></i></span></td></tr>`}
 function proj(t,y,d,tags,url){return `<div class="proj"><div class="top"><h4>${t}</h4><span class="yr">${y}${url?` · <a href="${url}" target="_blank" rel="noopener">code ↗</a>`:''}</span></div><p>${d}</p><div class="tags">${tags.map(x=>`<span>${x}</span>`).join('')}</div></div>`}
-function hop(n,t,w,d){const ms=(n*3.2+Math.random()*4).toFixed(1);return `<li><span class="hop">${String(n).padStart(2,'0')}</span><div><div class="t">${t}</div><div class="w">${w} · <span class="ms">${d}</span> · ${ms} ms</div></div></li>`}
+function hop(n,t,w,d,mis){const ms=(n*3.2+Math.random()*4).toFixed(1);const meta=[w,d?`<span class="ms">${d}</span>`:''].filter(Boolean).join(' · ');return `<li><span class="hop">${String(n).padStart(2,'0')}</span><div><div class="t">${t}</div><div class="w">${meta?meta+' · ':''}${ms} ms</div>${mis?`<ul class="mis">${mis.map(m=>`<li>${m}</li>`).join('')}</ul>`:''}</div></li>`}
 function copyMail(b){try{navigator.clipboard.writeText(EMAIL).then(()=>{b.textContent='copié ✓'},()=>{b.textContent='sélectionne le texte'})}catch(e){b.textContent='sélectionne le texte'}}
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -630,8 +637,8 @@ addEventListener('keydown',e=>{
 const cvm=$('cvmode');
 function buildCV(){
   const P=PROFILE,xp=PARCOURS.filter(h=>h.type==='xp').slice().reverse(),edu=PARCOURS.filter(h=>h.type==='edu').slice().reverse();
-  const ex=k=>EXEMPLE[k]?`<span class="ex">exemple — à remplacer</span>`:'';
-  const it=h=>`<div class="it"><b>${h.t}${h.ex?' <span class="ex">exemple</span>':''}</b><span>${h.w} · ${pd(h)}</span></div>`;
+  const ex=k=>EXEMPLE[k]?`<span class="ex">${k==='competences'?'niveaux à confirmer':'exemple — à remplacer'}</span>`:'';
+  const it=h=>`<div class="it"><b>${h.t}${h.ex?' <span class="ex">exemple</span>':''}</b>${(h.w||h.d)?`<span>${[h.w,h.d?pd(h):''].filter(Boolean).join(' · ')}</span>`:''}${h.missions?`<ul class="cvm">${h.missions.map(m=>`<li>${m}</li>`).join('')}</ul>`:''}</div>`;
   return `<div class="sheet">
     <div class="hd"><img src="assets/holo.webp" alt="">
       <div><h1>${P.name}</h1><div class="hl">${P.headline}</div>
