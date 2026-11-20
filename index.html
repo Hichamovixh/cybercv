@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hicham DJAMA — Développeur & Réseaux</title>
-<meta name="description" content="Hicham DJAMA — administrateur réseaux & systèmes (INSEI), profil hybride réseaux, cybersécurité, systèmes et développement, basé à Paris. Ouvert aux opportunités CDI / CDD.">
+<meta name="description" content="Hicham DJAMA — administrateur réseaux & systèmes (INSEI), profil hybride réseaux, cybersécurité, systèmes et développement, basé à Paris. Ouvert aux opportunités en CDI.">
 <meta name="theme-color" content="#04050a">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hicham DJAMA — Réseaux · Cybersécurité · Systèmes · Dev">
@@ -127,7 +127,8 @@
   .idcard .status{margin-bottom:0}
   @media (max-width:460px){.idcard{grid-template-columns:110px 1fr;gap:12px}.idph{height:138px}.idph img{width:110px}.idcard h2{font-size:20px!important}}
   .status{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;color:#c9d4f0;border:1px solid rgba(94,242,255,.3);background:rgba(94,242,255,.06);padding:7px 12px;border-radius:20px;margin-bottom:18px}
-  .status i{width:8px;height:8px;border-radius:50%;background:#3dff9a;box-shadow:0 0 10px #3dff9a;animation:blink 1.6s infinite}
+  .status span{line-height:1.45}
+  .status i{flex:none;width:8px;height:8px;border-radius:50%;background:#3dff9a;box-shadow:0 0 10px #3dff9a;animation:blink 1.6s infinite}
   .mods{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .mods div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--bg2);transition:.25s}
   .mods div:hover{border-color:rgba(94,242,255,.5);transform:translateY(-2px)}
@@ -342,13 +343,13 @@ const PROFILE={
   email:'hicham.djama95@gmail.com', phone:'07 67 95 76 31', phoneIntl:'+33767957631',
   birth:[1998,9,6],                       // année, mois (0 = janvier), jour → l'âge se calcule tout seul
   headline:'Réseaux · Cybersécurité · Systèmes · Développement',
-  status:'Administrateur réseaux & systèmes · INSEI', seeking:'CDI / CDD',
-  job:{title:'Administrateur réseaux & systèmes', org:'INSEI', since:[2024,8,2]},   // poste actuel (mois : 0 = janvier)
+  status:'Administrateur réseaux & systèmes · INSEI', seeking:'CDI',
+  job:{title:'Administrateur réseaux & systèmes', org:'INSEI', contract:'CDI', since:[2024,8,2]},   // poste actuel (mois : 0 = janvier)
   github:'https://github.com/Hichamovixh', linkedin:'https://www.linkedin.com/in/hicham-djama-5186291b6/',
   summary:[
     `Je suis un profil <strong>hybride</strong> : réseaux, systèmes, cybersécurité et développement. Ce qui me plaît, c'est de comprendre une infrastructure de bout en bout, du câble jusqu'au cloud, du paquet réseau jusqu'à l'application qui tourne dessus, puis de la rendre <strong>plus fiable, plus sûre et plus automatisée</strong>.`,
     `Depuis septembre 2024, je suis <strong>administrateur réseaux et systèmes à l'INSEI</strong>. J'y gère une grande partie du <strong>réseau et des switchs</strong>, j'ai piloté de A à Z le <strong>déploiement de Microsoft 365</strong> (planification, configuration, administration), et j'automatise le service avec des <strong>scripts PowerShell planifiés</strong> qui traitent les demandes. Fort de ma licence de développeur web, je m'occupe aussi de tout le côté développement.`],
-  seekingText:`Un poste en <strong>CDI ou CDD</strong> à <strong>Paris / Île-de-France</strong>, dans une équipe où je peux faire le lien entre l'infrastructure, la sécurité et le code, et continuer à monter en compétences sur des projets concrets.`
+  seekingText:`Un poste en <strong>CDI</strong> à <strong>Paris / Île-de-France</strong>, dans une équipe où je peux faire le lien entre l'infrastructure, la sécurité et le code, et continuer à monter en compétences sur des projets concrets.`
 };
 const MODULES=[
   ['Réseaux','configuration de parc réseau, switchs, VLAN'],
@@ -386,7 +387,7 @@ const PROJECTS=[
 const PARCOURS=[
   {type:'edu',t:'Bac — Systèmes et réseaux informatiques',w:'',d:''},
   {type:'edu',t:'Licence — Développeur web',w:'',d:''},
-  {type:'xp', t:'Administrateur réseaux & systèmes',w:'INSEI',d:'sept. 2024 → aujourd\'hui',dur:true,
+  {type:'xp', t:'Administrateur réseaux & systèmes',w:'INSEI · CDI',d:'sept. 2024 → aujourd\'hui',dur:true,
    missions:['Administration du réseau : configuration et gestion des switchs',
              'Déploiement complet de Microsoft 365 : planification, configuration, administration',
              'Automatisation du service et du traitement des demandes par scripts PowerShell planifiés',
@@ -407,8 +408,8 @@ const SECTIONS = {
       <div>
         <p class="sub">// ID · ${AGE} ans · ${CITY}, France</p>
         <h2 class="dec">Bonjour, moi c'est ${PROFILE.first}.</h2>
-        <div class="status"><i></i>${PROFILE.job.title} · <strong>${PROFILE.job.org}</strong></div>
-        <div class="status" style="margin-top:8px"><i style="background:var(--cyan);box-shadow:0 0 10px var(--cyan)"></i>ouvert aux <strong>${PROFILE.seeking}</strong></div>
+        <div class="status"><i></i><span>${PROFILE.job.title} · <strong>${PROFILE.job.org}</strong> · ${PROFILE.job.contract}</span></div>
+        <div class="status" style="margin-top:8px"><i style="background:var(--cyan);box-shadow:0 0 10px var(--cyan)"></i><span>ouvert aux <strong>${PROFILE.seeking}</strong></span></div>
       </div>
     </div>
     ${PROFILE.summary.map(p=>`<p>${p}</p>`).join('')}
@@ -588,7 +589,7 @@ const INTENTS=[
   {k:'#cv',re:/\bcv\b|pdf|imprim|r[ée]sum[ée]/,a:`Je génère sa version CV, lisible et imprimable.`},
   {k:'parcours',re:/parcours|[ée]tud|dipl[oô]m|formation|exp[ée]rien|école|ecole/,a:`Je retrace son parcours, saut par saut.`},
   {k:'contact',re:/contact|mail|joindre|recrut|embauch|stage|alternance|dispo|linkedin/,a:`Excellente idée. Voici comment ouvrir une connexion avec lui.`},
-  {k:'apropos',re:/qui|pr[ée]sent|toi|lui|about|propos|bonjour|salut|hello/,a:`${NAME}, ${AGE} ans, basé à ${CITY} : administrateur réseaux et systèmes à l'INSEI depuis septembre 2024, profil hybride réseaux, cybersécurité, systèmes et développement, ouvert aux opportunités en CDI ou CDD. Voici sa présentation.`}
+  {k:'apropos',re:/qui|pr[ée]sent|toi|lui|about|propos|bonjour|salut|hello/,a:`${NAME}, ${AGE} ans, basé à ${CITY} : administrateur réseaux et systèmes à l'INSEI depuis septembre 2024, profil hybride réseaux, cybersécurité, systèmes et développement, ouvert aux opportunités en CDI. Voici sa présentation.`}
 ];
 const alias={about:'apropos',skills:'competences',projects:'projets'};
 const resolve=a=>{a=(a||'').toLowerCase();return SECTIONS[a]?a:alias[a]};
@@ -674,7 +675,7 @@ function buildCV(){
         ${SKILLS.map(g=>`<div class="sk"><b>${g.group}</b><ul class="skl">${g.items.map(i=>`<li>${i[1]}</li>`).join('')}</ul></div>`).join('')}
         <h3>Certifications</h3>${CERTS.map(c=>`<p><strong>${c.t}</strong><br><span style="font-size:12px;color:#7381a3">${c.d}</span></p>`).join('')}
         <div class="noprint"><h3>Domaines</h3>${MODULES.map(m=>`<p><strong>${m[0].replace('&','&amp;')}</strong><br><span style="font-size:12px;color:#7381a3">${m[1]}</span></p>`).join('')}</div>
-        <h3>Statut</h3><p>${P.job.title} à l'<strong>${P.job.org}</strong> depuis ${since}<br>Ouvert aux <strong>${P.seeking}</strong> · ${P.city} / Île-de-France</p>
+        <h3>Statut</h3><p>${P.job.title} à l'<strong>${P.job.org}</strong> (${P.job.contract}) depuis ${since}<br>Ouvert aux <strong>${P.seeking}</strong> · ${P.city} / Île-de-France</p>
       </div>
     </div>
     <div class="ft"><span>${P.name} — CV</span><span>version interactive : hichamovixh.github.io/cybercv</span></div>
