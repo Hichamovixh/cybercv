@@ -216,8 +216,8 @@
   .cvbar{position:fixed;top:0;left:0;right:0;display:flex;justify-content:center;gap:10px;padding:14px;z-index:61;background:linear-gradient(180deg,rgba(3,4,10,.95),transparent)}
   .cvbar button{font-family:var(--mono);font-size:12px;border-radius:8px;padding:9px 14px;cursor:pointer;border:1px solid var(--line);background:rgba(14,18,32,.9);color:var(--text)}
   .cvbar button.pri{background:linear-gradient(90deg,var(--cyan),var(--violet));color:#04050a;border:0;font-weight:700}
-  .sheet{max-width:820px;margin:0 auto;background:#fbfcfe;color:#141a26;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(94,242,255,.25);font-family:var(--sans);overflow:hidden}
-  .sheet .hd{display:grid;grid-template-columns:96px 1fr;gap:22px;align-items:center;padding:34px 40px 26px;background:#0b0e1a;color:#e9efff;position:relative}
+  .sheet{max-width:820px;margin:0 auto;background:linear-gradient(160deg,rgba(18,22,44,.96),rgba(6,8,16,.97));color:#c9d4f0;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(94,242,255,.3),0 0 60px rgba(139,92,255,.12);font-family:var(--sans);overflow:hidden}
+  .sheet .hd{display:grid;grid-template-columns:96px 1fr;gap:22px;align-items:center;padding:34px 40px 26px;background:rgba(4,5,10,.6);color:#e9efff;position:relative}
   .sheet .hd::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#5ef2ff,#8b5cff)}
   .sheet .hd img{width:96px;height:120px;object-fit:cover;object-position:top}
   .sheet h1{font-family:var(--disp);font-size:30px;font-weight:800;letter-spacing:-.01em;line-height:1}
@@ -226,36 +226,37 @@
   .sheet .ct a{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(184,195,224,.5)}
   .sheet .bd{display:grid;grid-template-columns:1.55fr 1fr;gap:0}
   .sheet .col{padding:26px 40px 34px}
-  .sheet .col+.col{background:#f1f4fa;padding-left:28px;padding-right:32px}
-  .sheet h3{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6b46e5;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
+  .sheet .col+.col{background:rgba(255,255,255,.025);border-left:1px solid rgba(120,160,255,.12);padding-left:28px;padding-right:32px}
+  .sheet h3{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#5ef2ff;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
   .sheet h3:first-child{margin-top:0}
-  .sheet h3::after{content:"";flex:1;height:1px;background:#d8deeb}
-  .sheet p{font-size:13.5px;line-height:1.6;color:#2b3446;margin-bottom:8px}
-  .sheet strong{color:#0b0e1a}
-  .sheet .it{margin-bottom:12px;padding-left:14px;border-left:2px solid #5ef2ff}
-  .sheet .it b{display:block;font-size:14px;color:#0b0e1a}
-  .sheet .it span{font-family:var(--mono);font-size:11px;color:#6a7488}
+  .sheet h3::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(94,242,255,.35),transparent)}
+  .sheet p{font-size:13.5px;line-height:1.6;color:#b4c0e0;margin-bottom:8px}
+  .sheet strong{color:#fff}
+  .sheet .it{margin-bottom:12px;padding-left:14px;border-left:2px solid #8b5cff}
+  .sheet .it b{display:block;font-size:14px;color:#fff}
+  .sheet .it span{font-family:var(--mono);font-size:11px;color:#7381a3}
   .sheet .it p{margin:4px 0 0;font-size:12.5px}
-  .sheet .skl{margin:0 0 0 14px;padding:0;font-size:12.5px;color:#2b3446;line-height:1.55}
-  .sheet .cvm{margin:5px 0 0 14px;padding:0;font-size:12.5px;color:#2b3446;line-height:1.5}
+  .sheet .skl li::marker,.sheet .cvm li::marker{color:#8b5cff}
+  .sheet .skl{margin:0 0 0 14px;padding:0;font-size:12.5px;color:#b4c0e0;line-height:1.55}
+  .sheet .cvm{margin:5px 0 0 14px;padding:0;font-size:12.5px;color:#b4c0e0;line-height:1.5}
   .sheet .cvm li{margin-bottom:1px}
   .sheet .tg{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
-  .sheet .tg i{font-style:normal;font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:10px;background:#e8ecf6;color:#3a4560}
+  .sheet .tg i{font-style:normal;font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:10px;border:1px solid rgba(139,92,255,.4);color:#c7b6ff}
   .sheet .sk{margin-bottom:12px}
-  .sheet .sk b{font-family:var(--mono);font-size:11px;color:#0b0e1a;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px}
+  .sheet .sk b{font-family:var(--mono);font-size:11px;color:#fff;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px}
   .sheet .sk div{display:grid;grid-template-columns:1fr 58px;gap:8px;align-items:center;font-size:12px;color:#2b3446;margin-bottom:4px}
   .sheet .sk em{height:4px;border-radius:4px;background:#dfe4f0;position:relative;overflow:hidden;display:block}
   .sheet .sk em::after{content:"";position:absolute;inset:0;width:var(--w);background:linear-gradient(90deg,#14b8c8,#6b46e5)}
   .sheet .ex{font-family:var(--mono);font-size:9.5px;color:#b06b00;background:#fff4e0;border:1px dashed #f0b45a;border-radius:6px;padding:4px 7px;margin:-2px 0 10px;display:inline-block}
-  .sheet .ft{padding:12px 40px;font-family:var(--mono);font-size:10px;color:#8a93a6;border-top:1px solid #e3e7f0;display:flex;justify-content:space-between}
+  .sheet .ft{padding:12px 40px;font-family:var(--mono);font-size:10px;color:#7381a3;border-top:1px solid rgba(120,160,255,.14);display:flex;justify-content:space-between}
   @media (max-width:700px){.sheet .bd{grid-template-columns:1fr}.sheet .hd{grid-template-columns:70px 1fr;padding:24px 22px}.sheet .hd img{width:70px;height:88px}.sheet h1{font-size:24px}.sheet .col,.sheet .col+.col{padding:22px}.sheet .ft{padding:12px 22px}}
   @media print{
     @page{size:A4;margin:0}
-    html,body{overflow:visible!important;background:#fff!important;height:auto!important}
+    html,body{overflow:visible!important;background:#070912!important;height:auto!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
     body > *:not(#cvmode){display:none!important}
     #cvmode{display:block!important;position:static;background:none;backdrop-filter:none;padding:0;overflow:visible}
     .cvbar{display:none!important}
-    .sheet{box-shadow:none;border-radius:0;max-width:none;zoom:.95;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .sheet{box-shadow:none;border-radius:0;max-width:none;zoom:.95;min-height:312mm;display:flex;flex-direction:column;background:#0a0d1a!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
     .sheet .ex,.sheet .noprint{display:none}
     .sheet .hd{padding:22px 30px 18px}
     .sheet .col{padding:16px 28px 18px}.sheet .col+.col{padding-left:20px;padding-right:22px}
@@ -264,7 +265,8 @@
     .sheet .it{margin-bottom:7px}.sheet .it b{font-size:12.5px}.sheet .it p{font-size:11px;margin-top:2px}
     .sheet .cvm,.sheet .skl{font-size:11px;line-height:1.4}
     .sheet .sk{margin-bottom:8px}.sheet .sk div{font-size:11px;margin-bottom:2px}
-    .sheet .ft{padding:8px 30px}
+    .sheet .ft{padding:8px 30px;margin-top:auto}
+    .sheet .bd{flex:1}
   }
   @media (max-width:700px){
     .hud .meta{display:none}
@@ -670,8 +672,8 @@ function buildCV(){
       <div class="col">
         <h3>Compétences</h3>${ex('competences')}
         ${SKILLS.map(g=>`<div class="sk"><b>${g.group}</b><ul class="skl">${g.items.map(i=>`<li>${i[1]}</li>`).join('')}</ul></div>`).join('')}
-        <h3>Certifications</h3>${CERTS.map(c=>`<p><strong>${c.t}</strong><br><span style="font-size:12px;color:#5b6478">${c.d}</span></p>`).join('')}
-        <div class="noprint"><h3>Domaines</h3>${MODULES.map(m=>`<p><strong>${m[0].replace('&','&amp;')}</strong><br><span style="font-size:12px;color:#5b6478">${m[1]}</span></p>`).join('')}</div>
+        <h3>Certifications</h3>${CERTS.map(c=>`<p><strong>${c.t}</strong><br><span style="font-size:12px;color:#7381a3">${c.d}</span></p>`).join('')}
+        <div class="noprint"><h3>Domaines</h3>${MODULES.map(m=>`<p><strong>${m[0].replace('&','&amp;')}</strong><br><span style="font-size:12px;color:#7381a3">${m[1]}</span></p>`).join('')}</div>
         <h3>Statut</h3><p>${P.job.title} à l'<strong>${P.job.org}</strong> depuis ${since}<br>Ouvert aux <strong>${P.seeking}</strong> · ${P.city} / Île-de-France</p>
       </div>
     </div>
