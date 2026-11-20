@@ -238,6 +238,14 @@
   .sheet .it span{font-family:var(--mono);font-size:11px;color:#7381a3}
   .sheet .it p{margin:4px 0 0;font-size:12.5px}
   .sheet .skl li::marker,.sheet .cvm li::marker{color:#8b5cff}
+  .sheet .col+.col{display:flex;flex-direction:column}
+  .sheet .coord{margin-top:auto;padding-top:6px}
+  .sheet .coord .hl{font-family:var(--mono);font-size:10.5px;color:#5ef2ff;line-height:1.6;margin:0 0 8px}
+  .sheet .coord ul{list-style:none;margin:0;padding:0;font-size:12.5px;color:#c9d4f0}
+  .sheet .coord li{display:grid;grid-template-columns:30px 1fr;align-items:baseline;margin-bottom:5px;word-break:break-word}
+  .sheet .coord b{font-family:var(--mono);font-size:10px;color:#8b5cff;font-weight:700}
+  .sheet .coord a{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(184,195,224,.4)}
+  .sheet .hd{padding-top:26px!important;padding-bottom:22px!important}
   .sheet .skl{margin:0 0 0 14px;padding:0;font-size:12.5px;color:#b4c0e0;line-height:1.55}
   .sheet .cvm{margin:5px 0 0 14px;padding:0;font-size:12.5px;color:#b4c0e0;line-height:1.5}
   .sheet .cvm li{margin-bottom:1px}
@@ -265,6 +273,7 @@
     .sheet p{font-size:11.5px;line-height:1.48;margin-bottom:5px}
     .sheet .it{margin-bottom:7px}.sheet .it b{font-size:12.5px}.sheet .it p{font-size:11px;margin-top:2px}
     .sheet .cvm,.sheet .skl{font-size:11px;line-height:1.4}
+    .sheet .coord ul{font-size:11px}.sheet .coord li{margin-bottom:3px}
     .sheet .sk{margin-bottom:8px}.sheet .sk div{font-size:11px;margin-bottom:2px}
     .sheet .ft{padding:8px 30px;margin-top:auto}
     .sheet .bd{flex:1}
@@ -659,9 +668,7 @@ function buildCV(){
   const it=h=>`<div class="it"><b>${h.t}${h.ex?' <span class="ex">exemple</span>':''}</b>${(h.w||h.d)?`<span>${[h.w,h.d?pd(h):''].filter(Boolean).join(' · ')}</span>`:''}${h.missions?`<ul class="cvm">${h.missions.map(m=>`<li>${m}</li>`).join('')}</ul>`:''}</div>`;
   return `<div class="sheet">
     <div class="hd"><img src="assets/holo.webp" alt="">
-      <div><h1>${P.name}</h1><div class="hl">${P.headline}</div>
-      <div class="ct"><span>${P.city}, France · ${AGE} ans</span><a href="mailto:${P.email}">${P.email}</a><a href="tel:${P.phoneIntl}">${P.phone}</a>
-      <a href="${P.linkedin}" target="_blank" rel="noopener">LinkedIn</a><a href="${P.github}" target="_blank" rel="noopener">GitHub</a></div></div></div>
+      <div><h1>${P.name}</h1><div class="hl">${P.headline}</div></div></div>
     <div class="bd">
       <div class="col">
         <h3>Profil</h3>${P.summary.map(p=>`<p>${p}</p>`).join('')}
@@ -676,6 +683,14 @@ function buildCV(){
         <h3>Certifications</h3>${CERTS.map(c=>`<p><strong>${c.t}</strong><br><span style="font-size:12px;color:#7381a3">${c.d}</span></p>`).join('')}
         <div class="noprint"><h3>Domaines</h3>${MODULES.map(m=>`<p><strong>${m[0].replace('&','&amp;')}</strong><br><span style="font-size:12px;color:#7381a3">${m[1]}</span></p>`).join('')}</div>
         <h3>Statut</h3><p>${P.job.title} à l'<strong>${P.job.org}</strong> (${P.job.contract}) depuis ${since}<br>Ouvert aux <strong>${P.seeking}</strong> · ${P.city} / Île-de-France</p>
+        <div class="coord"><h3>Coordonnées</h3>
+          <ul>
+            <li><b>loc</b>${P.city}, France · ${AGE} ans</li>
+            <li><b>@</b><a href="mailto:${P.email}">${P.email}</a></li>
+            <li><b>tél</b><a href="tel:${P.phoneIntl}">${P.phone}</a></li>
+            <li><b>in</b><a href="${P.linkedin}" target="_blank" rel="noopener">linkedin.com/in/hicham-djama</a></li>
+            <li><b>gh</b><a href="${P.github}" target="_blank" rel="noopener">${P.github.replace('https://','')}</a></li>
+          </ul></div>
       </div>
     </div>
     <div class="ft"><span>${P.name} — CV</span><span>version interactive : hichamovixh.github.io/cybercv</span></div>
