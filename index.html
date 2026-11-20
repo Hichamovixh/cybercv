@@ -699,8 +699,8 @@ function drawPortal(T){
   if(fl>0){ix.fillStyle=`rgba(190,240,255,${fl})`;ix.fillRect(0,0,w,h)}
   // lumière du portail puis blanc total
   const wh=seg(T,PEND+1.35,PEND+1.75);
-  if(dive>0){const g=ix.createRadialGradient(w/2,h*.45,0,w/2,h*.45,Math.max(w,h)*(.2+dive));g.addColorStop(0,`rgba(255,255,255,${.6*dive})`);g.addColorStop(1,'rgba(255,255,255,0)');ix.fillStyle=g;ix.fillRect(0,0,w,h)}
-  if(wh>0){ix.fillStyle=`rgba(255,255,255,${wh})`;ix.fillRect(0,0,w,h)}
+  if(dive>0){const g=ix.createRadialGradient(w/2,h*.4,0,w/2,h*.4,Math.max(w,h)*(.25+dive));g.addColorStop(0,`rgba(139,92,255,${.35*dive})`);g.addColorStop(.5,`rgba(94,242,255,${.12*dive})`);g.addColorStop(1,`rgba(4,5,10,${.5*dive})`);ix.fillStyle=g;ix.fillRect(0,0,w,h)}
+  if(wh>0){ix.fillStyle=`rgba(4,5,10,${wh})`;ix.fillRect(0,0,w,h)}
   // coins HUD
   ix.strokeStyle='rgba(94,242,255,.6)';ix.lineWidth=2;const mm=18,k=28;
   [[mm,mm,1,1],[w-mm,mm,-1,1],[mm,h-mm,1,-1],[w-mm,h-mm,-1,-1]].forEach(([a,b,sx2,sy2])=>{ix.beginPath();ix.moveTo(a,b+sy2*k);ix.lineTo(a,b);ix.lineTo(a+sx2*k,b);ix.stroke()});
@@ -718,7 +718,7 @@ function portalLoop(now){
   drawPortal(T);
   if(T>2.25&&!typed)showPortalText();
   if(T>PEND+1.25)bub.classList.remove('on');
-  if(T>PEND+1.75){endIntro();flash.animate([{opacity:1},{opacity:0}],{duration:900,easing:'ease-out'});return}
+  if(T>PEND+1.75){endIntro();flash.style.background='#04050a';flash.animate([{opacity:1},{opacity:0}],{duration:900,easing:'ease-out'}).onfinish=()=>flash.style.background='';return}
   iraf=requestAnimationFrame(portalLoop);
 }
 
