@@ -12,6 +12,13 @@ Portfolio interactif : réseaux · cybersécurité · systèmes · développemen
 
 Aucune librairie ni build : HTML, CSS et JavaScript (Canvas) dans un seul fichier.
 
+## Liens directs
+
+L'intro se joue une fois par visite. Un lien direct ouvre la page voulue sans passer par l'intro :
+
+- `https://hichamovixh.github.io/cybercv/#cv` → la version CV
+- `#apropos`, `#competences`, `#projets`, `#parcours`, `#contact` → la section correspondante
+
 ## Raccourcis
 
 | Touche | Action |

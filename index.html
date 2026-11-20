@@ -13,6 +13,9 @@
 <meta property="og:image" content="https://hichamovixh.github.io/cybercv/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 3l25 14.5v29L32 61 7 46.5v-29z' fill='%2304050a' stroke='%235ef2ff' stroke-width='4'/%3E%3Ctext x='32' y='41' font-family='monospace' font-weight='700' font-size='22' fill='%235ef2ff' text-anchor='middle'%3EHD%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Hicham DJAMA", "jobTitle": "Administrateur réseaux et systèmes", "worksFor": {"@type": "Organization", "name": "INSEI"}, "address": {"@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR"}, "url": "https://hichamovixh.github.io/cybercv/", "image": "https://hichamovixh.github.io/cybercv/assets/og.jpg", "sameAs": ["https://www.linkedin.com/in/hicham-djama-5186291b6/", "https://github.com/Hichamovixh"], "knowsAbout": ["Administration réseau", "Switchs", "VLAN", "Microsoft 365", "Office 365", "Proxmox", "Trend Micro Apex One", "PowerShell", "PHP", "Python", "SQL", "Développement web"], "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": "Certification Proxmox"}, {"@type": "EducationalOccupationalCredential", "name": "Certification Trend Micro Apex One"}]}</script>
+<link rel="canonical" href="https://hichamovixh.github.io/cybercv/">
+<link rel="preload" as="image" href="assets/portail.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@400;600;800&family=Bangers&family=Dela+Gothic+One&display=swap" rel="stylesheet">
@@ -35,6 +38,14 @@
   .half{position:fixed;inset:0;z-index:101;pointer-events:none;will-change:transform,opacity}
   .half canvas{width:100%;height:100%;display:block}
   .flash{position:fixed;inset:0;z-index:102;background:#fff;opacity:0;pointer-events:none}
+  #loader{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;font-family:var(--mono);color:var(--cyan);transition:opacity .4s}
+  #loader.gone{opacity:0;pointer-events:none}
+  #loader .lt{font-size:13px;letter-spacing:.4em}
+  #loader .lt span{animation:blink 1s steps(1) infinite}
+  #loader .lb{width:min(260px,60vw);height:2px;background:rgba(94,242,255,.15);overflow:hidden;position:relative}
+  #loader .lb i{position:absolute;top:0;bottom:0;width:40%;background:linear-gradient(90deg,transparent,var(--cyan),var(--violet),transparent);animation:ld 1.1s ease-in-out infinite}
+  @keyframes ld{from{left:-40%}to{left:100%}}
+  #loader small{font-size:10px;color:var(--muted);letter-spacing:.15em}
   #sam{position:fixed;inset:0;width:100%;height:100%;z-index:104;pointer-events:none}
   #bubble{position:fixed;z-index:105;transform:translate(0,-100%);opacity:0;transition:opacity .4s,filter .4s;filter:blur(6px);pointer-events:none;
            padding:6px 0 8px 18px;border-left:2px solid var(--cyan);max-width:min(80vw,520px);text-align:left}
@@ -291,8 +302,13 @@
 </head>
 <body>
 
+<noscript><div style="max-width:720px;margin:40px auto;padding:24px;font-family:system-ui,sans-serif;color:#e4ecff;line-height:1.6">
+<h1>Hicham DJAMA</h1><p>Administrateur réseaux &amp; systèmes (INSEI, CDI) · Paris · Réseaux, cybersécurité, systèmes, développement.</p>
+<p>Compétences : configuration de parc réseau, switchs, Office 365 / Microsoft 365, Proxmox, Trend Micro Apex One, PowerShell, PHP, Python, SQL.</p>
+<p>Profils : <a style="color:#5ef2ff" href="https://www.linkedin.com/in/hicham-djama-5186291b6/">LinkedIn</a> · <a style="color:#5ef2ff" href="https://github.com/Hichamovixh">GitHub</a></p>
+<p>Active JavaScript pour découvrir la version interactive du portfolio et ses coordonnées.</p></div></noscript>
 <!-- INTRO -->
-<div id="intro" aria-hidden="true"><canvas id="ic"></canvas></div>
+<div id="intro" aria-hidden="true"><canvas id="ic"></canvas><div id="loader"><div class="lt">INITIALISATION<span>…</span></div><div class="lb"><i></i></div><small>chargement de l'intro</small></div></div>
 <canvas id="sam" aria-hidden="true"></canvas>
 <div id="bubble" aria-hidden="true"><small>// connexion établie</small><span></span></div>
 <div class="flash" id="flash"></div>
@@ -965,6 +981,8 @@ function endIntro(){
   const k=location.hash.slice(1);if(k==='cv')openCV();else if(SECTIONS[k]&&!current)setTimeout(()=>openSection(k),200);
 }
 function playIntro(){
+  try{sessionStorage.setItem('introSeen','1')}catch(e){}
+  $('loader').classList.add('gone');
   if(reduce)return endIntro();
   introOn=true;split=false;typed=false;lastT=0;steps=[];sparks=[];lastStep=-1;isize();
   if(INTRO==='portail'){intro.style.display='block';intro.style.visibility='visible';sam.style.display='none';skipBtn.style.display='block';
@@ -977,7 +995,12 @@ skipBtn.onclick=e=>{e.stopPropagation();endIntro()};
 addEventListener('keydown',e=>{if(introOn&&e.key==='Escape')endIntro()});
 addEventListener('resize',()=>{if(introOn)isize()});
 const imgReady=i=>i.complete?Promise.resolve():new Promise(r=>{i.onload=i.onerror=r});
-Promise.race([Promise.all([document.fonts.ready,INTRO==='portail'?imgReady(PORT):imgReady(IMG_SPR)]),new Promise(r=>setTimeout(r,4000))]).then(()=>playIntro());
+(()=>{const deep=location.hash.slice(1);let seen=false;try{seen=sessionStorage.getItem('introSeen')==='1'}catch(e){}
+  if((deep&&(deep==='cv'||SECTIONS[deep]))||seen){$('loader').classList.add('gone');return endIntro()}   // lien direct ou déjà vue : on va droit au but
+  skipBtn.style.display='block';
+  Promise.race([Promise.all([document.fonts.ready,INTRO==='portail'?imgReady(PORT):imgReady(IMG_SPR)]),new Promise(r=>setTimeout(r,6000))])
+    .then(()=>{if(!introOn&&intro.style.display==='none')return;$('loader').classList.add('gone');playIntro()});
+})();
 </script>
 
 
