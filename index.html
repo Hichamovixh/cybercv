@@ -661,6 +661,67 @@ $('cvopen').onclick=openCV;$('cvclose').onclick=closeCV;
 $('cvprint').onclick=()=>{try{window.print()}catch(e){}};
 addEventListener('hashchange',()=>{if(location.hash==='#cv')openCV()});
 
+/* ================== INTRO « PORTAIL » ================== */
+/* INTRO = 'portail' (rue cyberpunk → coup d'éclair → portail) ou 'samourai' (salle du supercalculateur) */
+const INTRO='portail';
+const PORT=new Image();PORT.src='assets/portail.webp';
+const PF=30,PW=630,PH=1120,PC=6,FD=.12,PEND=PF*FD;           // 30 images, 0,12 s chacune
+function pFrame(c,f,x,y,w,h){f=Math.max(0,Math.min(PF-1,f));c.drawImage(PORT,(f%PC)*PW,Math.floor(f/PC)*PH,PW,PH,x,y,w,h)}
+function drawPortal(T){
+  const w=IW,h=IH,dt=Math.min(.05,Math.max(0,T-lastT));lastT=T;
+  const fr=Math.min(PF-1,T/FD),f=Math.floor(fr),m=fr-f;
+  const hold=seg(T,PEND,PEND+1.1),dive=eio(seg(T,PEND+1.1,PEND+1.75));
+  ix.fillStyle='#000';ix.fillRect(0,0,w,h);
+  // fond : la même image, agrandie et floutée, pour remplir les côtés
+  const sc=Math.max(w/PW,h/PH)*1.08;
+  ix.save();try{ix.filter='blur(16px)'}catch(e){}
+  pFrame(ix,f,(w-PW*sc)/2,(h-PH*sc)/2,PW*sc,PH*sc);ix.restore();
+  ix.fillStyle='rgba(2,3,8,.55)';ix.fillRect(0,0,w,h);
+  // image principale (plein écran sur mobile, pleine hauteur sur ordinateur)
+  const s0=(w/h<PW/PH*1.15)?Math.max(w/PW,h/PH):h/PH;
+  const z=1+hold*.12+dive*2.6, s=s0*z, dw=PW*s, dh=PH*s;
+  const fy0=.36;                                         // plonger vers le cœur du portail
+  const x=w/2-dw/2, y=h/2-dh/2+(dh*(.5-fy0))*dive;
+  const sh=T>1.55&&T<2.25?(1-seg(T,1.55,2.25))*10:0;
+  ix.save();ix.translate((Math.random()-.5)*sh,(Math.random()-.5)*sh);
+  pFrame(ix,f,x,y,dw,dh);
+  if(m>.55&&f<PF-1){ix.globalAlpha=(m-.55)/.45;pFrame(ix,f+1,x,y,dw,dh);ix.globalAlpha=1}
+  ix.restore();
+  // fondu des bords de l'image principale dans le fond
+  if(dw<w){const e=Math.min(120,dw*.18);let g=ix.createLinearGradient(x,0,x+e,0);g.addColorStop(0,'rgba(2,3,8,.55)');g.addColorStop(1,'rgba(2,3,8,0)');ix.fillStyle=g;ix.fillRect(x-2,0,e+2,h);
+    g=ix.createLinearGradient(x+dw,0,x+dw-e,0);g.addColorStop(0,'rgba(2,3,8,.55)');g.addColorStop(1,'rgba(2,3,8,0)');ix.fillStyle=g;ix.fillRect(x+dw-e,0,e+2,h)}
+  // pluie au premier plan (s'arrête quand le portail s'ouvre)
+  const ra=1-seg(T,2.3,3.0);
+  if(ra>0){ix.strokeStyle=`rgba(170,220,255,${.22*ra})`;ix.lineWidth=1;ix.beginPath();
+    for(const r of rain){r.y+=r.v*dt;r.x-=r.v*dt*.1;if(r.y>h){r.y=-40;r.x=Math.random()*IW*1.2}ix.moveTo(r.x,r.y);ix.lineTo(r.x-r.l*.1,r.y+r.l)}ix.stroke()}
+  // éclair : flash bleuté
+  const fl=Math.max(0,1-Math.abs(T-1.75)/.15)*.32+Math.max(0,1-Math.abs(T-2.3)/.22)*.22;
+  if(fl>0){ix.fillStyle=`rgba(190,240,255,${fl})`;ix.fillRect(0,0,w,h)}
+  // lumière du portail puis blanc total
+  const wh=seg(T,PEND+1.35,PEND+1.75);
+  if(dive>0){const g=ix.createRadialGradient(w/2,h*.45,0,w/2,h*.45,Math.max(w,h)*(.2+dive));g.addColorStop(0,`rgba(255,255,255,${.6*dive})`);g.addColorStop(1,'rgba(255,255,255,0)');ix.fillStyle=g;ix.fillRect(0,0,w,h)}
+  if(wh>0){ix.fillStyle=`rgba(255,255,255,${wh})`;ix.fillRect(0,0,w,h)}
+  // coins HUD
+  ix.strokeStyle='rgba(94,242,255,.6)';ix.lineWidth=2;const mm=18,k=28;
+  [[mm,mm,1,1],[w-mm,mm,-1,1],[mm,h-mm,1,-1],[w-mm,h-mm,-1,-1]].forEach(([a,b,sx2,sy2])=>{ix.beginPath();ix.moveTo(a,b+sy2*k);ix.lineTo(a,b);ix.lineTo(a+sx2*k,b);ix.stroke()});
+  if(T<.4){ix.fillStyle=`rgba(0,0,0,${1-T/.4})`;ix.fillRect(0,0,w,h)}
+}
+function showPortalText(){
+  typed=true;const el=bub.querySelector('span');
+  const mw=Math.min(560,IW-48);bub.style.maxWidth=mw+'px';el.textContent=WELCOME;
+  const L=Math.max(24,IW/2-Math.min(mw,bub.offsetWidth)/2);bub.style.left=L+'px';
+  el.textContent='';const bh=bub.offsetHeight||90;bub.style.top=Math.max(bh+60,IH*.22)+'px';
+  bub.classList.add('on');let i=0;const iv=setInterval(()=>{el.textContent=WELCOME.slice(0,++i);if(i>=WELCOME.length)clearInterval(iv)},34);
+}
+function portalLoop(now){
+  const T=(now-ist)/1000;
+  drawPortal(T);
+  if(T>2.25&&!typed)showPortalText();
+  if(T>PEND+1.25)bub.classList.remove('on');
+  if(T>PEND+1.75){endIntro();flash.animate([{opacity:1},{opacity:0}],{duration:900,easing:'ease-out'});return}
+  iraf=requestAnimationFrame(portalLoop);
+}
+
 /* ================== INTRO MANGA ================== */
 /* Toi en cyber-samouraï : silhouette néon qui entre en marchant, gros plan, coup de sabre, la page se coupe, révélation et salut. */
 const intro=$('intro'),ic=$('ic'),ix=ic.getContext('2d'),sam=$('sam'),sx=sam.getContext('2d'),flash=$('flash'),skipBtn=$('skip'),bub=$('bubble');
@@ -783,7 +844,7 @@ function drawBG(T){
 }
 
 /* ---------- toi, en cyber-samouraï animé (16 images détourées) ---------- */
-const IMG_SPR=new Image();IMG_SPR.src='assets/walk-anim.webp';    // animation : 16 images
+const IMG_SPR=new Image();if(typeof INTRO==='undefined'||INTRO!=='portail')IMG_SPR.src='assets/walk-anim.webp';    // animation : 16 images
 const FW0=488,FH0=744,FACE=[548,95,230,165];
 const KEYS=(()=>{const k=[];let f=0;for(let t=.4;t<2.55;t+=.3){k.push([t,f]);f=f?0:1}
   return k.concat([[2.55,2],[2.85,3],[3.3,4],[3.42,5],[3.52,6],[3.6,7],[3.8,8],[3.95,9],[4.15,10],[4.35,11],[4.6,12],[4.85,13],[5.1,14],[5.4,15]])})();
@@ -861,6 +922,8 @@ function endIntro(){
 function playIntro(){
   if(reduce)return endIntro();
   introOn=true;split=false;typed=false;lastT=0;steps=[];sparks=[];lastStep=-1;isize();
+  if(INTRO==='portail'){intro.style.display='block';intro.style.visibility='visible';sam.style.display='none';skipBtn.style.display='block';
+    ist=performance.now();iraf=requestAnimationFrame(portalLoop);return}
   intro.style.display='block';intro.style.visibility='visible';sam.style.display='block';skipBtn.style.display='block';
   ist=performance.now();iraf=requestAnimationFrame(introLoop);
 }
@@ -869,7 +932,7 @@ skipBtn.onclick=e=>{e.stopPropagation();endIntro()};
 addEventListener('keydown',e=>{if(introOn&&e.key==='Escape')endIntro()});
 addEventListener('resize',()=>{if(introOn)isize()});
 const imgReady=i=>i.complete?Promise.resolve():new Promise(r=>{i.onload=i.onerror=r});
-Promise.race([Promise.all([document.fonts.ready,imgReady(IMG_SPR)]),new Promise(r=>setTimeout(r,4000))]).then(()=>playIntro());
+Promise.race([Promise.all([document.fonts.ready,INTRO==='portail'?imgReady(PORT):imgReady(IMG_SPR)]),new Promise(r=>setTimeout(r,4000))]).then(()=>playIntro());
 </script>
 
 

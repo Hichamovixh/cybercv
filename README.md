@@ -4,7 +4,8 @@ Portfolio interactif : réseaux · cybersécurité · systèmes · développemen
 
 ## Ce qu'il contient
 
-- **Intro cinématique** : un cyber-samouraï entre dans une salle des machines, tranche un supercalculateur géant, l'écran se coupe en deux et révèle le site.
+- **Intro cinématique** : un cyber-samouraï avance sous la pluie d'une rue cyberpunk, un coup d'éclair ouvre un portail vers un autre monde, il le traverse et la caméra plonge à sa suite jusqu'au site.
+  Une seconde intro (salle des machines + supercalculateur tranché) est disponible : dans `index.html`, remplace `const INTRO='portail'` par `const INTRO='samourai'`.
 - **Site principal** : un réseau en orbite autour d'un noyau neuronal 3D. Chaque nœud est une section (À propos, Compétences, Projets, Parcours, Contact).
 - **Version CV** (bouton `▤ version CV`, touche `C` ou lien `#cv`) : un CV clair, généré à partir des mêmes données, qui tient sur une page A4 à l'impression (« Enregistrer en PDF »).
 - **Console « Assistant IA »** (touche `²`) : on peut lui écrire en langage naturel ou taper `help`, `cv`, `neofetch`… et `sudo hire hicham`.
@@ -27,7 +28,8 @@ Aucune librairie ni build : HTML, CSS et JavaScript (Canvas) dans un seul fichie
 cybercv/
 ├── index.html            # tout le site (styles + scripts inclus)
 └── assets/
-    ├── walk-anim.webp    # animation de l'intro (16 images détourées)
+    ├── portail.webp      # intro « portail » (30 images)
+    ├── walk-anim.webp    # intro « samouraï » (16 images détourées)
     ├── holo.webp         # photo en hologramme (À propos + CV)
     └── og.jpg            # aperçu affiché quand on partage le lien (LinkedIn…)
 ```
