@@ -341,7 +341,7 @@
   <p>Réseaux <span>·</span> cybersécurité <span>·</span> systèmes <span>·</span> code</p>
 </div>
 
-<div class="hint" id="hint">Sélectionne un nœud (<kbd>1</kbd>–<kbd>5</kbd>), ou parle à mon <button id="openTerm">IA</button> (<kbd>²</kbd>)</div>
+<div class="hint" id="hint">Sélectionne un nœud (<kbd>1</kbd>–<kbd>6</kbd>), ou parle à mon <button id="openTerm">IA</button> (<kbd>²</kbd>)</div>
 
 <aside class="panel" id="panel" aria-hidden="true">
   <div class="ph">
@@ -370,6 +370,7 @@ const PROFILE={
   headline:'Réseaux · Cybersécurité · Systèmes · Développement',
   status:'Administrateur réseaux & systèmes · INSEI', seeking:'CDI',
   job:{title:'Administrateur réseaux & systèmes', org:'INSEI', contract:'CDI', since:[2024,8,2]},   // poste actuel (mois : 0 = janvier)
+  booking:'',                             // lien de prise de rendez-vous (page de réservation Google Agenda) — laisse vide pour masquer le bouton
   github:'https://github.com/Hichamovixh', linkedin:'https://www.linkedin.com/in/hicham-djama-5186291b6/',
   summary:[
     `Je suis un profil <strong>hybride</strong> : réseaux, systèmes, cybersécurité et développement. Ce qui me plaît, c'est de comprendre une infrastructure de bout en bout, du câble jusqu'au cloud, du paquet réseau jusqu'à l'application qui tourne dessus, puis de la rendre <strong>plus fiable, plus sûre et plus automatisée</strong>.`,
@@ -411,6 +412,20 @@ const PROJECTS=[
    s:`Site interactif (Canvas, animation, assistant en console) + CV imprimable générés depuis les mêmes données.`,
    d:`Intro animée en cyber-samouraï, noyau neuronal 3D, assistant IA en console et <strong>version CV imprimable</strong> générée à partir des mêmes données, sans aucune librairie.`,
    tags:['JavaScript','Canvas','HTML / CSS']}];
+// Services proposés en indépendant. price : laisse '' pour afficher « tarif sur demande »
+const SERVICES=[
+  {t:'Payé à temps, sans y penser',for:'Auto-entrepreneurs',price:'',delay:'2 à 3 jours',
+   d:`Relances <strong>automatiques</strong> des factures impayées, devis et factures <strong>personnalisés à votre image</strong>, et passage à la <strong>facture électronique</strong> sur une plateforme agréée, avant l'obligation d'émission de septembre 2027.`,
+   tags:['Relances','Devis & factures','Facture électronique']},
+  {t:'Site vitrine et rendez-vous en ligne',for:'Commerces, artisans, indépendants',price:'',delay:'1 à 2 semaines',
+   d:`Un site clair et rapide qui donne envie de vous contacter, avec <strong>réservation en ligne</strong> et rappels automatiques pour réduire les rendez-vous oubliés.`,
+   tags:['Site web','Prise de rendez-vous','UX / UI']},
+  {t:'Automatisations sur mesure',for:'TPE et PME',price:'',delay:'selon le besoin',
+   d:`Les tâches répétitives qui tournent toutes seules : demandes centralisées, documents générés en un clic, justificatifs classés pour le comptable, alertes et rapports automatiques.`,
+   tags:['n8n','Python','PowerShell','API']},
+  {t:'Informatique de petite structure',for:'TPE, associations, cabinets',price:'',delay:'selon le parc',
+   d:`Mise en place ou remise à plat de <strong>Microsoft 365</strong>, du réseau et de la <strong>protection des postes</strong>, avec une prise en main simple pour l'équipe.`,
+   tags:['Microsoft 365','Réseau','Sécurité des postes']}];
 // type : 'xp' (expérience) ou 'edu' (formation)
 // ex:true = ligne d'exemple, à remplacer (un petit badge l'indique) ; missions : liste affichée sous l'étape
 const PARCOURS=[
@@ -440,6 +455,7 @@ const SECTIONS = {
         <h2 class="dec">Bonjour, moi c'est ${PROFILE.first}.</h2>
         <div class="status"><i></i><span>${PROFILE.job.title} · <strong>${PROFILE.job.org}</strong> · ${PROFILE.job.contract}</span></div>
         <div class="status" style="margin-top:8px"><i style="background:var(--cyan);box-shadow:0 0 10px var(--cyan)"></i><span>ouvert aux <strong>${PROFILE.seeking}</strong></span></div>
+        <div class="status" style="margin-top:8px"><i style="background:var(--cyan);box-shadow:0 0 10px var(--cyan)"></i><span>disponible pour des <a href="#services" onclick="openSection('services');return false"><strong>missions en indépendant</strong></a></span></div>
       </div>
     </div>
     ${PROFILE.summary.map(p=>`<p>${p}</p>`).join('')}
@@ -463,11 +479,20 @@ const SECTIONS = {
     <p class="sub">traceroute avenir — 30 sauts max</p>
     ${exBadge('parcours')}
     <ol class="trace">${PARCOURS.map((h,i)=>hop(i+1,h.t+(h.ex?' '+exTag:''),h.w,h.d?pd(h):'',h.missions)).join('')}${hop(PARCOURS.length+1,'Prochaine destination ?','Peut-être chez vous','* * *')}</ol>`},
+  services:{label:'Services', ip:'10.0.0.7', port:'8443', html:`
+    <h2 class="dec">Ce que je peux réaliser pour vous</h2>
+    <p class="sub">// en indépendant · prix fixe annoncé avant de commencer</p>
+    <p>En plus de mon poste, je mets mes compétences au service des <strong>indépendants et des petites entreprises</strong> : moins de temps perdu, moins d'impayés, des outils qui travaillent pour vous.</p>
+    ${SERVICES.map(v=>`<div class="proj"><div class="top"><h4>${v.t}</h4><span class="yr">${v.price||'tarif sur demande'} · ${v.delay}</span></div><p class="sub" style="margin:4px 0 8px">${v.for}</p><p>${v.d}</p><div class="tags">${v.tags.map(x=>`<span>${x}</span>`).join('')}</div></div>`).join('')}
+    <h3>// comment ça se passe</h3>
+    <ol class="trace">${hop(1,'Un échange de 15 minutes','gratuit, par téléphone ou en visio','')}${hop(2,'Une proposition claire','ce que je fais, le délai, un prix fixe','')}${hop(3,'Mise en place et prise en main','vous restez maître de vos outils','')}</ol>
+    <div class="contact">${PROFILE.booking?`<a href="${PROFILE.booking}" target="_blank" rel="noopener"><div><small>rendez-vous</small>réserver un échange de 15 min</div><span>↗</span></a>`:''}<a href="mailto:${EMAIL}?subject=Demande%20de%20prestation"><div><small>email</small>décrire mon besoin à ${EMAIL}</div><span>✉</span></a></div>`},
   contact:{label:'Contact', ip:'10.0.0.6', port:'25', html:`
     <h2 class="dec">Établir une connexion</h2>
     <p>SYN envoyé. Il ne manque que ton ACK. Je réponds en général sous 24 h.</p>
     <div class="contact">
       <div class="row"><div><small>email</small>${EMAIL}</div><button class="btn" onclick="copyMail(this)">copier</button></div>
+      ${PROFILE.booking?`<a href="${PROFILE.booking}" target="_blank" rel="noopener"><div><small>rendez-vous</small>réserver un échange de 15 min</div><span>↗</span></a>`:''}
       <a href="tel:${PHONE_INTL}"><div><small>téléphone</small>${PHONE}</div><span>☎</span></a>
       <div class="row"><div><small>localisation</small>${CITY}, France · mobile en Île-de-France</div><span>⌖</span></div>
       <a href="${PROFILE.github}" target="_blank" rel="noopener"><div><small>github</small>${PROFILE.github.replace('https://','')}</div><span>↗</span></a>
@@ -614,6 +639,7 @@ function closeTerm(){term.classList.remove('open');term.setAttribute('aria-hidde
 $('openTerm').onclick=openTerm;$('tclose').onclick=closeTerm;
 
 const INTENTS=[
+  {k:'services',re:/service|prestation|tarif|prix|combien|offre|freelance|ind[ée]pendant|mission|devis|factur|relance|site web|automatis|rendez|rdv/,a:`En indépendant, ${PROFILE.first} propose : relances automatiques et facture électronique pour auto-entrepreneurs, sites vitrines avec prise de rendez-vous, automatisations sur mesure et informatique de petite structure (Microsoft 365, réseau, sécurité). J'ouvre le détail.`},
   {k:'projets',re:/proj|réalis|realis|portfolio|construit|github|code/,a:`Voici ses projets : une appli façon Duolingo pour apprendre la LSF, un générateur de devis et factures, un tableau de bord des marchés automatisé (GitHub Actions + n8n), une veille d'offres pilotée par IA, et ce portfolio.`},
   {k:'competences',re:/comp[ée]t|skill|langage|techno|stack|sait faire|outil|niveau/,a:`Analyse terminée : configuration de parc réseau et switchs, Office 365, Proxmox, PowerShell, PHP, Python, SQL. Certifié Proxmox et Trend Micro Apex One.`},
   {k:'#cv',re:/\bcv\b|pdf|imprim|r[ée]sum[ée]/,a:`Je génère sa version CV, lisible et imprimable.`},
@@ -621,7 +647,7 @@ const INTENTS=[
   {k:'contact',re:/contact|mail|joindre|recrut|embauch|stage|alternance|dispo|linkedin/,a:`Excellente idée. Voici comment ouvrir une connexion avec lui.`},
   {k:'apropos',re:/qui|pr[ée]sent|toi|lui|about|propos|bonjour|salut|hello/,a:`${NAME}, ${AGE} ans, basé à ${CITY} : administrateur réseaux et systèmes à l'INSEI depuis septembre 2024, profil hybride réseaux, cybersécurité, systèmes et développement, ouvert aux opportunités en CDI. Voici sa présentation.`}
 ];
-const alias={about:'apropos',skills:'competences',projects:'projets'};
+const alias={about:'apropos',skills:'competences',projects:'projets',offres:'services',prestations:'services'};
 const resolve=a=>{a=(a||'').toLowerCase();return SECTIONS[a]?a:alias[a]};
 const CMDS={
   help:()=>out(`<span class="m">Tu peux m'écrire en langage naturel, ou utiliser :</span>
