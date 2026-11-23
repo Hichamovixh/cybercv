@@ -1,4 +1,7 @@
-# Hicham DJAMA — Portfolio
+# Hicham DJAMA — Site pro et portfolio
+
+- **`index.html`** : le site professionnel (services, méthode, réalisations, parcours, FAQ, contact). Pour activer la prise de rendez-vous, colle ton lien Google Agenda dans `const BOOKING` en bas du fichier.
+- **`interactif.html`** : le portfolio interactif décrit ci-dessous (intro, noyau 3D, version CV, assistant).
 
 Portfolio interactif : réseaux · cybersécurité · systèmes · développement, au style futuriste / cyberpunk.
 
@@ -16,8 +19,8 @@ Aucune librairie ni build : HTML, CSS et JavaScript (Canvas) dans un seul fichie
 
 L'intro se joue une fois par visite. Un lien direct ouvre la page voulue sans passer par l'intro :
 
-- `https://hichamovixh.github.io/cybercv/#cv` → la version CV
-- `#apropos`, `#competences`, `#projets`, `#parcours`, `#services`, `#contact` → la section correspondante
+- `https://hichamovixh.github.io/cybercv/interactif.html#cv` → la version CV
+- `interactif.html#apropos`, `#competences`, `#projets`, `#parcours`, `#services`, `#contact` → la section correspondante
 
 ## Raccourcis
 
@@ -33,17 +36,19 @@ L'intro se joue une fois par visite. Un lien direct ouvre la page voulue sans pa
 
 ```
 cybercv/
-├── index.html            # tout le site (styles + scripts inclus)
+├── index.html            # site professionnel
+├── interactif.html       # portfolio interactif (styles + scripts inclus)
 └── assets/
     ├── portail.webp      # intro « portail » (30 images)
     ├── walk-anim.webp    # intro « samouraï » (16 images détourées)
     ├── holo.webp         # photo en hologramme (À propos + CV)
+    ├── portrait.webp     # photo du site professionnel
     └── og.jpg            # aperçu affiché quand on partage le lien (LinkedIn…)
 ```
 
 ## Modifier le contenu
 
-Tout le texte du site **et** de la version CV est en haut du script, dans `index.html`, sous `CONTENU — modifie ici` :
+Tout le texte du portfolio interactif **et** de la version CV est en haut du script, dans `interactif.html`, sous `CONTENU — modifie ici` :
 
 - `PROFILE` : nom, ville, email, téléphone, présentation, ce que tu recherches ;
 - `MODULES` : tes 4 domaines ;
@@ -55,7 +60,7 @@ Tout le texte du site **et** de la version CV est en haut du script, dans `index
 
 ## Lancer en local
 
-Ouvre `index.html` dans un navigateur (ou l'extension **Live Server** de VS Code).
+Ouvre `index.html` (ou `interactif.html`) dans un navigateur (ou l'extension **Live Server** de VS Code).
 
 ## Mettre en ligne avec GitHub Pages
 
