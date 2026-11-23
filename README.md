@@ -42,7 +42,8 @@ cybercv/
     ├── portail.webp      # intro « portail » (30 images)
     ├── walk-anim.webp    # intro « samouraï » (16 images détourées)
     ├── holo.webp         # photo en hologramme (À propos + CV)
-    └── og.jpg            # aperçu affiché quand on partage le lien (LinkedIn…)
+    ├── og.jpg            # aperçu affiché quand on partage le lien (LinkedIn…)
+    └── fonts/            # polices de index.html hébergées sur le site (Space Grotesk, JetBrains Mono, licence OFL)
 ```
 
 ## Modifier le contenu
