@@ -42,7 +42,6 @@ cybercv/
     ├── portail.webp      # intro « portail » (30 images)
     ├── walk-anim.webp    # intro « samouraï » (16 images détourées)
     ├── holo.webp         # photo en hologramme (À propos + CV)
-    ├── portrait.webp     # photo du site professionnel
     └── og.jpg            # aperçu affiché quand on partage le lien (LinkedIn…)
 ```
 
