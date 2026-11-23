@@ -16,6 +16,7 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;mar
 p{margin:0}
 a{color:var(--acc)}
 .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 :focus-visible{outline:3px solid var(--acc);outline-offset:3px;border-radius:6px}
 .demo{background:#2A211C;color:#F4E9DF;font-size:13.5px;text-align:center;padding:9px 16px}
 .demo a{color:#FFD9B8;font-weight:600}
@@ -51,8 +52,8 @@ section{padding:48px 0}
 .opt small{color:var(--ink2);display:block;font-size:13px}
 .opt b{white-space:nowrap}
 .opt[aria-pressed="true"]{border-color:var(--acc);background:var(--soft)}
-.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
-.day{flex:none;min-width:66px;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:10px 8px;font:inherit;color:var(--ink);cursor:pointer;text-align:center;line-height:1.25}
+.days{position:relative;display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.day{position:relative;flex:none;min-width:66px;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:10px 8px;font:inherit;color:var(--ink);cursor:pointer;text-align:center;line-height:1.25}
 .day small{display:block;font-size:12px;color:var(--ink2);text-transform:capitalize}
 .day[aria-pressed="true"]{border-color:var(--acc);background:var(--soft)}
 .day:disabled{opacity:.4;cursor:not-allowed}
@@ -90,7 +91,7 @@ footer{padding:24px 0 40px;font-size:13.5px;color:var(--ink2);text-align:center}
 </style>
 </head>
 <body>
-<div class="demo" role="note">Démonstration : « Maison Lumière » est un salon fictif. Aucune réservation n'est enregistrée. · <a href="../">Site réalisé par Hicham Djama</a></div>
+<aside class="demo" aria-label="Avertissement">Démonstration : « Maison Lumière » est un salon fictif. Aucune réservation n'est enregistrée. · <a href="../">Site réalisé par Hicham Djama</a></aside>
 
 <header>
 <div class="wrap nav">
@@ -176,7 +177,7 @@ $('prices').innerHTML=SVC.map(v=>`<li><span>${v[0]}</span><span>${v[2]} €</spa
 const days=[];const d0=new Date();d0.setHours(0,0,0,0);
 for(let i=0;days.length<10;i++){const d=new Date(d0);d.setDate(d0.getDate()+i);days.push(d)}
 const fmtD=d=>d.toLocaleDateString('fr-FR',{weekday:'short'}).replace('.','');
-$('days').innerHTML=days.map((d,i)=>{const closed=d.getDay()===0||d.getDay()===1;return `<button type="button" class="day" aria-pressed="false" data-i="${i}" ${closed?'disabled aria-label="'+d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric'})+', fermé"':''}><small>${fmtD(d)}</small><b>${d.getDate()}</b></button>`}).join('');
+$('days').innerHTML=days.map((d,i)=>{const closed=d.getDay()===0||d.getDay()===1;return `<button type="button" class="day" aria-pressed="false" data-i="${i}" ${closed?'disabled':''}><small><span aria-hidden="true">${fmtD(d)}</span><span class="sr">${d.toLocaleDateString('fr-FR',{weekday:'long'})}</span></small><b>${d.getDate()}</b>${closed?'<span class="sr">, fermé</span>':''}</button>`}).join('');
 function seed(n){let x=Math.sin(n)*10000;return x-Math.floor(x)}
 function renderSlots(){
  if(s.day===null){$('slots').innerHTML='';return}
