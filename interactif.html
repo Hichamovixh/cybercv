@@ -412,7 +412,7 @@ const PROJECTS=[
    s:`Site interactif (Canvas, animation, assistant en console) + CV imprimable générés depuis les mêmes données.`,
    d:`Intro animée en cyber-samouraï, noyau neuronal 3D, assistant IA en console et <strong>version CV imprimable</strong> générée à partir des mêmes données, sans aucune librairie.`,
    tags:['JavaScript','Canvas','HTML / CSS']}];
-// Services proposés en indépendant. price : laisse '' pour afficher « tarif sur demande »
+// Services proposés en indépendant (les mêmes que dans index.html). price : laisse '' pour afficher « devis gratuit »
 const SERVICES=[
   {t:'Payé à temps, sans y penser',for:'Auto-entrepreneurs',price:'',delay:'2 à 3 jours',
    d:`Relances <strong>automatiques</strong> des factures impayées, devis et factures <strong>personnalisés à votre image</strong>, et passage à la <strong>facture électronique</strong> sur une plateforme agréée, avant l'obligation d'émission de septembre 2027.`,
@@ -421,11 +421,14 @@ const SERVICES=[
    d:`Un site clair et rapide qui donne envie de vous contacter, avec <strong>réservation en ligne</strong> et rappels automatiques pour réduire les rendez-vous oubliés.`,
    tags:['Site web','Prise de rendez-vous','UX / UI']},
   {t:'Automatisations sur mesure',for:'TPE et PME',price:'',delay:'selon le besoin',
-   d:`Les tâches répétitives qui tournent toutes seules : demandes centralisées, documents générés en un clic, justificatifs classés pour le comptable, alertes et rapports automatiques.`,
+   d:`Les tâches répétitives qui tournent toutes seules, avec n8n, sur vos propres comptes : demandes de devis centralisées et relancées, documents générés en un clic, justificatifs classés pour le comptable, alertes et rapports automatiques.`,
    tags:['n8n','Python','PowerShell','API']},
-  {t:'Informatique de petite structure',for:'TPE, associations, cabinets',price:'',delay:'selon le parc',
-   d:`Mise en place ou remise à plat de <strong>Microsoft 365</strong>, du réseau et de la <strong>protection des postes</strong>, avec une prise en main simple pour l'équipe.`,
-   tags:['Microsoft 365','Réseau','Sécurité des postes']}];
+  {t:'Microsoft 365 : mise en ordre',for:'TPE et petites équipes',price:'',delay:'selon le nombre de comptes',
+   d:`Comptes, licences et boîtes partagées remis à plat, fichiers rangés dans OneDrive et SharePoint avec les bons droits, <strong>double authentification</strong> et <strong>protection des postes</strong>, réseau et Wi-Fi fiables, avec une prise en main simple pour l'équipe.`,
+   tags:['Microsoft 365','Réseau','Sécurité des postes']},
+  {t:'IA privée pour cabinets',for:'Cabinets (avocats, experts-comptables…)',price:'',delay:'en préparation',
+   d:`Un assistant qui aide à retrouver, résumer et rédiger à partir de vos propres documents, installé sur un environnement que vous maîtrisez, sans confier vos dossiers confidentiels à un outil grand public. <strong>Offre en préparation.</strong>`,
+   tags:['IA','Confidentialité','Cabinets']}];
 // type : 'xp' (expérience) ou 'edu' (formation)
 // ex:true = ligne d'exemple, à remplacer (un petit badge l'indique) ; missions : liste affichée sous l'étape
 const PARCOURS=[
@@ -483,7 +486,7 @@ const SECTIONS = {
     <h2 class="dec">Ce que je peux réaliser pour vous</h2>
     <p class="sub">// en indépendant · prix fixe annoncé avant de commencer</p>
     <p>En plus de mon poste, je mets mes compétences au service des <strong>indépendants et des petites entreprises</strong> : moins de temps perdu, moins d'impayés, des outils qui travaillent pour vous.</p>
-    ${SERVICES.map(v=>`<div class="proj"><div class="top"><h4>${v.t}</h4><span class="yr">${v.price||'tarif sur demande'} · ${v.delay}</span></div><p class="sub" style="margin:4px 0 8px">${v.for}</p><p>${v.d}</p><div class="tags">${v.tags.map(x=>`<span>${x}</span>`).join('')}</div></div>`).join('')}
+    ${SERVICES.map(v=>`<div class="proj"><div class="top"><h4>${v.t}</h4><span class="yr">${v.price||'devis gratuit'} · ${v.delay}</span></div><p class="sub" style="margin:4px 0 8px">${v.for}</p><p>${v.d}</p><div class="tags">${v.tags.map(x=>`<span>${x}</span>`).join('')}</div></div>`).join('')}
     <h3>// comment ça se passe</h3>
     <ol class="trace">${hop(1,'Un échange de 15 minutes','gratuit, par téléphone ou en visio','')}${hop(2,'Une proposition claire','ce que je fais, le délai, un prix fixe','')}${hop(3,'Mise en place et prise en main','vous restez maître de vos outils','')}</ol>
     <div class="contact">${PROFILE.booking?`<a href="${PROFILE.booking}" target="_blank" rel="noopener"><div><small>rendez-vous</small>réserver un échange de 15 min</div><span>↗</span></a>`:''}<a href="mailto:${EMAIL}?subject=Demande%20de%20prestation"><div><small>email</small>décrire mon besoin à ${EMAIL}</div><span>✉</span></a></div>`},
@@ -639,7 +642,7 @@ function closeTerm(){term.classList.remove('open');term.setAttribute('aria-hidde
 $('openTerm').onclick=openTerm;$('tclose').onclick=closeTerm;
 
 const INTENTS=[
-  {k:'services',re:/service|prestation|tarif|prix|combien|offre|freelance|ind[ée]pendant|mission|devis|factur|relance|site web|automatis|rendez|rdv/,a:`En indépendant, ${PROFILE.first} propose : relances automatiques et facture électronique pour auto-entrepreneurs, sites vitrines avec prise de rendez-vous, automatisations sur mesure et informatique de petite structure (Microsoft 365, réseau, sécurité). J'ouvre le détail.`},
+  {k:'services',re:/service|prestation|tarif|prix|combien|offre|freelance|ind[ée]pendant|mission|devis|factur|relance|site web|automatis|rendez|rdv/,a:`En indépendant, ${PROFILE.first} propose : relances automatiques et facture électronique pour auto-entrepreneurs, sites vitrines avec prise de rendez-vous, automatisations sur mesure avec n8n et mise en ordre de Microsoft 365 (comptes, fichiers, sécurité). Une offre d'IA privée pour cabinets est en préparation. J'ouvre le détail.`},
   {k:'projets',re:/proj|réalis|realis|portfolio|construit|github|code/,a:`Voici ses projets : une appli façon Duolingo pour apprendre la LSF, un générateur de devis et factures, un tableau de bord des marchés automatisé (GitHub Actions + n8n), une veille d'offres pilotée par IA, et ce portfolio.`},
   {k:'competences',re:/comp[ée]t|skill|langage|techno|stack|sait faire|outil|niveau/,a:`Analyse terminée : configuration de parc réseau et switchs, Office 365, Proxmox, PowerShell, PHP, Python, SQL. Certifié Proxmox et Trend Micro Apex One.`},
   {k:'#cv',re:/\bcv\b|pdf|imprim|r[ée]sum[ée]/,a:`Je génère sa version CV, lisible et imprimable.`},
