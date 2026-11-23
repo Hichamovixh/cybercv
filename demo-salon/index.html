@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Lumière — Salon de coiffure (démo)</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF7F2;--paper:#fff;--ink:#2A211C;--ink2:#5C5049;--line:#EADFD4;--acc:#9C5B3C;--acc-d:#7E4529;--soft:#F4E9DF;--ok:#2F7A4F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;margin:0}
+p{margin:0}
+a{color:var(--acc)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px;border-radius:6px}
+.demo{background:#2A211C;color:#F4E9DF;font-size:13.5px;text-align:center;padding:9px 16px}
+.demo a{color:#FFD9B8;font-weight:600}
+header{border-bottom:1px solid var(--line);background:var(--bg)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;flex-wrap:wrap}
+.logo{font:600 22px Fraunces,serif;color:var(--ink);text-decoration:none}
+.logo small{display:block;font:500 11px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 22px;border-radius:999px;font:600 15.5px Inter,sans-serif;text-decoration:none;border:1px solid transparent;cursor:pointer}
+.btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc-d)}
+.btn-s{background:transparent;border-color:#CDBFB2;color:var(--ink)}
+.hero{padding:56px 0 40px}
+.hero .wrap{display:flex;flex-wrap:wrap;gap:36px;align-items:center}
+.hero .t{flex:999 1 420px;display:flex;flex-direction:column;gap:18px}
+.hero h1{font-size:clamp(34px,5vw,52px)}
+.hero p{font-size:18px;color:var(--ink2)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14.5px;color:var(--ink2)}
+.facts b{color:var(--ink)}
+.pic{flex:1 1 280px;min-height:280px;border-radius:24px;background:
+  radial-gradient(120px 120px at 30% 35%,#E7C9AE 0,transparent 70%),
+  radial-gradient(160px 140px at 70% 65%,#D6A985 0,transparent 70%),
+  linear-gradient(135deg,#F1DFCF,#E3C3A6);display:flex;align-items:flex-end;padding:18px}
+.pic span{background:rgba(255,255,255,.85);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--ink2)}
+section{padding:48px 0}
+.h2{display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
+.h2 h2{font-size:32px}
+.h2 p{color:var(--ink2)}
+/* booking */
+.book{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:22px;box-shadow:0 20px 40px -30px rgba(42,33,28,.35)}
+.step h3{font:600 15px Inter,sans-serif;margin-bottom:10px;display:flex;gap:10px;align-items:center}
+.step h3 i{font-style:normal;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:12.5px;display:inline-flex;align-items:center;justify-content:center}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:10px}
+.opt{text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center;min-height:52px}
+.opt small{color:var(--ink2);display:block;font-size:13px}
+.opt b{white-space:nowrap}
+.opt[aria-pressed="true"]{border-color:var(--acc);background:var(--soft)}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.day{flex:none;min-width:66px;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:10px 8px;font:inherit;color:var(--ink);cursor:pointer;text-align:center;line-height:1.25}
+.day small{display:block;font-size:12px;color:var(--ink2);text-transform:capitalize}
+.day[aria-pressed="true"]{border-color:var(--acc);background:var(--soft)}
+.day:disabled{opacity:.4;cursor:not-allowed}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:8px;margin-top:10px}
+.slot{background:var(--bg);border:1.5px solid var(--line);border-radius:10px;min-height:44px;font:500 15px Inter,sans-serif;color:var(--ink);cursor:pointer}
+.slot[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}
+.slot:disabled{text-decoration:line-through;opacity:.4;cursor:not-allowed}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500}
+input{font:inherit;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:48px}
+.sum{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:18px}
+.sum p{color:var(--ink2);font-size:15px}
+.sum p b{color:var(--ink)}
+.ok{display:none;flex-direction:column;gap:12px;text-align:center;align-items:center;padding:24px 8px}
+.ok.show{display:flex}
+.ok .tick{width:56px;height:56px;border-radius:50%;background:#E3F2E8;display:flex;align-items:center;justify-content:center}
+.ok h3{font-size:26px}
+.ok p{color:var(--ink2);max-width:460px}
+.sms{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px 16px;max-width:360px;text-align:left;font-size:14.5px}
+.sms small{display:block;color:var(--ink2);font-size:12px;margin-bottom:4px}
+.err{color:#A3341F;font-size:14px;min-height:20px}
+/* infos */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.card h3{font-size:20px}
+.card p,.card li{color:var(--ink2);font-size:15px}
+.card ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.card li{display:flex;justify-content:space-between;gap:10px}
+.rev{font-size:15px;color:var(--ink2)}
+.made{background:#2A211C;color:#F4E9DF;border-radius:20px;padding:28px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+.made h3{font-size:24px;color:#fff;margin-bottom:6px}
+.made p{color:#D9CBBE}
+.made .btn-p{background:#FFD9B8;color:#2A211C}
+footer{padding:24px 0 40px;font-size:13.5px;color:var(--ink2);text-align:center}
+</style>
+</head>
+<body>
+<div class="demo" role="note">Démonstration : « Maison Lumière » est un salon fictif. Aucune réservation n'est enregistrée. · <a href="../">Site réalisé par Hicham Djama</a></div>
+
+<header>
+<div class="wrap nav">
+<a class="logo" href="#">Maison Lumière<small>Coiffure · Paris 11e</small></a>
+<a class="btn btn-p" href="#reserver">Réserver</a>
+</div>
+</header>
+
+<main>
+<section class="hero">
+<div class="wrap">
+<div class="t">
+<h1>Votre coupe, réservée en 30 secondes.</h1>
+<p>Choisissez votre prestation et votre créneau, même à minuit. Vous recevez un SMS de rappel la veille.</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px"><a class="btn btn-p" href="#reserver">Prendre rendez-vous</a><a class="btn btn-s" href="#infos">Tarifs et horaires</a></div>
+<div class="facts"><span><b>4,8/5</b> · avis Google (exemple)</span><span><b>Mar–Sam</b> · 10 h–19 h</span><span><b>Métro</b> Voltaire</span></div>
+</div>
+<div class="pic" aria-hidden="true"><span>Photo du salon</span></div>
+</div>
+</section>
+
+<section id="reserver" style="padding-top:8px">
+<div class="wrap">
+<div class="h2"><h2>Prendre rendez-vous</h2><p>Paiement sur place. Annulation gratuite jusqu'à la veille.</p></div>
+<div class="book" id="book">
+<div id="flow">
+<div class="step"><h3><i>1</i>Prestation</h3>
+<div class="opts" id="svc"></div></div>
+<div class="step" style="margin-top:22px"><h3><i>2</i>Jour et heure</h3>
+<div class="days" id="days" role="group" aria-label="Jour"></div>
+<div class="slots" id="slots" role="group" aria-label="Heure"></div></div>
+<div class="step" style="margin-top:22px"><h3><i>3</i>Vos coordonnées</h3>
+<div class="form">
+<label>Prénom<input id="nm" autocomplete="given-name" placeholder="Camille"></label>
+<label>Téléphone mobile<input id="tel" type="tel" autocomplete="tel" placeholder="06 12 34 56 78"></label>
+</div></div>
+<div class="sum" style="margin-top:22px">
+<p id="recap">Choisissez une prestation et un créneau.</p>
+<button class="btn btn-p" id="go" type="button">Confirmer le rendez-vous</button>
+</div>
+<p class="err" id="err" role="alert"></p>
+</div>
+<div class="ok" id="ok" aria-live="polite">
+<div class="tick"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="#2F7A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<h3>C'est réservé !</h3>
+<p id="okTxt"></p>
+<div class="sms"><small>SMS reçu la veille (exemple)</small><span id="smsTxt"></span></div>
+<p style="font-size:14px">Dans le vrai site, le rendez-vous arrive directement dans l'agenda du salon, sans appel téléphonique.</p>
+<button class="btn btn-s" type="button" id="again">Faire une autre réservation</button>
+</div>
+</div>
+</div>
+</section>
+
+<section id="infos">
+<div class="wrap">
+<div class="h2"><h2>Infos pratiques</h2></div>
+<div class="grid">
+<div class="card"><h3>Tarifs</h3><ul id="prices"></ul></div>
+<div class="card"><h3>Horaires</h3><ul><li><span>Lundi</span><span>Fermé</span></li><li><span>Mardi – Vendredi</span><span>10 h – 19 h</span></li><li><span>Samedi</span><span>9 h – 18 h</span></li><li><span>Dimanche</span><span>Fermé</span></li></ul></div>
+<div class="card"><h3>Ils en parlent</h3><p class="rev">« Je réserve le soir depuis mon canapé, et le rappel la veille m'évite d'oublier. » — exemple d'avis</p><p class="rev">« Plus besoin d'appeler pendant que la coiffeuse a les mains occupées. » — exemple d'avis</p></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="made">
+<div><h3>Vous voulez la même chose pour votre salon ?</h3><p>Site, réservation en ligne et rappels automatiques, prêts en quelques jours. Vous gardez la main sur vos rendez-vous, sans commission par réservation.</p></div>
+<a class="btn btn-p" href="../#contact">Parler avec Hicham</a>
+</div>
+</div>
+</section>
+</main>
+<footer>Démo conçue par <a href="../">Hicham Djama</a> · aucune donnée saisie n'est envoyée ni conservée</footer>
+
+<script>
+const SVC=[['Coupe femme','45 min',42],['Coupe homme','30 min',26],['Brushing','30 min',28],['Couleur','1 h 30',65],['Balayage','2 h',95],['Coupe enfant','20 min',18]];
+const $=id=>document.getElementById(id);
+let s={svc:null,day:null,slot:null};
+$('svc').innerHTML=SVC.map((v,i)=>`<button type="button" class="opt" aria-pressed="false" data-i="${i}"><span>${v[0]}<small>${v[1]}</small></span><b>${v[2]} €</b></button>`).join('');
+$('prices').innerHTML=SVC.map(v=>`<li><span>${v[0]}</span><span>${v[2]} €</span></li>`).join('');
+const days=[];const d0=new Date();d0.setHours(0,0,0,0);
+for(let i=0;days.length<10;i++){const d=new Date(d0);d.setDate(d0.getDate()+i);days.push(d)}
+const fmtD=d=>d.toLocaleDateString('fr-FR',{weekday:'short'}).replace('.','');
+$('days').innerHTML=days.map((d,i)=>{const closed=d.getDay()===0||d.getDay()===1;return `<button type="button" class="day" aria-pressed="false" data-i="${i}" ${closed?'disabled aria-label="'+d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric'})+', fermé"':''}><small>${fmtD(d)}</small><b>${d.getDate()}</b></button>`}).join('');
+function seed(n){let x=Math.sin(n)*10000;return x-Math.floor(x)}
+function renderSlots(){
+ if(s.day===null){$('slots').innerHTML='';return}
+ const d=days[s.day],sat=d.getDay()===6,start=sat?9:10,end=sat?17.5:18.5,out=[];
+ for(let h=start;h<=end;h+=.5){const t=`${Math.floor(h)} h ${h%1?'30':'00'}`.replace(' h 00',' h');const taken=seed(d.getDate()*100+h*2)<.35;out.push(`<button type="button" class="slot" aria-pressed="${s.slot===t}" ${taken?'disabled':''} data-t="${t}">${t}</button>`)}
+ $('slots').innerHTML=out.join('');
+}
+function recap(){
+ if(s.svc===null||s.day===null||!s.slot){$('recap').textContent='Choisissez une prestation et un créneau.';return}
+ const v=SVC[s.svc],d=days[s.day];
+ $('recap').innerHTML=`<b>${v[0]}</b> · ${d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})} à <b>${s.slot}</b> · ${v[2]} €`;
+}
+document.addEventListener('click',e=>{
+ const o=e.target.closest('.opt'),dy=e.target.closest('.day'),sl=e.target.closest('.slot');
+ if(o){s.svc=+o.dataset.i;document.querySelectorAll('.opt').forEach(b=>b.setAttribute('aria-pressed',b===o))}
+ if(dy&&!dy.disabled){s.day=+dy.dataset.i;s.slot=null;document.querySelectorAll('.day').forEach(b=>b.setAttribute('aria-pressed',b===dy));renderSlots()}
+ if(sl&&!sl.disabled){s.slot=sl.dataset.t;document.querySelectorAll('.slot').forEach(b=>b.setAttribute('aria-pressed',b===sl))}
+ if(o||dy||sl){$('err').textContent='';recap()}
+});
+$('go').onclick=()=>{
+ if(s.svc===null)return $('err').textContent='Choisissez une prestation.';
+ if(s.day===null||!s.slot)return $('err').textContent='Choisissez un jour et une heure.';
+ const nm=$('nm').value.trim()||'Camille';
+ const v=SVC[s.svc],d=days[s.day],ds=d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
+ $('okTxt').textContent=`${nm}, votre ${v[0].toLowerCase()} est réservée le ${ds} à ${s.slot}. Une confirmation vient de partir par SMS.`;
+ $('smsTxt').textContent=`Maison Lumière : bonjour ${nm}, rappel de votre RDV demain à ${s.slot} (${v[0].toLowerCase()}). Un empêchement ? Répondez ANNULER.`;
+ $('flow').style.display='none';$('ok').classList.add('show');$('ok').querySelector('h3').focus?.();
+};
+$('again').onclick=()=>{s={svc:null,day:null,slot:null};$('flow').style.display='';$('ok').classList.remove('show');document.querySelectorAll('[aria-pressed]').forEach(b=>b.setAttribute('aria-pressed','false'));renderSlots();recap()};
+</script>
+</body>
+</html>
