@@ -16,10 +16,13 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Hicham DJAMA", "jobTitle": "Administrateur réseaux et systèmes", "worksFor": {"@type": "Organization", "name": "INSEI"}, "address": {"@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR"}, "url": "https://hichamovixh.github.io/cybercv/", "image": "https://hichamovixh.github.io/cybercv/assets/og.jpg", "sameAs": ["https://www.linkedin.com/in/hicham-djama-5186291b6/", "https://github.com/Hichamovixh"], "knowsAbout": ["Administration réseau", "Switchs", "VLAN", "Microsoft 365", "Office 365", "Proxmox", "Trend Micro Apex One", "PowerShell", "PHP", "Python", "SQL", "Développement web"], "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": "Certification Proxmox"}, {"@type": "EducationalOccupationalCredential", "name": "Certification Trend Micro Apex One"}]}</script>
 <link rel="canonical" href="https://hichamovixh.github.io/cybercv/interactif.html">
 <link rel="preload" as="image" href="assets/portail.webp">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@400;600;800&family=Bangers&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/unbounded.woff2" crossorigin>
 <style>
+  @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/space-grotesk.woff2) format("woff2-variations"),url(assets/fonts/space-grotesk.woff2) format("woff2")}
+  @font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:100 800;font-display:swap;src:url(assets/fonts/jetbrains-mono.woff2) format("woff2-variations"),url(assets/fonts/jetbrains-mono.woff2) format("woff2")}
+  @font-face{font-family:'Unbounded';font-style:normal;font-weight:200 900;font-display:swap;src:url(assets/fonts/unbounded.woff2) format("woff2-variations"),url(assets/fonts/unbounded.woff2) format("woff2")}
+  /* Dela Gothic One : seulement les 3 caractères dessinés dans l'intro (斬, ザ, ッ) */
+  @font-face{font-family:'Dela Gothic One';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/dela-gothic-one-sous-ensemble.woff2) format("woff2");unicode-range:U+30B6,U+30C3,U+65AC}
   :root{
     --bg:#04050a; --bg2:rgba(14,18,32,.7); --line:rgba(120,160,255,.14); --text:#e4ecff; --muted:#7381a3;
     --cyan:#5ef2ff; --violet:#8b5cff; --pink:#ff3dbb; --red:#e0102a;
@@ -321,7 +324,7 @@
 <div id="ring" aria-hidden="true"></div>
 <div class="scan"></div><div class="vign"></div>
 
-<div class="hud">
+<div class="hud" aria-hidden="true">
   <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
   <div class="info">
     <div><span class="live"></span><b>NEURAL.CORE</b> // en ligne</div>
@@ -335,6 +338,7 @@
   </div>
 </div>
 
+<main id="scene">
 <div class="core" id="core">
   <div class="tag">// portfolio · paris, france</div>
   <h1 data-t="HICHAM DJAMA">HICHAM DJAMA</h1>
@@ -342,6 +346,7 @@
 </div>
 
 <div class="hint" id="hint">Sélectionne un nœud (<kbd>1</kbd>–<kbd>6</kbd>), ou parle à mon <button id="openTerm">IA</button> (<kbd>²</kbd>)</div>
+</main>
 
 <aside class="panel" id="panel" aria-hidden="true">
   <div class="ph">
@@ -519,11 +524,10 @@ const cv=$('net'), ctx=cv.getContext('2d'), core=$('core');
 const nodes=keys.map((k,i)=>{
   const b=document.createElement('button');
   b.className='node'; b.dataset.k=k;
-  b.innerHTML=`<span class="dot"></span><span class="lbl"><span class="name">${SECTIONS[k].label}</span><span class="ip">${SECTIONS[k].ip}:${SECTIONS[k].port}</span></span>`;
-  b.setAttribute('aria-label','Ouvrir '+SECTIONS[k].label);
+  b.innerHTML=`<span class="dot"></span><span class="lbl"><span class="name">${SECTIONS[k].label}</span><span class="ip" aria-hidden="true">${SECTIONS[k].ip}:${SECTIONS[k].port}</span></span>`;
   b.onclick=()=>openSection(k);
   b.onmouseenter=()=>hovering=true; b.onmouseleave=()=>hovering=false;
-  document.body.appendChild(b);
+  $('scene').appendChild(b);
   return {k,el:b,a:i*(Math.PI*2/keys.length)+Math.PI/2,x:0,y:0};
 });
 let hovering=false;
@@ -1028,7 +1032,7 @@ const imgReady=i=>i.complete?Promise.resolve():new Promise(r=>{i.onload=i.onerro
 (()=>{const deep=location.hash.slice(1);let seen=false;try{seen=sessionStorage.getItem('introSeen')==='1'}catch(e){}
   if((deep&&(deep==='cv'||SECTIONS[deep]))||seen){$('loader').classList.add('gone');return endIntro()}   // lien direct ou déjà vue : on va droit au but
   skipBtn.style.display='block';
-  Promise.race([Promise.all([document.fonts.ready,INTRO==='portail'?imgReady(PORT):imgReady(IMG_SPR)]),new Promise(r=>setTimeout(r,6000))])
+  Promise.race([Promise.all([document.fonts.ready,document.fonts.load("40px 'Dela Gothic One'",'斬ザッ').catch(()=>{}),INTRO==='portail'?imgReady(PORT):imgReady(IMG_SPR)]),new Promise(r=>setTimeout(r,6000))])
     .then(()=>{if(!introOn&&intro.style.display==='none')return;$('loader').classList.add('gone');playIntro()});
 })();
 </script>

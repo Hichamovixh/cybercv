@@ -43,7 +43,7 @@ cybercv/
     ├── walk-anim.webp    # intro « samouraï » (16 images détourées)
     ├── holo.webp         # photo en hologramme (À propos + CV)
     ├── og.jpg            # aperçu affiché quand on partage le lien (LinkedIn…)
-    └── fonts/            # polices de index.html hébergées sur le site (Space Grotesk, JetBrains Mono, licence OFL)
+    └── fonts/            # polices hébergées sur le site, aucune requête à Google (Space Grotesk, JetBrains Mono, Unbounded, Dela Gothic One réduite à 3 caractères, Fraunces et Inter pour la démo ; licence OFL)
 ```
 
 ## Modifier le contenu
