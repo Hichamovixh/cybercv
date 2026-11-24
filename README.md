@@ -1,6 +1,9 @@
 # Hicham DJAMA — Site pro et portfolio
 
-- **`index.html`** : le site professionnel (services, méthode, réalisations, parcours, FAQ, contact). Pour activer la prise de rendez-vous, colle ton lien Google Agenda dans `const BOOKING` en bas du fichier.
+- **`index.html`** : la présentation (à propos, parcours, études, compétences, réalisations, contact).
+- **`services.html`** : l'offre pro (diagnostic gratuit, offres avec prix de départ, démos, facture électronique, méthode, FAQ, contact).
+- **`demo-salon/`** et **`demo-artisan/`** : deux démos d'entreprises fictives (réservation en ligne ; demande de devis avec photos, accusé de réception et relances).
+- **`assets/site.css`** et **`assets/site.js`** : styles et script communs. Le lien de prise de rendez-vous est dans `const BOOKING` de `assets/site.js`.
 - **`interactif.html`** : le portfolio interactif décrit ci-dessous (intro, noyau 3D, version CV, assistant).
 
 Portfolio interactif : réseaux · cybersécurité · systèmes · développement, au style futuriste / cyberpunk.

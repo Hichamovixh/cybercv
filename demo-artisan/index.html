@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ondine Plomberie — Plombier chauffagiste (démo)</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F8FA;--paper:#fff;--ink:#14232E;--ink2:#4B5D6B;--line:#DCE5EC;--acc:#0B6E8A;--acc-d:#08566C;--soft:#E3F1F5;--warn:#B4541A;--ok:#227A4B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif}
+h1,h2,h3{font-weight:700;line-height:1.15;margin:0;letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--acc)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+@media (max-width:520px){.wrap{padding:0 16px}}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px;border-radius:6px}
+.demo{background:var(--ink);color:#DCEFF5;font-size:13.5px;text-align:center;padding:9px 16px}
+.demo a{color:#8FE3F7;font-weight:600}
+header{background:var(--paper);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;flex-wrap:wrap;padding:8px 0}
+.logo{font:700 20px Inter,sans-serif;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo i{width:34px;height:34px;border-radius:10px;background:var(--acc);display:inline-flex;align-items:center;justify-content:center}
+.logo small{display:block;font:500 11px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 22px;border-radius:12px;font:600 15.5px Inter,sans-serif;text-decoration:none;border:1px solid transparent;cursor:pointer;text-align:center}
+.btn-p{background:var(--acc);color:#fff}.btn-p:hover{background:var(--acc-d)}
+.btn-s{background:var(--paper);border-color:#B9C8D3;color:var(--ink)}
+.hero{padding:52px 0 36px}
+.hero .wrap{display:flex;flex-wrap:wrap;gap:32px;align-items:center}
+.hero .t{flex:999 1 440px;min-width:0;display:flex;flex-direction:column;gap:18px}
+.hero h1{font-size:clamp(32px,5vw,48px)}
+.hero p{font-size:18px;color:var(--ink2)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14.5px;color:var(--ink2)}
+.facts b{color:var(--ink)}
+.badge{flex:1 1 260px;min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.badge h3{font-size:16px}
+.badge ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:15px;color:var(--ink2)}
+.badge li::before{content:"✓ ";color:var(--ok);font-weight:700}
+section{padding:44px 0}
+.h2{display:flex;flex-direction:column;gap:6px;margin-bottom:22px}
+.h2 h2{font-size:30px}
+.h2 p{color:var(--ink2)}
+.svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px}
+.svc{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.svc b{font-size:16.5px}
+.svc span{color:var(--ink2);font-size:14.5px}
+/* form */
+.devis{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:22px;box-shadow:0 20px 40px -30px rgba(20,35,46,.35)}
+@media (max-width:520px){.devis{padding:18px}}
+.step h3{font:600 15px Inter,sans-serif;margin-bottom:10px;display:flex;gap:10px;align-items:center}
+.step h3 i{font-style:normal;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:12.5px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:10px}
+.opt{text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;color:var(--ink);cursor:pointer;min-height:52px}
+.opt small{display:block;color:var(--ink2);font-size:13px}
+.opt[aria-pressed="true"]{border-color:var(--acc);background:var(--soft)}
+.opt.urg[aria-pressed="true"]{border-color:var(--warn);background:#FBEDE4}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px}
+label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500}
+input,textarea{font:inherit;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:48px;width:100%}
+textarea{min-height:110px;resize:vertical}
+.full{grid-column:1/-1}
+.drop{border:2px dashed #B9C8D3;border-radius:14px;padding:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--bg)}
+.drop label{flex-direction:row;align-items:center;gap:10px;cursor:pointer;color:var(--acc);font-weight:600}
+.drop input{position:absolute;width:1px;height:1px;opacity:0}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px}
+.thumbs img{width:64px;height:64px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+.err{color:#B42318;font-size:14px;min-height:20px}
+.note{font-size:13px;color:var(--ink2)}
+/* result */
+#ok{display:none;flex-direction:column;gap:18px}
+#ok.show{display:flex}
+.ticket{background:var(--soft);border:1px solid #BFE0EA;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.ticket .n{font:700 22px Inter,sans-serif;color:var(--acc-d)}
+.mail{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.mail .hd{background:#EEF3F6;padding:10px 14px;font-size:13px;color:var(--ink2);display:flex;flex-direction:column;gap:2px}
+.mail .bd{padding:14px;font-size:14.5px;white-space:pre-line}
+.flow{list-style:none;margin:0;padding:0 0 0 18px;border-left:2px solid var(--line);display:flex;flex-direction:column;gap:14px}
+.flow li{position:relative;font-size:14.5px;color:var(--ink2)}
+.flow li::before{content:"";position:absolute;left:-25px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid #B9C8D3}
+.flow li.done::before{background:var(--ok);border-color:var(--ok)}
+.flow b{color:var(--ink)}
+/* pro side */
+.side{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
+.inbox{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.inbox .top{padding:12px 16px;border-bottom:1px solid var(--line);font-weight:600;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.inbox .top span{font-weight:500;color:var(--ink2);font-size:13.5px}
+.row{display:flex;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:14.5px;flex-wrap:wrap}
+.row:last-child{border-bottom:0}
+.row small{display:block;color:var(--ink2);font-size:13px}
+.pill{align-self:center;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.p-new{background:#FBEDE4;color:var(--warn)}.p-wait{background:#FFF4CC;color:#7A5B00}.p-ok{background:#DFF3E7;color:var(--ok)}
+.row.fresh{background:#F2FAFC;animation:in .6s ease}
+@keyframes in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+footer{padding:28px 0 40px;font-size:13.5px;color:var(--ink2);border-top:1px solid var(--line);margin-top:20px}
+</style>
+</head>
+<body>
+<p class="demo">Démo réalisée par Hicham Djama · entreprise fictive, aucune demande n'est envoyée · <a href="../services.html">Voir l'offre</a></p>
+<header>
+<div class="wrap nav">
+<a class="logo" href="#"><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c3.5 4.6 6 8 6 11a6 6 0 0 1-12 0c0-3 2.5-6.4 6-11z"/></svg></i><span>Ondine Plomberie<small>plomberie · chauffage · Paris</small></span></a>
+<a class="btn btn-p" href="#devis">Demander un devis</a>
+</div>
+</header>
+
+<main>
+<section class="hero">
+<div class="wrap">
+<div class="t">
+<h1>Votre devis plomberie, sans attendre au téléphone.</h1>
+<p>Décrivez votre besoin en 1 minute, ajoutez une photo : vous recevez un accusé de réception tout de suite et votre devis sous 48 h.</p>
+<div class="facts"><span><b>Paris et petite couronne</b></span><span>Lun–sam · 8 h–19 h</span><span>Artisan indépendant</span></div>
+<p><a class="btn btn-p" href="#devis">Décrire mon besoin</a></p>
+</div>
+<div class="badge">
+<h3>Ce que vous recevez</h3>
+<ul>
+<li>Un numéro de demande, tout de suite</li>
+<li>Un devis détaillé sous 48 h</li>
+<li>Un rappel si vous n'avez pas répondu</li>
+<li>Vos photos jointes : moins de déplacements inutiles</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="h2"><h2>Nos interventions</h2></div>
+<div class="svcs">
+<div class="svc"><b>Fuite et dégât des eaux</b><span>Recherche de fuite, réparation, attestation pour l'assurance.</span></div>
+<div class="svc"><b>Chauffe-eau et ballon</b><span>Remplacement, détartrage, mise en service.</span></div>
+<div class="svc"><b>Salle de bain</b><span>Douche à l'italienne, WC suspendu, robinetterie.</span></div>
+<div class="svc"><b>Chauffage</b><span>Radiateurs, entretien de chaudière, désembouage.</span></div>
+</div>
+</div>
+</section>
+
+<section id="devis" style="padding-top:8px">
+<div class="wrap">
+<div class="h2"><h2>Demande de devis</h2><p>Gratuit et sans engagement.</p></div>
+<div class="devis">
+<div id="flow" style="display:flex;flex-direction:column;gap:22px">
+<div class="step"><h3><i>1</i>Votre besoin</h3>
+<div class="opts" id="types"></div></div>
+<div class="step"><h3><i>2</i>C'est pour quand ?</h3>
+<div class="opts" id="urg"></div></div>
+<div class="step"><h3><i>3</i>Décrivez et ajoutez une photo</h3>
+<div class="form">
+<label class="full">Description<textarea id="desc" placeholder="Ex. : le ballon d'eau chaude fuit par le bas depuis ce matin, 200 litres, dans la cuisine."></textarea></label>
+<div class="full drop"><label><input type="file" id="ph" accept="image/*" multiple>＋ Ajouter des photos</label><div class="thumbs" id="thumbs"></div><span class="note">Les photos restent sur votre appareil dans cette démo.</span></div>
+</div></div>
+<div class="step"><h3><i>4</i>Vos coordonnées</h3>
+<div class="form">
+<label>Nom<input id="nm" autocomplete="name" placeholder="Camille Martin"></label>
+<label>Téléphone ou e-mail<input id="ct" placeholder="camille@exemple.fr"></label>
+<label>Code postal<input id="cp" inputmode="numeric" placeholder="75015"></label>
+</div></div>
+<p class="err" id="err" role="alert"></p>
+<p><button class="btn btn-p" id="go" type="button">Envoyer ma demande</button></p>
+</div>
+
+<div id="ok" aria-live="polite">
+<div class="ticket"><span>Demande enregistrée</span><span class="n" id="num"></span><span id="okTxt"></span></div>
+<div class="mail">
+<div class="hd"><b>Accusé de réception envoyé automatiquement</b><span id="mTo"></span><span>Objet : Votre demande de devis <span id="mNum"></span></span></div>
+<div class="bd" id="mBody"></div>
+</div>
+<div>
+<h3 style="font-size:16px;margin-bottom:12px">Et ensuite, sans que l'artisan y pense</h3>
+<ol class="flow" id="steps"></ol>
+</div>
+<p><button class="btn btn-s" id="again" type="button">Faire une autre demande</button></p>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="h2"><h2>Côté artisan</h2><p>Toutes les demandes arrivent au même endroit, numérotées, avec leur statut. Fini les SMS, appels et e-mails éparpillés.</p></div>
+<div class="side">
+<div class="inbox">
+<div class="top">Demandes de devis <span id="cnt">3 en cours</span></div>
+<div id="rows">
+<div class="row"><div>Fuite sous évier · 75014<small>D-2026-0139 · reçue hier</small></div><span class="pill p-wait">Devis envoyé · relance J+3 prévue</span></div>
+<div class="row"><div>Chauffe-eau 150 L · 92130<small>D-2026-0137 · reçue il y a 3 jours</small></div><span class="pill p-ok">Devis accepté</span></div>
+<div class="row"><div>Salle de bain complète · 75011<small>D-2026-0135 · reçue il y a 5 jours</small></div><span class="pill p-wait">Relancé automatiquement</span></div>
+</div>
+</div>
+<div class="badge" style="background:var(--paper)">
+<h3>Ce que l'artisan gagne</h3>
+<ul>
+<li>Aucune demande perdue, même reçue en plein chantier</li>
+<li>Les photos avant de se déplacer</li>
+<li>Les devis sans réponse relancés tout seuls</li>
+<li>Un tableau clair : à faire, en attente, gagné</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">Ondine Plomberie est une entreprise fictive. Démo conçue par <a href="../">Hicham Djama</a> · <a href="../services.html">Mettre en place la même chose chez vous</a></div>
+</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const TYPES=[['Fuite / dégât des eaux','urgent le plus souvent'],['Chauffe-eau','remplacement, panne'],['Salle de bain','rénovation, pose'],['Chauffage','radiateur, chaudière'],['Autre','décrivez ci-dessous']];
+const URG=[['Aujourd\'hui','urgence'],['Cette semaine',''],['Pas pressé','devis pour un projet']];
+let s={t:null,u:null},n=142;
+$('types').innerHTML=TYPES.map((t,i)=>`<button type="button" class="opt" aria-pressed="false" data-t="${i}">${t[0]}<small>${t[1]}</small></button>`).join('');
+$('urg').innerHTML=URG.map((t,i)=>`<button type="button" class="opt urg" aria-pressed="false" data-u="${i}">${t[0]}${t[1]?`<small>${t[1]}</small>`:''}</button>`).join('');
+document.addEventListener('click',e=>{
+ const o=e.target.closest('.opt');if(!o)return;
+ if(o.dataset.t!==undefined){s.t=+o.dataset.t;document.querySelectorAll('[data-t]').forEach(b=>b.setAttribute('aria-pressed',b===o))}
+ if(o.dataset.u!==undefined){s.u=+o.dataset.u;document.querySelectorAll('[data-u]').forEach(b=>b.setAttribute('aria-pressed',b===o))}
+ $('err').textContent='';
+});
+$('ph').addEventListener('change',e=>{
+ $('thumbs').innerHTML='';
+ [...e.target.files].slice(0,4).forEach(f=>{const i=new Image();i.alt='Photo jointe';i.src=URL.createObjectURL(f);$('thumbs').appendChild(i)});
+});
+function esc(x){return x.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+$('go').onclick=()=>{
+ if(s.t===null)return $('err').textContent='Choisissez votre besoin.';
+ if(s.u===null)return $('err').textContent='Indiquez quand c\'est pour.';
+ const nm=$('nm').value.trim()||'Camille',ct=$('ct').value.trim()||'camille@exemple.fr',cp=$('cp').value.trim()||'75015';
+ const num='D-2026-0'+(++n),typ=TYPES[s.t][0],urg=URG[s.u][0],ph=$('ph').files.length;
+ $('num').textContent=num;
+ $('okTxt').textContent=`${nm}, votre demande « ${typ} » (${urg.toLowerCase()}) est bien reçue${ph?` avec ${ph} photo${ph>1?'s':''}`:''}.`;
+ $('mTo').textContent='À : '+ct;$('mNum').textContent=num;
+ $('mBody').textContent=`Bonjour ${nm},\n\nNous avons bien reçu votre demande n° ${num} (${typ.toLowerCase()}, ${cp}).\n${s.u===0?'Comme c\'est urgent, nous vous rappelons dans l\'heure.':'Vous recevrez votre devis détaillé sous 48 h.'}\n\nÀ bientôt,\nOndine Plomberie`;
+ const steps=s.u===0
+  ?[['done','Maintenant','accusé de réception envoyé, l\'artisan reçoit une alerte « urgent » sur son téléphone'],['','Dans l\'heure','rappel du client'],['','Après l\'intervention','facture envoyée, puis relance automatique si elle n\'est pas réglée']]
+  :[['done','Maintenant','accusé de réception envoyé, demande ajoutée au tableau de l\'artisan'],['','Sous 48 h','devis envoyé au client'],['','3 jours plus tard','relance automatique si le devis n\'a pas de réponse'],['','Devis accepté','rendez-vous proposé et rappel la veille']];
+ $('steps').innerHTML=steps.map(x=>`<li class="${x[0]}"><b>${x[1]}</b> · ${x[2]}</li>`).join('');
+ const r=document.createElement('div');r.className='row fresh';
+ r.innerHTML=`<div>${esc(typ)} · ${esc(cp)}<small>${num} · à l'instant${ph?' · '+ph+' photo'+(ph>1?'s':''):''}</small></div><span class="pill p-new">${s.u===0?'Urgent · à rappeler':'Nouvelle'}</span>`;
+ $('rows').prepend(r);$('cnt').textContent=$('rows').children.length+' en cours';
+ $('flow').style.display='none';$('ok').classList.add('show');
+ $('ok').scrollIntoView({behavior:'smooth',block:'start'});
+};
+$('again').onclick=()=>{s={t:null,u:null};['desc','nm','ct','cp'].forEach(i=>$(i).value='');$('ph').value='';$('thumbs').innerHTML='';
+ document.querySelectorAll('.opt').forEach(b=>b.setAttribute('aria-pressed','false'));$('ok').classList.remove('show');$('flow').style.display='flex'};
+</script>
+</body>
+</html>
